@@ -62,13 +62,25 @@
                 <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  <!--Для исправления перевода-->
             </xpath>
 
-            <xpath expr="//page[@name='extra']/group/group/field[@name='medium_id']" position="replace">
-                <field name="medium_id" string="Channel"/>  <!--Для исправления перевода-->
+            <xpath expr="//page[@name='extra']/group/group/field[@name='campaign_id']" position="attributes">
+                <attribute name="string">utm_campaign</attribute>  <!--Для изменения перевода-->
             </xpath>
-            <xpath expr="//page[@name='extra']/group/group/field[@name='source_id']" position="replace">
-                <field name="domain_source_id" invisible="1"/>
-                <field name="source_id" domain="domain_source_id"/>
+            <xpath expr="//page[@name='extra']/group/group/field[@name='medium_id']" position="attributes">
+                <attribute name="string">utm_medium</attribute>  <!--Для изменения перевода-->
+            </xpath>
+            <xpath expr="//page[@name='extra']/group/group/field[@name='source_id']" position="attributes">
+                <attribute name="string">utm_source</attribute>  <!--Для изменения перевода-->
+            </xpath>
+            <xpath expr="//page[@name='extra']/group/group/field[@name='source_id']" position="after">
                 <field name="manager_promouter_id" widget="many2one_avatar_user" invisible="medium_id != 11"/>  <!--Промоутер-->
+
+                <field name="utm_term_id"/>
+                <field name="utm_content_id"/>
+
+                <field name="medium2_id"/>
+
+                <field name="domain_source2_id" invisible="1"/>
+                <field name="source2_id" domain="domain_source2_id"/>
             </xpath>
 
             <!--LEAD-->
@@ -132,12 +144,27 @@
                 <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  <!--Для исправления перевода-->
             </xpath>
 
-            <xpath expr="//page[@name='lead']/group/group[3]/field[@name='medium_id']" position="replace">
-                <field name="medium_id" string="Channel"/>  <!--Для исправления перевода-->
+            <xpath expr="//page[@name='lead']/group/group[3]/field[@name='campaign_id']" position="attributes">
+                <attribute name="string">utm_campaign</attribute>  <!--Для изменения перевода-->
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group[3]/field[@name='medium_id']" position="attributes">
+                <attribute name="string">utm_medium</attribute>  <!--Для изменения перевода-->
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group[3]/field[@name='source_id']" position="attributes">
+                <attribute name="string">utm_source</attribute>  <!--Для изменения перевода-->
             </xpath>
             <xpath expr="//page[@name='lead']/group/group[3]/field[@name='source_id']" position="after">
                 <field name="manager_promouter_id" widget="many2one_avatar_user" invisible="medium_id != 11"/>  <!--Промоутер-->
+
+                <field name="utm_term_id"/>
+                <field name="utm_content_id"/>
+
+                <field name="medium2_id"/>
+
+                <field name="domain_source2_id" invisible="1"/>
+                <field name="source2_id" domain="domain_source2_id"/>
             </xpath>
+
 
             <xpath expr="//group" position="after">
                 <group invisible="type == 'lead'">

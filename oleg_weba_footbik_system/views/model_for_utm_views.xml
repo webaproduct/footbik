@@ -1,0 +1,101 @@
+<odoo>
+
+    <menuitem
+        id="utm_menu_аdditional_groups"
+        name="Additional groups"
+        parent="utm.marketing_utm"
+        sequence="15"
+    />
+
+    <!--UtmTerm-->
+    <record id="utm_term_tree" model="ir.ui.view">
+        <field name="name">utm.term.tree</field>
+        <field name="model">utm.term</field>
+        <field name="arch" type="xml">
+            <tree string="UTM Term" editable="bottom">
+                <field name="name" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    <record id="utm_term_form" model="ir.ui.view">-->
+<!--        <field name="name">utm.term.form</field>-->
+<!--        <field name="model">utm.term</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="UTM Term">-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="action_utm_term" model="ir.actions.act_window">
+        <field name="name">UTM Term</field>
+        <field name="res_model">utm.term</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="menu_utm_term"
+        name="UTM Term"
+        action="action_utm_term"
+        parent="utm_menu_аdditional_groups"
+        sequence="1"
+    />
+    <!--UtmTerm-->
+
+
+    <!--UtmContent-->
+    <record id="utm_content_tree" model="ir.ui.view">
+        <field name="name">utm.content.tree</field>
+        <field name="model">utm.content</field>
+        <field name="arch" type="xml">
+            <tree string="UTM Content" editable="bottom">
+                <field name="name" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    <record id="utm_content_form" model="ir.ui.view">-->
+<!--        <field name="name">utm.content.form</field>-->
+<!--        <field name="model">utm.content</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="UTM Content">-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="action_utm_content" model="ir.actions.act_window">
+        <field name="name">UTM Content</field>
+        <field name="res_model">utm.content</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="menu_utm_content"
+        name="UTM Content"
+        action="action_utm_content"
+        parent="utm_menu_аdditional_groups"
+        sequence="2"
+    />
+    <!--UtmContent-->
+
+</odoo>

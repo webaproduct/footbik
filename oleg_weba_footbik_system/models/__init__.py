@@ -6,4 +6,5 @@ from . import (
     sale_subscription,
     sale_order,
     purchase_order,
+    model_for_utm,
 )

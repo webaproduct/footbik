@@ -40,6 +40,7 @@ class CrmLead(models.Model):
     parent_id = fields.Many2one(
         comodel_name="res.partner", string="Parent", tracking=True)
 
+    # <----------------------------------UTM---------------------------------->
     @api.onchange("parent_id")
     def _onchange_full_name_parent(self):
         self.ensure_one()
@@ -51,15 +52,25 @@ class CrmLead(models.Model):
                 "telephone_parent": self.telephone_parent,
             })
 
-    domain_source_id = fields.Binary(compute="_compute_domain_source_id")
+    utm_term_id = fields.Many2one(comodel_name="utm.term", string="utm_term")
+    utm_content_id = fields.Many2one(comodel_name="utm.content", string="utm_content")
 
-    @api.depends("medium_id")
-    def _compute_domain_source_id(self):
+    medium2_id = fields.Many2one(
+        comodel_name="utm.medium", string="medium2_id", tracking=True)
+
+    domain_source2_id = fields.Binary(compute="_compute_domain_source2_id")
+
+    @api.depends("medium2_id")
+    def _compute_domain_source2_id(self):
         for rec in self:
-            if rec.medium_id:
-                rec.domain_source_id = [("medium_id", "=", rec.medium_id.id)]
+            if rec.medium2_id:
+                rec.domain_source2_id = [("medium2_id", "=", rec.medium2_id.id)]
             else:
-                rec.domain_source_id = []
+                rec.domain_source2_id = []
+
+    source2_id = fields.Many2one(
+        comodel_name="utm.source", string="source2_id", tracking=True)
+    # <----------------------------------UTM---------------------------------->
 
     manager_promouter_id = fields.Many2one(
         comodel_name="hr.employee", string="Manager promouter", tracking=True)
