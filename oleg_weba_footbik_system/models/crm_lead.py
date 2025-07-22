@@ -56,7 +56,7 @@ class CrmLead(models.Model):
     utm_content_id = fields.Many2one(comodel_name="utm.content", string="utm_content")
 
     medium2_id = fields.Many2one(
-        comodel_name="utm.medium", string="medium2_id", tracking=True)
+        comodel_name="utm.medium", string="Medium", tracking=True)
 
     domain_source2_id = fields.Binary(compute="_compute_domain_source2_id")
 
@@ -69,7 +69,7 @@ class CrmLead(models.Model):
                 rec.domain_source2_id = []
 
     source2_id = fields.Many2one(
-        comodel_name="utm.source", string="source2_id", tracking=True)
+        comodel_name="utm.source", string="Source", tracking=True)
     # <----------------------------------UTM---------------------------------->
 
     manager_promouter_id = fields.Many2one(
