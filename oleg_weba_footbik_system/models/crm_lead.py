@@ -6,6 +6,12 @@ from ..models.res_partner import TYPE_PARENT, GENDER
 class CrmLead(models.Model):
     _inherit = "crm.lead"
 
+    @api.depends('partner_id')
+    def _compute_name(self):
+        for lead in self:
+            if not lead.name and lead.partner_id and lead.partner_id.name:
+                lead.name = _("%s's client") % lead.partner_id.name
+
     birthday = fields.Date(string="Birthday", tracking=True)
     age = fields.Integer(compute="_compute_age", store=False)
     age_store = fields.Integer(string="Age", tracking=True)

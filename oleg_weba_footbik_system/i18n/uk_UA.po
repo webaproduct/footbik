@@ -6,14 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-22 09:16+0000\n"
-"PO-Revision-Date: 2025-07-22 09:16+0000\n"
+"POT-Creation-Date: 2025-08-05 11:56+0000\n"
+"PO-Revision-Date: 2025-08-05 11:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/crm_lead.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/crm_lead.py:0
+#, python-format
+msgid "%s's client"
+msgstr "Клієнт %s "
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
@@ -48,7 +56,7 @@ msgid ""
 "                        </span>"
 msgstr ""
 "<span class=\"o_stat_text\">\n"
-"                            Підписки\n"
+"                            Абонементи та рітейл\n"
 "                        </span>"
 
 #. module: oleg_weba_footbik_system
@@ -120,7 +128,6 @@ msgid "Channel"
 msgstr "Канал"
 
 #. module: oleg_weba_footbik_system
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_res_partner_filter
 msgid "City"
 msgstr "Місто"
@@ -183,6 +190,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__date_start_subscription
+msgid "Date start subscription"
+msgstr "Дата активації підписки"
+
+#. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Demo training"
 msgstr "Пробне тренування"
@@ -223,7 +235,7 @@ msgstr ""
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__email_parent
 msgid "Email parent"
-msgstr "Email батька"
+msgstr "Email батьків"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__end_frozen_date
@@ -271,18 +283,18 @@ msgstr "Заморозка підписки"
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Full name"
-msgstr "ПІБ"
+msgstr "Імʼя дитини"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__full_name_parent
 msgid "Full name parent"
-msgstr "ПІБ батька"
+msgstr "ПІБ батьків"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__gender
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__gender
 msgid "Gender"
-msgstr "Пол"
+msgstr "Стать"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__gender_parent
@@ -442,11 +454,6 @@ msgid "Purchase Order"
 msgstr "Замовлення на купівлю"
 
 #. module: oleg_weba_footbik_system
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
-msgid "Region"
-msgstr "Область"
-
-#. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_order
 msgid "Sales Order"
 msgstr "Замовлення на продаж"
@@ -489,7 +496,7 @@ msgstr "Дата початку"
 #. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_subscription
 msgid "Subscription"
-msgstr "Підписка"
+msgstr "Абонемент"
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
@@ -510,7 +517,7 @@ msgstr ""
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__telephone_parent
 msgid "Telephone parent"
-msgstr "Телефон батька"
+msgstr "Телефон батьків"
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
@@ -545,7 +552,7 @@ msgstr "Пробне тренування"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__type_parent
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__type_parent
 msgid "Type parent"
-msgstr "Тип батька"
+msgstr "Тип родинного звʼязку"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.act_window,name:oleg_weba_footbik_system.action_utm_content

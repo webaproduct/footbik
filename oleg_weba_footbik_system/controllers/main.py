@@ -1,3 +1,4 @@
+from datetime import datetime
 import logging
 
 from odoo import http
@@ -29,7 +30,7 @@ class IntegrationSite(http.Controller):
             "email": "test@test.com",
             "phone": "0123456789",
             "city": "Ukraine",
-            "age": 12,
+            "birthday": "04-08-2025",
 
             "utm": {
                 "campaign_id": "utm_campaign",
@@ -58,7 +59,7 @@ class IntegrationSite(http.Controller):
             "phone": data["phone"],
             "telephone_parent": data["phone"],
             "full_name_parent": data["parent_name"],
-            "description": data["age"],
+            "birthday": datetime.strptime(data["birthday"], "%d-%m-%Y")
         }
 
         payload.update(self._get_utm(data.get("utm", False)))

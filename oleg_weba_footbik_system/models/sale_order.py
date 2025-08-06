@@ -1,15 +1,50 @@
 import logging
+from datetime import date
 
 from odoo import models, fields
 from odoo.exceptions import UserError
 
-
 _logger = logging.getLogger(__name__)
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     is_agreement = fields.Boolean(string="Is Agreement")
+
+    date_start_subscription = fields.Date(string="Date start subscription")
+
+    def create_subscription(self, lines, subscription_tmpl):
+        subscription_lines = []
+        for line in lines:
+            subscription_lines.append((0, 0, line.get_subscription_line_values()))
+
+        if subscription_tmpl:
+            rec = self.env["sale.subscription"].create(
+                {
+                    "partner_id": self.partner_id.id,
+                    "user_id": self.env.context.get("uid", self.env.uid),
+                    "template_id": subscription_tmpl.id,
+                    "pricelist_id": self.partner_id.property_product_pricelist.id,
+                    # "date_start": date.today(),  # Custom
+                    "sale_order_id": self.id,
+                    "sale_subscription_line_ids": subscription_lines,
+
+                    "close_reason_id": False,  # Custom
+                    "stage_id": 1,  # Custom
+                    "date_start": self.date_start_subscription
+                    if self.date_start_subscription
+                    else False,  # Custom
+                }
+            )
+
+            # rec.action_start_subscription()  # Custom. Without start subscription
+
+            self.subscription_ids = [(4, rec.id)]
+            rec.recurring_next_date = self.get_next_interval(
+                subscription_tmpl.recurring_rule_type,
+                subscription_tmpl.recurring_interval,
+            )
 
     def action_confirm(self):
         res = super().action_confirm()

@@ -8,6 +8,10 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="is_agreement"/>
             </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="date_start_subscription"/>
+            </xpath>
         </field>
     </record>
 

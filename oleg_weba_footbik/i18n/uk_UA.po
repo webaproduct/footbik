@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-28 11:35+0000\n"
-"PO-Revision-Date: 2025-02-28 11:35+0000\n"
+"POT-Creation-Date: 2025-08-04 15:59+0000\n"
+"PO-Revision-Date: 2025-08-04 15:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -176,6 +176,7 @@ msgid "A trial record for this training is prohibited!"
 msgstr "Запис на пробне тренування заборонено!"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_needaction
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_needaction
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_needaction
 msgid "Action Needed"
@@ -200,6 +201,7 @@ msgid "Assistant"
 msgstr "Асистент"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_attachment_count
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_attachment_count
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_attachment_count
 msgid "Attachment Count"
@@ -223,14 +225,14 @@ msgstr "Відвідування"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_view_form
 #, python-format
 msgid "Cancel"
-msgstr "Скасовано"
+msgstr "Скасувати тренування"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__child_id
 #: model:ir.model.fields.selection,name:oleg_weba_footbik.selection__res_partner__type_person__child
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Child"
-msgstr "Дитина"
+msgstr "ПІ дитини"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__children_ids
@@ -239,7 +241,7 @@ msgstr "Дитина"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_search
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_view_form
 msgid "Children"
-msgstr "Діти"
+msgstr "Учасники тренування"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__city
@@ -301,7 +303,7 @@ msgstr "Колір"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_view_form
 #, python-format
 msgid "Completed"
-msgstr "Завершено"
+msgstr "Завершити тренування"
 
 #. module: oleg_weba_footbik
 #: model:ir.model,name:oleg_weba_footbik.model_res_partner
@@ -348,7 +350,7 @@ msgstr "Дата для початку створення тренувань"
 #. module: oleg_weba_footbik
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_group_view_form
 msgid "Date/Time training"
-msgstr "Дата/Час тренування"
+msgstr "Дата та Час тренувань"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__display_name
@@ -373,12 +375,14 @@ msgid "End training"
 msgstr "Кінець тренування"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_follower_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_follower_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_follower_ids
 msgid "Followers"
 msgstr "Підписники"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_partner_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_partner_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_partner_ids
 msgid "Followers (Partners)"
@@ -387,7 +391,7 @@ msgstr "Підписники (Контакти)"
 #. module: oleg_weba_footbik
 #: model:ir.ui.menu,name:oleg_weba_footbik.root_menu_footbik
 msgid "Footbik"
-msgstr ""
+msgstr "Групи та тренування"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__training_on_friday
@@ -426,6 +430,7 @@ msgid "Groups"
 msgstr "Групи"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__has_message
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__has_message
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__has_message
 msgid "Has Message"
@@ -441,12 +446,15 @@ msgid "ID"
 msgstr ""
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,help:oleg_weba_footbik.field_class_attendance__message_needaction
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_group__message_needaction
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_training__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Перевірте, нові повідомлення вимагають вашої уваги."
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,help:oleg_weba_footbik.field_class_attendance__message_has_error
+#: model:ir.model.fields,help:oleg_weba_footbik.field_class_attendance__message_has_sms_error
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_group__message_has_error
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_group__message_has_sms_error
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_training__message_has_error
@@ -460,6 +468,7 @@ msgid "Information about group"
 msgstr "Інформація про групу"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_is_follower
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_is_follower
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_is_follower
 msgid "Is Follower"
@@ -475,7 +484,7 @@ msgstr "Дозволити пробне тренування"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__is_trial_training_group
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_group_search
 msgid "Is trial training group"
-msgstr "Пробні тренування"
+msgstr "Intro"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__write_uid
@@ -513,12 +522,14 @@ msgid "Max Count Children"
 msgstr "Максимальна кількість дітей"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_has_error
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_has_error
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_has_error
 msgid "Message Delivery error"
 msgstr "Помилка доставки повідомлення"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_ids
 msgid "Messages"
@@ -546,6 +557,7 @@ msgid "No days selected for training generation!"
 msgstr "Не вибрані дні для тренувань"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_needaction_counter
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_needaction_counter
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_needaction_counter
 msgid "Number of Actions"
@@ -555,7 +567,7 @@ msgstr "Кількість дій"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__count_children
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__count_children
 msgid "Number of children"
-msgstr "Кількість дітей"
+msgstr "Зарезервовано місць"
 
 #. module: oleg_weba_footbik
 #. odoo-python
@@ -568,18 +580,21 @@ msgid "Number of children cannot be greater than %(count)s"
 msgstr "Кількість дітей не може бути більшим, ніж %(count)s"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_has_error_counter
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_has_error_counter
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_has_error_counter
 msgid "Number of errors"
 msgstr "Кількість помилок"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,help:oleg_weba_footbik.field_class_attendance__message_needaction_counter
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_group__message_needaction_counter
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_training__message_needaction_counter
 msgid "Number of messages requiring action"
 msgstr "Кількість повідомлень, що вимагають дії"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,help:oleg_weba_footbik.field_class_attendance__message_has_error_counter
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_group__message_has_error_counter
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_training__message_has_error_counter
 msgid "Number of messages with delivery error"
@@ -630,6 +645,19 @@ msgid "Program"
 msgstr "Програма"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__quantity_free_place
+msgid "Quantity free place"
+msgstr "Кількість вільних місць"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__rating_ids
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__rating_ids
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_has_sms_error
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_has_sms_error
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_has_sms_error
 msgid "SMS Delivery error"
@@ -697,7 +725,7 @@ msgstr "Статус"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__subscription_frozen
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Subscription frozen"
-msgstr "Підписка заморожена"
+msgstr "Абонемент заморожено"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__training_on_sunday
@@ -758,12 +786,14 @@ msgid "Type Person"
 msgstr "Тип особи"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__website_message_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__website_message_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__website_message_ids
 msgid "Website Messages"
 msgstr ""
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,help:oleg_weba_footbik.field_class_attendance__website_message_ids
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_group__website_message_ids
 #: model:ir.model.fields,help:oleg_weba_footbik.field_class_training__website_message_ids
 msgid "Website communication history"

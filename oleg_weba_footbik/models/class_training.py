@@ -116,6 +116,20 @@ class ClassTraining(models.Model):
 
             rec.count_children = len(rec.children_ids)
 
+    quantity_free_place = fields.Integer(
+        string="Quantity free place",
+        compute="_compute_quantity_free_place",
+        store=True
+    )
+
+    @api.depends("max_count_children", "count_children")
+    def _compute_quantity_free_place(self):
+        for rec in self:
+            if rec.max_count_children and rec.count_children:
+                rec.quantity_free_place = rec.max_count_children - rec.count_children
+            else:
+                rec.quantity_free_place = 0
+
     full_training = fields.Boolean(
         compute="_compute_full_training", string="Full training", store=True)
 

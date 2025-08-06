@@ -1,5 +1,27 @@
 <odoo>
 
+    <!--MENU-->
+    <record id="crm.crm_lead_menu_my_activities" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]"/>
+    </record>
+
+    <record id="sale_crm.sale_order_menu_quotations_crm" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]"/>
+    </record>
+
+    <record id="crm.sales_team_menu_team_pipeline" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]"/>
+    </record>
+
+    <record id="crm.res_partner_menu_customer" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]"/>
+    </record>
+
+    <record id="crm.menu_crm_opportunities" model="ir.ui.menu">
+        <field name="name">Clients</field>
+    </record>
+    <!--MENU-->
+
     <record id="crm_lead_view_form_inherit" model="ir.ui.view">
         <field name="name">crm.lead.view.form.inherit</field>
         <field name="model">crm.lead</field>
@@ -7,6 +29,10 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='stage_id']" position="attributes">
                 <attribute name="invisible">not active</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_schedule_meeting']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
             <!--LEAD-->
@@ -36,6 +62,14 @@
                 <!--Для отступа-->
             </xpath>
 
+            <!--Скрываем поле mobile в лиде-->
+            <xpath expr="//group[@name='lead_info']/label[@for='mobile']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='lead_info']/div[hasclass('o_row_readonly')][3]" position="attributes">
+                <attribute name="style">display: none;</attribute>
+            </xpath>
+            <!--Скрываем поле mobile в лиде-->
 
             <xpath expr="//group[@name='lead_partner']/field[@name='lang_id']" position="after">
                 <!--Для отступа-->
@@ -55,12 +89,24 @@
                 <!--Для отступа-->
             </xpath>
 
-            <xpath expr="//group[@name='lead_partner']/div/field[@name='city']" position="replace">
-                <field name="city" placeholder="City" style="width: 35%" class="o_address_city"/>  <!--Для уменьшения длинны поля-->
+
+<!--            <xpath expr="//group[@name='lead_partner']/div/field[@name='city']" position="replace">-->
+<!--                <field name="city" placeholder="City" style="width: 35%" class="o_address_city"/>  &lt;!&ndash;Для уменьшения длинны поля&ndash;&gt;-->
+<!--            </xpath>-->
+            <xpath expr="//group[@name='lead_partner']/div[hasclass('o_address_format')]/field[@name='state_id']" position="attributes">
+<!--                <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  &lt;!&ndash;Для исправления перевода&ndash;&gt;-->
+                    <attribute name="invisible">1</attribute>  <!--Для скрытия-->
             </xpath>
-            <xpath expr="//group[@name='lead_partner']/div[hasclass('o_address_format')]/field[@name='state_id']" position="replace">
-                <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  <!--Для исправления перевода-->
+            <xpath expr="//group[@name='lead_partner']/div/field[@name='street']" position="attributes">
+                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
             </xpath>
+            <xpath expr="//group[@name='lead_partner']/div/field[@name='street2']" position="attributes">
+                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
+            </xpath>
+            <xpath expr="//group[@name='lead_partner']/div/field[@name='zip']" position="attributes">
+                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
+            </xpath>
+
 
             <xpath expr="//page[@name='extra']/group/group/field[@name='campaign_id']" position="attributes">
                 <attribute name="string">utm_campaign</attribute>  <!--Для изменения перевода-->
@@ -137,11 +183,29 @@
             </xpath>
 
 
-            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='city']" position="replace">
-                <field name="city" placeholder="City" style="width: 35%" class="o_address_city"/>  <!--Для уменьшения длинны поля-->
+<!--            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='city']" position="replace">-->
+<!--                <field name="city" placeholder="City" style="width: 35%" class="o_address_city"/>  &lt;!&ndash;Для уменьшения длинны поля&ndash;&gt;-->
+<!--            </xpath>-->
+            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='state_id']" position="attributes">
+<!--                <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  &lt;!&ndash;Для исправления перевода&ndash;&gt;-->
+                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
             </xpath>
-            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='state_id']" position="replace">
-                <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  <!--Для исправления перевода-->
+            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='street']" position="attributes">
+                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='street2']" position="attributes">
+                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='zip']" position="attributes">
+                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
+            </xpath>
+
+
+            <xpath expr="//page[@name='lead']/group/group[2]/label[@for='mobile_page_lead']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group[2]/div[hasclass('o_row_readonly')]" position="attributes">
+                <attribute name="style">display: none;</attribute>
             </xpath>
 
             <xpath expr="//page[@name='lead']/group/group[3]/field[@name='campaign_id']" position="attributes">
@@ -154,12 +218,11 @@
                 <attribute name="string">utm_source</attribute>  <!--Для изменения перевода-->
             </xpath>
             <xpath expr="//page[@name='lead']/group/group[3]/field[@name='source_id']" position="after">
-                <field name="manager_promouter_id" widget="many2one_avatar_user" invisible="medium_id != 11"/>  <!--Промоутер-->
-
                 <field name="utm_term_id"/>
                 <field name="utm_content_id"/>
 
                 <field name="medium2_id"/>
+                <field name="manager_promouter_id" widget="many2one_avatar_user" invisible="medium2_id != 11"/>  <!--Промоутер-->
 
                 <field name="domain_source2_id" invisible="1"/>
                 <field name="source2_id" domain="domain_source2_id"/>

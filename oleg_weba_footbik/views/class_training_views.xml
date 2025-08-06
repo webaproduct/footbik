@@ -70,6 +70,7 @@
                                 </group>
                                 <group>
                                     <field name="count_children"/>
+                                    <field name="quantity_free_place"/>
                                 </group>
                             </group>
                             <field name="children_ids" widget="one2many">
@@ -108,10 +109,11 @@
                 <field name="trainer_id" widget="many2one_avatar_user" filters="1"/>
                 <field name="assistant_id" widget="many2one_avatar_user" filters="1"/>
                 <field name="class_program_id" filters="1"/>
-                <field name="start_training"/>
-                <field name="end_training"/>
+<!--                <field name="start_training"/>-->
+<!--                <field name="end_training"/>-->
                 <field name="max_count_children"/>
                 <field name="count_children"/>
+                <field name="quantity_free_place"/>
             </calendar>
         </field>
     </record>
