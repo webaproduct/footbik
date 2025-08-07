@@ -5,7 +5,6 @@
 # 	* mail
 # 	* sale_crm
 # 	* sale
-# 	* web
 # 	* oleg_weba_footbik
 #
 msgid ""
@@ -55,11 +54,36 @@ msgid "Lost Reason"
 msgstr "Причина дискваліфікації"
 
 #. module: crm
+#. odoo-python
+#: code:addons/crm/models/crm_lead.py:0
+#: model:ir.actions.act_window,name:crm.action_crm_lead2opportunity_partner
+#: model:ir.model.fields.selection,name:crm.selection__crm_lead2opportunity_partner__name__convert
+#: model:ir.model.fields.selection,name:crm.selection__crm_lead2opportunity_partner_mass__name__convert
+#, python-format
+msgid "Convert to opportunity"
+msgstr "Створити картку клієнта"
+
+#. module: crm
 #: model_terms:ir.ui.view,arch_db:crm.crm_lead_view_form
 #: model_terms:ir.ui.view,arch_db:crm.view_crm_lead2opportunity_partner
 #: model_terms:ir.ui.view,arch_db:crm.view_crm_lead2opportunity_partner_mass
 msgid "Convert to Opportunity"
 msgstr "Якісний лід"
+
+#. module: crm
+#: model_terms:ir.ui.view,arch_db:crm.view_crm_lead2opportunity_partner
+msgid "Create Opportunity"
+msgstr "Створити картку клієнта"
+
+#. module: crm
+#: model_terms:ir.ui.view,arch_db:crm.view_crm_lead2opportunity_partner_mass
+msgid "Convert to Opportunities"
+msgstr "Створити картки клієнтів"
+
+#. module: crm
+#: model:ir.actions.act_window,name:crm.action_crm_send_mass_convert
+msgid "Convert to opportunities"
+msgstr "Створити картки клієнтів"
 
 #. module: crm
 #: model_terms:ir.ui.view,arch_db:crm.crm_lead_view_form
@@ -112,6 +136,12 @@ msgstr "Менеджер"
 #: model_terms:ir.ui.view,arch_db:crm.view_crm_case_opportunities_filter
 msgid "My Pipeline"
 msgstr "Клієнти"
+
+#. module: crm
+#: model:ir.actions.act_window,name:crm.crm_lost_reason_action
+#: model:ir.ui.menu,name:crm.menu_crm_lost_reason
+msgid "Lost Reasons"
+msgstr "Причини дискваліфікації"
 
 
 
@@ -265,33 +295,6 @@ msgstr "Дата виконання задачі"
 #, python-format
 msgid "Log note"
 msgstr "Коментар"
-
-
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/views/calendar/calendar_common/calendar_common_popover.xml:0
-#: code:addons/web/static/src/views/calendar/quick_create/calendar_quick_create.xml:0
-#: code:addons/web/static/src/views/fields/binary/binary_field.xml:0
-#: code:addons/web/static/src/views/fields/binary/binary_field.xml:0
-#: code:addons/web/static/src/views/fields/image/image_field.xml:0
-#: code:addons/web/static/src/views/fields/image/image_field.xml:0
-#: code:addons/web/static/src/views/fields/pdf_viewer/pdf_viewer_field.xml:0
-#: code:addons/web/static/src/views/fields/pdf_viewer/pdf_viewer_field.xml:0
-#: code:addons/web/static/src/views/kanban/kanban_header.js:0
-#: code:addons/web/static/src/views/kanban/kanban_record_quick_create.xml:0
-#, python-format
-msgid "Edit"
-msgstr "Відкрити тренування"
-
-#. module: web
-#. odoo-javascript
-#: code:addons/web/static/src/views/fields/relational_utils.xml:0
-#: code:addons/web/static/src/views/view_dialogs/form_view_dialog.xml:0
-#: code:addons/web/static/src/views/view_dialogs/form_view_dialog.xml:0
-#, python-format
-msgid "Save & Close"
-msgstr "Зберегти зміни"
 
 
 

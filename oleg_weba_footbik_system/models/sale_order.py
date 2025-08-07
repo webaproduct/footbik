@@ -20,6 +20,10 @@ class SaleOrder(models.Model):
             subscription_lines.append((0, 0, line.get_subscription_line_values()))
 
         if subscription_tmpl:
+            date_start = self.date_start_subscription \
+                if self.date_start_subscription \
+                else False  # Custom
+
             rec = self.env["sale.subscription"].create(
                 {
                     "partner_id": self.partner_id.id,
@@ -32,9 +36,8 @@ class SaleOrder(models.Model):
 
                     "close_reason_id": False,  # Custom
                     "stage_id": 1,  # Custom
-                    "date_start": self.date_start_subscription
-                    if self.date_start_subscription
-                    else False,  # Custom
+                    "date_start": date_start,  # Custom
+                    "recurring_next_date": date_start,  # Custom
                 }
             )
 
