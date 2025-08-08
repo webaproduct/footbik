@@ -307,3 +307,8 @@ msgstr "Нумерація тренувань"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_view_form
 msgid "Children"
 msgstr "Доступна кількість дітей на тренуванні"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__child_id
+msgid "Child"
+msgstr "ПІ дитини"

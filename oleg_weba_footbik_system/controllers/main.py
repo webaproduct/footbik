@@ -76,9 +76,10 @@ class IntegrationSite(http.Controller):
 
         result = {}
         for field_name, utm_name in utm.items():
-            result[field_name] = self._search_create_utm(
-                KEY_MODEL[field_name], utm_name, utm)  # utm словарь только для
-            # заполнения поля medium2_id в модели utm.source
+            if utm_name:
+                result[field_name] = self._search_create_utm(
+                    KEY_MODEL[field_name], utm_name, utm)  # utm словарь только для
+                # заполнения поля medium2_id в модели utm.source
 
         return result
 

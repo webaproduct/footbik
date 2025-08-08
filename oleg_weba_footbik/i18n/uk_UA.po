@@ -232,7 +232,7 @@ msgstr "Скасувати тренування"
 #: model:ir.model.fields.selection,name:oleg_weba_footbik.selection__res_partner__type_person__child
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Child"
-msgstr "ПІ дитини"
+msgstr "Дитина"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__children_ids

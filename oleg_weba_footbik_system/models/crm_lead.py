@@ -13,8 +13,8 @@ class CrmLead(models.Model):
                 lead.name = _("%s's client") % lead.partner_id.name
 
     birthday = fields.Date(string="Birthday", tracking=True)
-    age = fields.Integer(compute="_compute_age", store=False)
-    age_store = fields.Integer(string="Age", tracking=True)
+    age = fields.Char(compute="_compute_age", store=False)
+    age_store = fields.Char(string="Age", tracking=True)
 
     @api.depends("birthday")
     def _compute_age(self):
@@ -22,6 +22,8 @@ class CrmLead(models.Model):
             age = self.env["res.partner"].get_age(rec.birthday)
             rec.age = age
             rec.age_store = age
+
+    age_from_partner = fields.Char(related="partner_id.age_store", store=True)
 
     gender = fields.Selection(selection=GENDER, string="Gender", tracking=True)
 
