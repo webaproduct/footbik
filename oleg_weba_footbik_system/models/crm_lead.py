@@ -56,7 +56,7 @@ class CrmLead(models.Model):
             self.write({
                 "full_name_parent": self.parent_id.name,
                 "type_parent": self.type_parent,
-                "gender_parent": self.gender_parent,
+                # "gender_parent": self.gender_parent,
                 "telephone_parent": self.telephone_parent,
             })
 
@@ -148,7 +148,7 @@ class CrmLead(models.Model):
                     "type_person": "parent",
                     "name": lead.full_name_parent,
                     "type_parent": lead.type_parent,
-                    "gender": lead.gender_parent,
+                    # "gender": lead.gender_parent,
                     "phone": lead.telephone_parent,
                     "email": lead.email_parent,
 

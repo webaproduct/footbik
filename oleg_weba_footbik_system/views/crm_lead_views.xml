@@ -35,78 +35,254 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
 
-            <!--LEAD-->
-
-            <xpath expr="//group[@name='lead_info']/label[@for='contact_name']" position="replace"/>
-            <xpath expr="//group[@name='lead_info']/div" position="replace">
-                <field name="contact_name" string="Full name"/>
-            </xpath>
-
-            <xpath expr="//group[@name='lead_info']/label[@for='email_from_group_lead_info']" position="before">
-                <label for="birthday"/>
-                <div class="o_row">
-                    <field name="age" invisible="1"/>
-
-                    <field name="birthday"/>
-                    <span>Age:</span>
-                    <field name="age_store" readonly="1"/>
-                </div>
-
-                <field name="gender"/>
-            </xpath>
-
-            <xpath expr="//group[@name='lead_info']/field[@name='email_cc']" position="before">
-                <!--Для отступа-->
-                <label for="gender" string=""/>
-                <div style="margin-bottom: 15px;"/>
-                <!--Для отступа-->
-            </xpath>
-
-            <!--Скрываем поле mobile в лиде-->
-            <xpath expr="//group[@name='lead_info']/label[@for='mobile']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//group[@name='lead_info']/div[hasclass('o_row_readonly')][3]" position="attributes">
+            <xpath expr="//div[hasclass('col-auto')][2]" position="attributes">
                 <attribute name="style">display: none;</attribute>
             </xpath>
-            <!--Скрываем поле mobile в лиде-->
 
-            <xpath expr="//group[@name='lead_partner']/field[@name='lang_id']" position="after">
-                <!--Для отступа-->
-                <label for="full_name_parent" string=""/>
-                <div style="margin-bottom: 15px;"/>
-                <!--Для отступа-->
+            <!--Rewrite global group-->
+            <xpath expr="//group" position="replace">
+                <group>
 
-                <field name="full_name_parent"/>
-                <field name="type_parent"/>
-                <field name="gender_parent"/>
-                <field name="telephone_parent"/>
-                <field name="email_parent"/>
+                    <group name="lead_info" invisible="type == 'opportunity'">
+                        <field name="contact_name" string="Full name"/>  <!--Custom-->
 
-                <!--Для отступа-->
-                <label for="full_name_parent" string=""/>
-                <div style="margin-bottom: 15px;"/>
-                <!--Для отступа-->
+                        <!--Для отступа-->
+<!--                        <label for="gender" string=""/>-->
+<!--                        <div style="margin-bottom: 15px;"/>-->
+                        <!--Для отступа-->
+
+                        <field name="gender"/>  <!--Custom-->
+
+                        <field name="is_blacklisted" invisible="1"/>
+                        <field name="phone_blacklisted" invisible="1"/>
+                        <field name="email_state" invisible="1"/>
+                        <field name="phone_state" invisible="1"/>
+                        <field name="partner_email_update" invisible="1"/>
+                        <field name="partner_phone_update" invisible="1"/>
+
+                        <!--Custom-->
+                        <label for="birthday"/>
+                        <div class="o_row">
+                            <field name="age" invisible="1"/>
+
+                            <field name="birthday"/>
+                            <span>Age:</span>
+                            <field name="age_store" readonly="1"/>
+                        </div>
+
+                        <label for="street" string="Address"/>
+                        <div class="o_address_format">
+                            <field name="street" placeholder="Street..." class="o_address_street" invisible="1"/> <!--Custom-->
+                            <field name="street2" placeholder="Street 2..." class="o_address_street" invisible="1"/> <!--Custom-->
+                            <field name="city" placeholder="City" class="o_address_city"/> <!--Custom-->
+                            <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}' invisible="1"/> <!--Custom-->
+                            <field name="zip" placeholder="ZIP" class="o_address_zip" invisible="1"/> <!--Custom-->
+                            <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/> <!--Custom-->
+                        </div>
+                        <!--Custom-->
+
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+
+                        <label for="phone_group_lead_info" class="oe_inline"/>
+                        <div class="o_row o_row_readonly">
+                            <button name="phone_action_blacklist_remove" class="fa fa-ban text-danger"
+                                title="This phone number is blacklisted for SMS Marketing. Click to unblacklist."
+                                type="object" context="{'default_phone': phone}" groups="base.group_user"
+                                invisible="not phone_blacklisted"/>
+                            <field name="phone" id="phone_group_lead_info" widget="phone"/>
+                            <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                title="By saving this change, the customer phone number will also be updated."
+                                invisible="not partner_phone_update"/>
+                        </div>
+
+                        <label for="email_from_group_lead_info" class="oe_inline"/>
+                        <div class="o_row o_row_readonly">
+                            <button name="mail_action_blacklist_remove" class="fa fa-ban text-danger"
+                                title="This email is blacklisted for mass mailings. Click to unblacklist."
+                                type="object" context="{'default_email': email_from}" groups="base.group_user"
+                                invisible="not is_blacklisted"/>
+                            <field name="email_from" id="email_from_group_lead_info" string="Email" widget="email"/>
+                            <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                title="By saving this change, the customer email will also be updated."
+                                invisible="not partner_email_update"/>
+                        </div>
+
+                        <field name="lang_id" invisible="lang_active_count &lt;= 1"
+                            options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+
+                        <field name="email_cc" groups="base.group_no_one"/>  <!--Custom-->
+                        <field name="function" groups="base.group_system"/>  <!--Custom-->
+
+                        <label for="mobile" class="oe_inline" invisible="1"/>  <!--Custom-->
+                        <div class="o_row o_row_readonly" style="display: none;">  <!--Custom-->
+                            <button name="phone_action_blacklist_remove" class="fa fa-ban text-danger"
+                                title="This phone number is blacklisted for SMS Marketing. Click to unblacklist."
+                                type="object" context="{'default_phone': mobile}" groups="base.group_user"
+                                invisible="not mobile_blacklisted"/>
+                            <field name="mobile" widget="phone" string="Mobile"/>
+                        </div>
+                    </group>
+
+                    <group name="opportunity_partner" invisible="type == 'lead'">
+
+                        <!--Custom-->
+                        <label for="partner_id"/>
+                        <div class="o_row">
+                            <field name="partner_id"
+                                widget="res_partner_many2one"
+                                string="Customer"
+                                context="{'res_partner_search_mode': type == 'opportunity' and 'customer' or False,
+                                    'default_name': contact_name or partner_name,
+                                    'default_street': street,
+                                    'default_is_company': type == 'opportunity' and contact_name == False,
+                                    'default_company_name': type == 'opportunity' and partner_name,
+                                    'default_street2': street2,
+                                    'default_city': city,
+                                    'default_title': title,
+                                    'default_state_id': state_id,
+                                    'default_zip': zip,
+                                    'default_country_id': country_id,
+                                    'default_function': function,
+                                    'default_phone': phone,
+                                    'default_mobile': mobile,
+                                    'default_email': email_from,
+                                    'default_user_id': user_id,
+                                    'default_team_id': team_id,
+                                    'default_website': website,
+                                    'default_lang': lang_code,
+                                    'show_vat': True,
+                                }"
+                               class="oe_inline"
+                            />
+                            <span>Вік: </span>
+                            <field name="age_from_partner" class="oe_inline"/>
+                        </div>
+                        <!--Custom-->
+
+                        <field name="is_blacklisted" invisible="1"/>
+                        <field name="partner_is_blacklisted" invisible="1"/>
+                        <field name="phone_blacklisted" invisible="1"/>
+                        <field name="mobile_blacklisted" invisible="1"/>
+                        <field name="email_state" invisible="1"/>
+                        <field name="phone_state" invisible="1"/>
+                        <field name="partner_email_update" invisible="1"/>
+                        <field name="partner_phone_update" invisible="1"/>
+
+                        <label for="email_from" class="oe_inline"/>
+                        <div class="o_row o_row_readonly">
+                            <button name="mail_action_blacklist_remove" class="fa fa-ban text-danger"
+                                title="This email is blacklisted for mass mailings. Click to unblacklist."
+                                type="object" context="{'default_email': email_from}" groups="base.group_user"
+                                invisible="not is_blacklisted"/>
+                            <field name="email_from" string="Email" widget="email"/>
+                            <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                title="By saving this change, the customer email will also be updated."
+                                invisible="not partner_email_update"/>
+                        </div>
+
+                        <label for="phone" class="oe_inline"/>
+                        <div class="o_row o_row_readonly">
+                            <button name="phone_action_blacklist_remove" class="fa fa-ban text-danger"
+                                title="This phone number is blacklisted for SMS Marketing. Click to unblacklist."
+                                type="object" context="{'default_phone': phone}" groups="base.group_user"
+                                invisible="not phone_blacklisted"/>
+                            <field name="phone" widget="phone"/>
+                            <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                title="By saving this change, the customer phone number will also be updated."
+                                invisible="not partner_phone_update"/>
+                        </div>
+
+                        <field name="lost_reason_id" invisible="active"/>
+                        <field name="date_conversion" invisible="1"/>
+                        <field name="user_company_ids" invisible="1"/>
+                    </group>
+
+                    <group name="lead_partner" invisible="type == 'opportunity'">
+                        <field name="full_name_parent"/>  <!--Custom-->
+                        <field name="type_parent"/>  <!--Custom-->
+                        <field name="telephone_parent"/>  <!--Custom-->
+<!--                        <field name="gender_parent"/>-->  <!--Custom-->
+                         <field name="email_parent" groups="base.group_system"/>  <!--Custom-->
+
+                        <!-- Preload all the partner's information -->
+                        <field name="is_partner_visible" invisible='1'/>
+                        <field name="partner_id" widget="res_partner_many2one"
+                            context="{
+                                'default_name': contact_name,
+                                'default_title': title,
+                                'default_street': street,
+                                'default_street2': street2,
+                                'default_city': city,
+                                'default_state_id': state_id,
+                                'default_zip': zip,
+                                'default_country_id': country_id,
+                                'default_function': function,
+                                'default_phone': phone,
+                                'default_mobile': mobile,
+                                'default_email': email_from,
+                                'default_user_id': user_id,
+                                'default_team_id': team_id,
+                                'default_website': website,
+                                'default_lang': lang_code,
+                                'show_vat': True
+                            }" invisible="not is_partner_visible"/>
+
+                        <field name="partner_name" groups="base.group_system"/>  <!--Custom-->
+
+                        <field name="website" widget="url" placeholder="e.g. https://footbik.odoo24.online"
+                               groups="base.group_system"/>  <!--Custom-->
+
+                        <label for="street" string="Address" invisible="1"/>  <!--Custom-->
+                        <div class="o_address_format" style="display: none;">  <!--Custom-->
+                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                            <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                            <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                        </div>
+
+                        <field name="lang_active_count" invisible="1"/>  <!--Custom-->
+                        <field name="lang_code" invisible="1"/>  <!--Custom-->
+                        <field name="lang_id" invisible="1"
+                            options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>  <!--Custom-->
+                    </group>
+
+                    <field name="type" invisible="1"/>
+
+                    <group invisible="type == 'lead'">
+                        <field name="user_id"
+                            context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
+                        <label for="date_deadline">Expected Closing</label>
+                        <div class="o_lead_opportunity_form_inline_fields">
+                            <field name="date_deadline" nolabel="1" class="oe_inline"/>
+                            <field name="priority" widget="priority" nolabel="1" class="oe_inline align-top"/>
+                        </div>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                    </group>
+
+
+                    <group invisible="type == 'opportunity'">
+                        <field name="user_id"
+                            context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
+                        <field name="team_id" options="{'no_open': True, 'no_create': True}"
+                               context="{'kanban_view_ref': 'sales_team.crm_team_view_kanban'}" groups="base.group_system"/>
+                    </group>
+
+                    <group name="lead_priority" invisible="type == 'opportunity'">
+                        <field name="priority" widget="priority" groups="base.group_system"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                    </group>
+                </group>
+                <!--Rewrite global group-->
+
             </xpath>
 
+            <!--LEAD-->
 
-<!--            <xpath expr="//group[@name='lead_partner']/div/field[@name='city']" position="replace">-->
-<!--                <field name="city" placeholder="City" style="width: 35%" class="o_address_city"/>  &lt;!&ndash;Для уменьшения длинны поля&ndash;&gt;-->
-<!--            </xpath>-->
-            <xpath expr="//group[@name='lead_partner']/div[hasclass('o_address_format')]/field[@name='state_id']" position="attributes">
-<!--                <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  &lt;!&ndash;Для исправления перевода&ndash;&gt;-->
-                    <attribute name="invisible">1</attribute>  <!--Для скрытия-->
+            <xpath expr="//notebook/page[2]/group/group[2]/field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
-            <xpath expr="//group[@name='lead_partner']/div/field[@name='street']" position="attributes">
-                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
-            </xpath>
-            <xpath expr="//group[@name='lead_partner']/div/field[@name='street2']" position="attributes">
-                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
-            </xpath>
-            <xpath expr="//group[@name='lead_partner']/div/field[@name='zip']" position="attributes">
-                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
-            </xpath>
-
 
             <xpath expr="//page[@name='extra']/group/group/field[@name='campaign_id']" position="attributes">
                 <attribute name="string">utm_campaign</attribute>  <!--Для изменения перевода-->
@@ -127,6 +303,10 @@
 
                 <field name="domain_source2_id" invisible="1"/>
                 <field name="source2_id" domain="domain_source2_id"/>
+            </xpath>
+
+            <xpath expr="//page[@name='internal_notes']" position="attributes">
+                <attribute name="invisible">type == 'lead'</attribute>
             </xpath>
 
             <!--LEAD-->
@@ -182,65 +362,13 @@
                 </button>
             </xpath>
 
-            <xpath expr="//group/group[@name='opportunity_partner']/field[@name='partner_id']" position="replace">
-                <label for="partner_id"/>
-                <div class="o_row">
-                    <field name="partner_id"
-                        widget="res_partner_many2one"
-                        string="Customer"
-                        context="{'res_partner_search_mode': type == 'opportunity' and 'customer' or False,
-                            'default_name': contact_name or partner_name,
-                            'default_street': street,
-                            'default_is_company': type == 'opportunity' and contact_name == False,
-                            'default_company_name': type == 'opportunity' and partner_name,
-                            'default_street2': street2,
-                            'default_city': city,
-                            'default_title': title,
-                            'default_state_id': state_id,
-                            'default_zip': zip,
-                            'default_country_id': country_id,
-                            'default_function': function,
-                            'default_phone': phone,
-                            'default_mobile': mobile,
-                            'default_email': email_from,
-                            'default_user_id': user_id,
-                            'default_team_id': team_id,
-                            'default_website': website,
-                            'default_lang': lang_code,
-                            'show_vat': True,
-                        }"
-                    class="oe_inline"
-                    />
-                    <span>Вік: </span>
-                    <field name="age_from_partner" class="oe_inline"/>
-                </div>
-            </xpath>
-
-
-<!--            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='city']" position="replace">-->
-<!--                <field name="city" placeholder="City" style="width: 35%" class="o_address_city"/>  &lt;!&ndash;Для уменьшения длинны поля&ndash;&gt;-->
-<!--            </xpath>-->
-            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='state_id']" position="attributes">
-<!--                <field name="state_id" class="o_address_state" placeholder="Region" options='{"no_open": True}'/>  &lt;!&ndash;Для исправления перевода&ndash;&gt;-->
-                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
-            </xpath>
-            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='street']" position="attributes">
-                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
-            </xpath>
-            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='street2']" position="attributes">
-                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
-            </xpath>
-            <xpath expr="//page[@name='lead']/group/group/div[hasclass('o_address_format')]/field[@name='zip']" position="attributes">
-                <attribute name="invisible">1</attribute>  <!--Для скрытия-->
-            </xpath>
-
-
             <xpath expr="//page[@name='lead']/group/group[2]/label[@for='mobile_page_lead']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//page[@name='lead']/group/group[2]/div[hasclass('o_row_readonly')]" position="attributes">
                 <attribute name="style">display: none;</attribute>
             </xpath>
+
 
             <xpath expr="//page[@name='lead']/group/group[3]/field[@name='campaign_id']" position="attributes">
                 <attribute name="string">utm_campaign</attribute>  <!--Для изменения перевода-->
@@ -293,6 +421,17 @@
             </xpath>
 
             <!--OPPORTUNITY-->
+        </field>
+    </record>
+
+    <record id="view_crm_lead2opportunity_partner_inherit" model="ir.ui.view">
+        <field name="name">crm.lead2opportunity.partner.form.inherit</field>
+        <field name="model">crm.lead2opportunity.partner</field>
+        <field name="inherit_id" ref="crm.view_crm_lead2opportunity_partner"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
         </field>
     </record>
 
