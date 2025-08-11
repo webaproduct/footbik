@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_looker" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.looker_connector</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//form" position="inside">
+                <app data-string="LOOKER Connector" string="LOOKER CONNECTOR" name="looker_connector"
+                     logo='looker_connector/static/description/icon.png'>
+
+
+                    <div style=" border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                        <span class="fs-2 fw-bold mx-6" style="color: #7c7bad;">
+                            <b>GOOGLE LOOKER STUDIO DIRECT CONNECTOR</b>
+                        </span>
+                        <div style="background:#f8f8f8; border-radius: 8px; padding: 10px; border:1px;">
+                            <div style="margin-bottom: 10px;">
+                            </div>
+
+                            <div style="padding-top:38px">
+                                <group class="mt-10">
+                                    <div class="row mt10 ">
+                                        <div class="o_setting_left_pane" style="margin-top:-50px;">
+
+                                            <label for="looker_url" string="Connector Url :"/>
+                                            <div style="display:inline-flex;">
+                                                <field
+                                                        style="margin-bottom:0px !important; margin-right:10px; font-weight: bold !important;"
+                                                        name="looker_url" readonly="1"/>
+
+
+                                                <span style="cursor:pointer; color: #0056b3; background-color:#C2E2E8; padding-left:3px; padding-right:3px; border-radius: 3px;"
+                                                      onclick="navigator.clipboard.writeText(document.getElementsByName('looker_url')[0].innerText);document.getElementsByName('looker_url')[0].parentNode.lastChild.innerText ='Copied!'">
+                                                    Copy
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </group>
+                                <group>
+                                    <div style="margin-top:20px;" class="row mt10">
+                                        <div class="o_setting_left_pane"
+                                             style="margin-top:-30px;">
+                                            <label for="looker_access_token" string="Access Token :"/>
+                                            <div style="display:inline-flex;">
+                                                <field id="looker_access_token"
+                                                       style="margin-bottom:0px !important; margin-right:10px; font-weight: bold !important;"
+                                                       name="looker_access_token" readonly="1"/>
+                                                <span style="cursor:pointer; color: #0056b3; background-color:#C2E2E8; padding-left:3px; padding-right:3px; border-radius: 3px;"
+                                                      onclick="navigator.clipboard.writeText(document.getElementsByName('looker_access_token')[0].innerText);document.getElementsByName('looker_access_token')[0].parentNode.lastChild.innerText ='Copied!'">
+                                                    Copy
+                                                </span>
+                                            </div>
+                                            <br></br>
+
+
+                                        </div>
+                                    </div>
+                                </group>
+                                <button style="background:green;border-radius:8px;margin-top:25px;"
+                                        name="looker_generate_token" type="object" string="Generate Token"
+                                        context="{'uid': uid}" class="oe_highlight"/>
+                            </div>
+                            <div style="margin-top: 20px; background-color: #f4f4f9; padding: 10px; border-radius: 5px; color: #6c757d;">
+
+                                <div>
+                                    <h4 style="">Bought Connector! Whats next?</h4>
+
+                                    <span style="font-size: 1em; margin-top: 10px; display: block;">
+                                        Check out our <b>Looker SQL Connector</b> addon for seamless integration with
+                                        Odoo using SQL queries directly in Looker!
+
+                                        Enhance your analytics capabilities effortlessly!
+                                        <br/>
+
+                                        <div style="display:flex; ">
+                                            <a href="https://techfinna.com/looker-odoo-connector/"
+                                               target="_blank" rel="noopener noreferrer"
+                                               style="margin-right: 7px;padding-top:12px;margin-top: 10px; padding: 10px 15px; background-color: #0056b3; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
+                                                View Installation Manual
+                                            </a>
+
+                                            <a href="https://apps.odoo.com/apps/modules/17.0/looker_sql_connector"
+                                               target="_blank" rel="noopener noreferrer"
+                                               style="padding-top:12px;margin-top: 10px; padding: 10px 15px; background-color: #0056b3; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
+                                                Looker Sql Addon
+                                            </a>
+                                        </div>
+                                    </span>
+                                    <div style="margin-top: 20px;">
+                                        <h4>Need Help with Custom Dashboards?</h4>
+
+                                        <span style="font-size: 1em; display: block;">
+                                            Let us assist you in building the best custom dashboards for Looker. Our experts are ready to tailor solutions to your unique needs.
+                                            Contact us at <a href="mailto:info@techfinna.com"
+                                                             style="color: #0056b3; text-decoration: underline;">
+                                            info@techfinna.com
+                                        </a> for more information.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div style="margin-top: 20px; background-color: #f4f4f9; padding: 10px; border-radius: 5px; color: #6c757d;">
+                                <span style="font-size: 1em;">
+                                    Bringing <b>unique Odoo solutions</b> to life, TechFinna specializes in <b>Odoo
+                                    integrations
+                                </b> (especially for analytics), creating <b>dynamic Odoo dashboards</b> (Looker, Power
+                                    BI), and developing <b>React.js based UI apps</b> as Odoo modules. If you have
+                                    specific requirements or need expert guidance, contact us at <a
+                                        href="mailto:info@techfinna.com">info@techfinna.com
+                                </a> or visit <a href="https://techfinna.com" target="_blank"
+                                                 style="color: #0056b3; text-decoration: underline;">our website</a>.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
