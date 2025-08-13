@@ -14,6 +14,8 @@ class SaleOrder(models.Model):
 
     date_start_subscription = fields.Date(string="Date start subscription")
 
+    recurring_next_date = fields.Date(string="Next invoice date")
+
     def create_subscription(self, lines, subscription_tmpl):
         subscription_lines = []
         for line in lines:
@@ -44,10 +46,12 @@ class SaleOrder(models.Model):
             # rec.action_start_subscription()  # Custom. Without start subscription
 
             self.subscription_ids = [(4, rec.id)]
-            rec.recurring_next_date = self.get_next_interval(
-                subscription_tmpl.recurring_rule_type,
-                subscription_tmpl.recurring_interval,
-            )
+
+            if not date_start:  # Custom
+                rec.recurring_next_date = self.get_next_interval(
+                    subscription_tmpl.recurring_rule_type,
+                    subscription_tmpl.recurring_interval,
+                )
 
     def action_confirm(self):
         res = super().action_confirm()
