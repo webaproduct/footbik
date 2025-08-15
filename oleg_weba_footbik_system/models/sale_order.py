@@ -64,9 +64,9 @@ class SaleOrder(models.Model):
                         "active_ids": [rec.id],
                         "active_id": rec.id,
                         # "default_journal_id": self.company_data['default_journal_sale'].id,
-                    }).create({
+                    }).sudo().create({
                         "advance_payment_method": "delivered",
-                    }).create_invoices()
+                    }).sudo().create_invoices()
 
                     rec.invoice_ids[0].action_post()
                 except UserError as e:

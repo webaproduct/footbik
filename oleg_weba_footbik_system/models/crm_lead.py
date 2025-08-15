@@ -13,7 +13,7 @@ class CrmLead(models.Model):
                 lead.name = _("%s's client") % lead.partner_id.name
 
     birthday = fields.Date(string="Birthday", tracking=True)
-    age = fields.Char(compute="_compute_age", store=False)
+    age = fields.Char(compute="_compute_age", store=False)  # Для обновления на форме
     age_store = fields.Char(string="Age", tracking=True)
 
     @api.depends("birthday")
@@ -24,6 +24,21 @@ class CrmLead(models.Model):
             rec.age_store = age
 
     age_from_partner = fields.Char(related="partner_id.age_store", store=True)
+    birthday_from_partner = fields.Date(related="partner_id.birthday", store=True)
+
+    skills_id = fields.Many2one(
+        comodel_name="skills",
+        string="Skills",
+    )
+
+    @api.onchange("skills_id")
+    def _onchange_skills_id(self):
+        self.ensure_one()
+        if self.skills_id:
+            self.partner_id.skills_id = self.skills_id.id
+
+    need_text = fields.Text(string="Need")
+    features_development = fields.Boolean("Features in development")
 
     gender = fields.Selection(selection=GENDER, string="Gender", tracking=True)
 
@@ -48,18 +63,26 @@ class CrmLead(models.Model):
     parent_id = fields.Many2one(
         comodel_name="res.partner", string="Parent", tracking=True)
 
-    # <----------------------------------UTM---------------------------------->
+    telegram = fields.Char(string="Telegram")
+    instagram = fields.Char(string="Instagram")
+    whatsapp = fields.Char(string="WhatsApp")
+
     @api.onchange("parent_id")
     def _onchange_full_name_parent(self):
         self.ensure_one()
         if self.parent_id:
             self.write({
                 "full_name_parent": self.parent_id.name,
-                "type_parent": self.type_parent,
+                "type_parent": self.parent_id.type_parent,
                 # "gender_parent": self.gender_parent,
-                "telephone_parent": self.telephone_parent,
+                "telephone_parent": self.parent_id.phone,
+
+                "telegram": self.parent_id.phone,
+                "instagram": self.parent_id.instagram,
+                "whatsapp": self.parent_id.phone,
             })
 
+    # <----------------------------------UTM---------------------------------->
     utm_term_id = fields.Many2one(comodel_name="utm.term", string="utm_term")
     utm_content_id = fields.Many2one(comodel_name="utm.content", string="utm_content")
 

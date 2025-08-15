@@ -43,6 +43,9 @@ class SaleSubscription(models.Model):
     group_id = fields.Many2one(
         comodel_name="class.group", string="Group", ondelete="cascade", index=True)
 
+    date_end = fields.Date(string="End date")
+    close_reason_id = fields.Many2one()
+
     def write(self, values):
         partner_id = self.partner_id.id
 
@@ -84,9 +87,12 @@ class SaleSubscription(models.Model):
                     # Делаем разморозку подписки в незавершенных посещениях
                     self.env["class.attendance"].unfreeze_subscription_child(partner_id)
 
+        if values.get("date") and values["date"]:
+            values["date_end"] = values["date"]
+
         return super(SaleSubscription, self).write(values)
 
-    # Крон для поиска ожидающих подписок и активации их
+    # Крон для поиска ожидающих подписок и активации
     def _cron_check_subscription_start(self):
         subscriptions = self.env["sale.subscription"].search([
             ("stage_id", "=", 1),  # Ready to start
@@ -94,3 +100,12 @@ class SaleSubscription(models.Model):
         ])
         if subscriptions:
             subscriptions.write({"stage_id": 2})  # In progress
+
+    # Крон для поиска заканчивающихся подписок и закрытие
+    def _cron_check_subscription_end(self):
+        subscriptions = self.env["sale.subscription"].search([
+            ("stage_id", "=", 2),  # In progress
+            ("date_end", "=", datetime.date.today()),
+        ])
+        if subscriptions:
+            subscriptions.write({"stage_id": 3})  # Closed

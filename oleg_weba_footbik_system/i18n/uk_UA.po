@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-11 09:28+0000\n"
-"PO-Revision-Date: 2025-08-11 09:28+0000\n"
+"POT-Creation-Date: 2025-08-14 15:50+0000\n"
+"PO-Revision-Date: 2025-08-14 15:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,9 @@ msgid ""
 "title=\"By saving this change, the customer email will also be updated.\" "
 "invisible=\"not partner_email_update\"/>"
 msgstr ""
+"<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
+"title=\"Зберігаючи цю зміну, пошту клієнта також буде оновлено.\" "
+"invisible=\"not partner_email_update\"/>"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
@@ -38,6 +41,9 @@ msgid ""
 "title=\"By saving this change, the customer phone number will also be "
 "updated.\" invisible=\"not partner_phone_update\"/>"
 msgstr ""
+"<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
+"title=\"Зберігаючи цю зміну, телефон клієнта також буде "
+"оновлено.\" invisible=\"not partner_phone_update\"/>"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
@@ -93,11 +99,6 @@ msgid "<span>Age:</span>"
 msgstr "<span>Вік:</span>"
 
 #. module: oleg_weba_footbik_system
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
-msgid "<span>Вік: </span>"
-msgstr ""
-
-#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__added_trial_training
 msgid "Added trial training"
 msgstr "Записан на пробне тренування"
@@ -137,6 +138,7 @@ msgstr "Відвідування"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__birthday
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__birthday_from_partner
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__birthday
 msgid "Birthday"
 msgstr "Дата народження"
@@ -161,6 +163,11 @@ msgid "City"
 msgstr "Місто"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__close_reason_id
+msgid "Close Reason"
+msgstr "Причина закриття"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__reason_frozen
 msgid "Comment"
 msgstr "Причина"
@@ -174,6 +181,11 @@ msgstr "Компанія"
 #: model:ir.model,name:oleg_weba_footbik_system.model_res_partner
 msgid "Contact"
 msgstr "Контакт"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_crm_lead2opportunity_partner
+msgid "Convert Lead to Opportunity (not in mass)"
+msgstr "Конвертувати лід у нагоду (індивідуально)"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__count_attendance
@@ -228,14 +240,14 @@ msgid "Customer"
 msgstr "Клієнт"
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+msgid "Dad"
+msgstr "Батько"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__date_start_subscription
 msgid "Date start subscription"
 msgstr "Дата активації підписки"
-
-#. module: oleg_weba_footbik_system
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
-msgid "Demo training"
-msgstr "Пробне тренування"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__display_name
@@ -281,6 +293,11 @@ msgid "Email parent"
 msgstr "Email батьків"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__date_end
+msgid "End date"
+msgstr "Дата закриття"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__end_frozen_date
 msgid "End frozen Date"
 msgstr "Дата кінця"
@@ -288,13 +305,18 @@ msgstr "Дата кінця"
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Expected Closing"
-msgstr ""
+msgstr "Очікуване закриття"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__crm_lead__type_parent__father
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__res_partner__type_parent__father
 msgid "Father"
 msgstr "Батько"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__features_development
+msgid "Features in development"
+msgstr "Особливості в розвитку"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__crm_lead__gender__female
@@ -390,6 +412,12 @@ msgid "ID"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+msgid "Information about children"
+msgstr "Інформація про дитину"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__instagram
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__instagram
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__instagram
 msgid "Instagram"
@@ -473,9 +501,19 @@ msgid "Nanny"
 msgstr "Няня"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__need_text
+msgid "Need"
+msgstr "Потреба"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__recurring_next_date
 msgid "Next invoice date"
-msgstr ""
+msgstr "Наступна дата рахунку"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+msgid "Other"
+msgstr "Інше"
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
@@ -488,7 +526,6 @@ msgstr "Платна"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__parent_id
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Parent"
 msgstr "Батько"
 
@@ -512,6 +549,11 @@ msgid "Purchase Order"
 msgstr "Замовлення на купівлю"
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+msgid "Record on Intro"
+msgstr "Запис на Intro"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_order
 msgid "Sales Order"
 msgstr "Замовлення на продаж"
@@ -530,6 +572,7 @@ msgstr "Навички"
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.act_window,name:oleg_weba_footbik_system.action_skills
 #: model:ir.model,name:oleg_weba_footbik_system.model_skills
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__skills_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__skills_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__skills_id
 #: model:ir.ui.menu,name:oleg_weba_footbik_system.menu_skills
@@ -558,13 +601,18 @@ msgstr ""
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+msgid "Street"
+msgstr "Вулиця"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Street 2..."
-msgstr ""
+msgstr "№ будинку"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Street..."
-msgstr ""
+msgstr "Вулиця"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_subscription
@@ -582,6 +630,7 @@ msgid "Subscriptions"
 msgstr "Підписка"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__telegram
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__telegram
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__telegram
 msgid "Telegram"
@@ -660,8 +709,18 @@ msgid "UTM Term"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__whatsapp
+msgid "WhatsApp"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "ZIP"
+msgstr "Індекс"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_end_ir_actions_server
+msgid "[OLEG-WEBA] Check subscription for ending"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
@@ -671,8 +730,8 @@ msgstr ""
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
-msgid "e.g. https://www.odoo.com"
-msgstr ""
+msgid "e.g. https://footbik.odoo24.online"
+msgstr "Наприклад: https://footbik.odoo24.online"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit

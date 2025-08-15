@@ -27,6 +27,10 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_set_won_rainbowman']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
             <xpath expr="//field[@name='stage_id']" position="attributes">
                 <attribute name="invisible">not active</attribute>
             </xpath>
@@ -39,7 +43,7 @@
                 <attribute name="style">display: none;</attribute>
             </xpath>
 
-            <!--Rewrite global group-->
+            <!--Rewrite global group for swap fields-->
             <xpath expr="//group" position="replace">
                 <group>
 
@@ -113,7 +117,7 @@
                         <field name="email_cc" groups="base.group_no_one"/>  <!--Custom-->
                         <field name="function" groups="base.group_system"/>  <!--Custom-->
 
-                        <label for="mobile" class="oe_inline" invisible="1"/>  <!--Custom-->
+                        <label for="mobile" class="oe_inline o_hidden"/>  <!--Custom-->
                         <div class="o_row o_row_readonly" style="display: none;">  <!--Custom-->
                             <button name="phone_action_blacklist_remove" class="fa fa-ban text-danger"
                                 title="This phone number is blacklisted for SMS Marketing. Click to unblacklist."
@@ -123,62 +127,34 @@
                         </div>
                     </group>
 
-                    <group name="opportunity_partner" invisible="type == 'lead'">
 
-                        <!--Custom-->
-                        <label for="partner_id"/>
-                        <div class="o_row">
-                            <field name="partner_id"
-                                widget="res_partner_many2one"
-                                string="Customer"
-                                context="{'res_partner_search_mode': type == 'opportunity' and 'customer' or False,
-                                    'default_name': contact_name or partner_name,
-                                    'default_street': street,
-                                    'default_is_company': type == 'opportunity' and contact_name == False,
-                                    'default_company_name': type == 'opportunity' and partner_name,
-                                    'default_street2': street2,
-                                    'default_city': city,
-                                    'default_title': title,
-                                    'default_state_id': state_id,
-                                    'default_zip': zip,
-                                    'default_country_id': country_id,
-                                    'default_function': function,
-                                    'default_phone': phone,
-                                    'default_mobile': mobile,
-                                    'default_email': email_from,
-                                    'default_user_id': user_id,
-                                    'default_team_id': team_id,
-                                    'default_website': website,
-                                    'default_lang': lang_code,
-                                    'show_vat': True,
-                                }"
-                               class="oe_inline"
-                            />
-                            <span>Вік: </span>
-                            <field name="age_from_partner" class="oe_inline"/>
-                        </div>
-                        <!--Custom-->
+                    <group name="opportunity_partner" string="Information about children" invisible="type == 'lead'">
 
-                        <field name="is_blacklisted" invisible="1"/>
-                        <field name="partner_is_blacklisted" invisible="1"/>
-                        <field name="phone_blacklisted" invisible="1"/>
-                        <field name="mobile_blacklisted" invisible="1"/>
-                        <field name="email_state" invisible="1"/>
-                        <field name="phone_state" invisible="1"/>
-                        <field name="partner_email_update" invisible="1"/>
-                        <field name="partner_phone_update" invisible="1"/>
-
-                        <label for="email_from" class="oe_inline"/>
-                        <div class="o_row o_row_readonly">
-                            <button name="mail_action_blacklist_remove" class="fa fa-ban text-danger"
-                                title="This email is blacklisted for mass mailings. Click to unblacklist."
-                                type="object" context="{'default_email': email_from}" groups="base.group_user"
-                                invisible="not is_blacklisted"/>
-                            <field name="email_from" string="Email" widget="email"/>
-                            <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
-                                title="By saving this change, the customer email will also be updated."
-                                invisible="not partner_email_update"/>
-                        </div>
+                        <field name="partner_id"
+                            widget="res_partner_many2one"
+                            string="Customer"
+                            context="{'res_partner_search_mode': type == 'opportunity' and 'customer' or False,
+                                'default_name': contact_name or partner_name,
+                                'default_street': street,
+                                'default_is_company': type == 'opportunity' and contact_name == False,
+                                'default_company_name': type == 'opportunity' and partner_name,
+                                'default_street2': street2,
+                                'default_city': city,
+                                'default_title': title,
+                                'default_state_id': state_id,
+                                'default_zip': zip,
+                                'default_country_id': country_id,
+                                'default_function': function,
+                                'default_phone': phone,
+                                'default_mobile': mobile,
+                                'default_email': email_from,
+                                'default_user_id': user_id,
+                                'default_team_id': team_id,
+                                'default_website': website,
+                                'default_lang': lang_code,
+                                'show_vat': True,
+                            }"
+                        />
 
                         <label for="phone" class="oe_inline"/>
                         <div class="o_row o_row_readonly">
@@ -192,10 +168,50 @@
                                 invisible="not partner_phone_update"/>
                         </div>
 
+                        <field name="gender"/>  <!--Custom-->
+
+                        <!--Custom-->
+                        <label for="birthday_from_partner"/>
+                        <div class="o_row">
+                            <field name="birthday_from_partner"/>
+                            <span>Age:</span>
+                            <field name="age_from_partner" readonly="1"/>
+                        </div>
+
+                        <field name="lang_id" invisible="lang_active_count &lt;= 1"
+                            options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+
+                        <field name="skills_id"/>
+                        <field name="need_text"/>
+                        <field name="features_development" widget="boolean_toggle"/>
+
                         <field name="lost_reason_id" invisible="active"/>
+
+                        <label for="email_from" class="oe_inline" invisible="1"/>
+                        <div class="o_row o_row_readonly" style="display: none;">
+                            <button name="mail_action_blacklist_remove" class="fa fa-ban text-danger"
+                                title="This email is blacklisted for mass mailings. Click to unblacklist."
+                                type="object" context="{'default_email': email_from}" groups="base.group_user"
+                                invisible="not is_blacklisted"/>
+                            <field name="email_from" string="Email" widget="email"/>
+                            <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                title="By saving this change, the customer email will also be updated."
+                                invisible="not partner_email_update"/>
+                        </div>
+
+                        <field name="is_blacklisted" invisible="1"/>
+                        <field name="partner_is_blacklisted" invisible="1"/>
+                        <field name="phone_blacklisted" invisible="1"/>
+                        <field name="mobile_blacklisted" invisible="1"/>
+                        <field name="email_state" invisible="1"/>
+                        <field name="phone_state" invisible="1"/>
+                        <field name="partner_email_update" invisible="1"/>
+                        <field name="partner_phone_update" invisible="1"/>
+
                         <field name="date_conversion" invisible="1"/>
                         <field name="user_company_ids" invisible="1"/>
                     </group>
+
 
                     <group name="lead_partner" invisible="type == 'opportunity'">
                         <field name="full_name_parent"/>  <!--Custom-->
@@ -225,14 +241,14 @@
                                 'default_website': website,
                                 'default_lang': lang_code,
                                 'show_vat': True
-                            }" invisible="not is_partner_visible"/>
+                            }" invisible="not is_partner_visible" groups="base.group_system"/>
 
                         <field name="partner_name" groups="base.group_system"/>  <!--Custom-->
 
                         <field name="website" widget="url" placeholder="e.g. https://footbik.odoo24.online"
                                groups="base.group_system"/>  <!--Custom-->
 
-                        <label for="street" string="Address" invisible="1"/>  <!--Custom-->
+                        <label for="street" string="Address" class="o_hidden"/>  <!--Custom-->
                         <div class="o_address_format" style="display: none;">  <!--Custom-->
                             <field name="street" placeholder="Street..." class="o_address_street"/>
                             <field name="street2" placeholder="Street 2..." class="o_address_street"/>
@@ -250,15 +266,73 @@
 
                     <field name="type" invisible="1"/>
 
-                    <group invisible="type == 'lead'">
-                        <field name="user_id"
-                            context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
-                        <label for="date_deadline">Expected Closing</label>
-                        <div class="o_lead_opportunity_form_inline_fields">
+                    <group invisible="type == 'lead'" string="Dad">
+                        <field name="domain_parent_id" invisible="1"/>
+                        <field name="parent_id" domain="domain_parent_id" widget="many2one_avatar_user"/>
+
+                        <field name="full_name_parent" readonly="type == 'opportunity'"/>
+                        <field name="type_parent" readonly="type == 'opportunity'"/>
+                        <field name="telephone_parent" readonly="type == 'opportunity'"/>
+
+<!--                        <field name="gender_parent" invisible="1" readonly="type == 'opportunity'"/>-->
+<!--                        <field name="email_parent" invisible="1" readonly="type == 'opportunity'"/>-->
+
+                        <label for="email_from" class="oe_inline"/>
+                        <div class="o_row o_row_readonly">
+                            <button name="mail_action_blacklist_remove" class="fa fa-ban text-danger"
+                                title="This email is blacklisted for mass mailings. Click to unblacklist."
+                                type="object" context="{'default_email': email_from}" groups="base.group_user"
+                                invisible="not is_blacklisted"/>
+                            <field name="email_from" string="Email" widget="email"/>
+                            <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                title="By saving this change, the customer email will also be updated."
+                                invisible="not partner_email_update"/>
+                        </div>
+
+
+                        <label for="street_page_lead" string="Street"/>
+                        <div class="o_address_format">
+                            <field name="street" id="street_page_lead" placeholder="Street..." class="o_address_street"/>
+                            <field name="street2" placeholder="№" class="o_address_street"/>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                        </div>
+
+                        <field name="telegram"/>
+                        <field name="instagram"/>
+                        <field name="whatsapp"/>
+
+
+                        <label for="date_deadline" class="o_hidden">Expected Closing</label>  <!--Custom-->
+                        <div class="o_lead_opportunity_form_inline_fields" style="display: none;">  <!--Custom-->
                             <field name="date_deadline" nolabel="1" class="oe_inline"/>
                             <field name="priority" widget="priority" nolabel="1" class="oe_inline align-top"/>
                         </div>
+
+                        <field name="user_id" invisible="1"
+                            context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
+
+                        <field name="tag_ids" invisible="1" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                    </group>
+
+
+                    <group string="Record on Intro" invisible="type == 'lead'">
+                        <field name="program_id"/>
+
+                        <field name="domain_training_id" invisible="1"/>
+                        <label for="training_id" invisible="not program_id"/>
+                        <div class="o_row" invisible="not program_id">
+                            <field name="training_id" domain="domain_training_id"/>
+                            <button name="action_add_child_trial_training" type="object"
+                                    string="Trial training" class="btn btn-success"
+                                    invisible="not training_id or not partner_id"/>
+                        </div>
+                        <field name="added_trial_training"
+                               invisible="not training_id or not added_trial_training"/>
+                    </group>
+                    <group string="Other" invisible="type == 'lead'">
                         <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        <field name="user_id"
+                            context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
                     </group>
 
 
@@ -268,17 +342,16 @@
                         <field name="team_id" options="{'no_open': True, 'no_create': True}"
                                context="{'kanban_view_ref': 'sales_team.crm_team_view_kanban'}" groups="base.group_system"/>
                     </group>
-
                     <group name="lead_priority" invisible="type == 'opportunity'">
                         <field name="priority" widget="priority" groups="base.group_system"/>
                         <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
                     </group>
                 </group>
-                <!--Rewrite global group-->
+                <!--Rewrite global group for swap fields-->
 
             </xpath>
 
-            <!--LEAD-->
+            <!--Customization in LEAD-->
 
             <xpath expr="//notebook/page[2]/group/group[2]/field[@name='company_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -309,9 +382,9 @@
                 <attribute name="invisible">type == 'lead'</attribute>
             </xpath>
 
-            <!--LEAD-->
+            <!--Customization in LEAD-->
 
-            <!--OPPORTUNITY-->
+            <!--Customization in OPPORTUNITY-->
             <xpath expr="//button[@name='action_schedule_meeting']" position="before">
                 <button class="oe_stat_button" type="object" name="action_open_subscription"
                         icon="fa-refresh" invisible="type == 'lead'">
@@ -390,37 +463,17 @@
                 <field name="source2_id" domain="domain_source2_id"/>
             </xpath>
 
-
-            <xpath expr="//group" position="after">
-                <group invisible="type == 'lead'">
-                    <group string="Parent">
-                        <field name="domain_parent_id" invisible="1"/>
-                        <field name="parent_id" domain="domain_parent_id" widget="many2one_avatar_user"/>
-
-                        <field name="full_name_parent" readonly="type == 'opportunity'"/>
-                        <field name="type_parent" readonly="type == 'opportunity'"/>
-                        <field name="gender_parent" readonly="type == 'opportunity'"/>
-                        <field name="telephone_parent" readonly="type == 'opportunity'"/>
-                        <field name="email_parent" readonly="type == 'opportunity'"/>
-                    </group>
-                    <group string="Demo training">
-                        <field name="program_id"/>
-
-                        <field name="domain_training_id" invisible="1"/>
-                        <label for="training_id" invisible="not program_id"/>
-                        <div class="o_row" invisible="not program_id">
-                            <field name="training_id" domain="domain_training_id"/>
-                            <button name="action_add_child_trial_training" type="object"
-                                    string="Trial training" class="btn btn-success"
-                                    invisible="not training_id or not partner_id"/>
-                        </div>
-                        <field name="added_trial_training"
-                               invisible="not training_id or not added_trial_training"/>
-                    </group>
-                </group>
+            <xpath expr="//page[@name='lead']/group/group/field[@name='lang_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
-            <!--OPPORTUNITY-->
+            <xpath expr="//page[@name='lead']/group/group/label" position="attributes">
+                <attribute name="class">o_hidden</attribute>
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group/div" position="attributes">
+                <attribute name="class">o_hidden</attribute>
+            </xpath>
+            <!--Customization in OPPORTUNITY-->
         </field>
     </record>
 
@@ -431,6 +484,31 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='team_id']" position="attributes">
                 <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_case_form_view_oppor_inherit" model="ir.ui.view">
+        <field name="name">crm.case.form.view.oppor.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_sale_quotation']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_view_form_inherit2" model="ir.ui.view">
+        <field name="name">crm.lead.view.form.inherit2</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm_iap_enrich.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='iap_enrich']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='iap_enrich'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
         </field>
     </record>
