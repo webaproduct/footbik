@@ -3,61 +3,61 @@
     <data noupdate="1">
         <record id="oleg_weba_footbik_system_playground" model="utm.source">
             <field name="name">Дитячий майданчик</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_entertainment_center" model="utm.source">
             <field name="name">Дитячий розважальний центр</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_shopping_center" model="utm.source">
             <field name="name">ТЦ</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_zoo" model="utm.source">
             <field name="name">Зоопарк</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_promoter" model="utm.source">
             <field name="name">Промоутер</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_outside" model="utm.source">
             <field name="name">На вулиці</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_metro" model="utm.source">
             <field name="name">Метро</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_kindergarten" model="utm.source">
             <field name="name">Дитячий садок</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_theater" model="utm.source">
             <field name="name">Театри</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
         <record id="oleg_weba_footbik_system_circus" model="utm.source">
             <field name="name">Цирк</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_promouter"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_promouter"/>
         </record>
 
         <record id="oleg_weba_footbik_system_adsquiz" model="utm.source">
             <field name="name">ADSQUIZ</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_quiz"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_quiz"/>
         </record>
         <record id="oleg_weba_footbik_system_marquiz" model="utm.source">
             <field name="name">Marquiz</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_quiz"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_quiz"/>
         </record>
 
         <record id="oleg_weba_footbik_system_facebook" model="utm.source">
             <field name="name">Facebook</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_meta_ads_lead_form"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_meta_ads_lead_form"/>
         </record>
         <record id="oleg_weba_footbik_system_instagram" model="utm.source">
             <field name="name">Instagram</field>
-            <field name="medium_id" ref="oleg_weba_footbik_system_meta_ads_lead_form"/>
+            <field name="medium2_id" ref="oleg_weba_footbik_system_meta_ads_lead_form"/>
         </record>
 
 
