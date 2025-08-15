@@ -1,6 +1,6 @@
 {
     'name': 'Chatbot E-Chat',
-    'version': '17.0.2.1.5',
+    'version': '17.0.2.1.6',
     'license': 'OPL-1',
     'category': 'Extra Tools',
     'summary': 'Adds E-Chat connector '

@@ -13,7 +13,10 @@ class ConversationWizard(models.TransientModel):
 
     chat_ids = fields.Many2many(
         required=True,
-        comodel_name='kw.chatbot.chat')
+        comodel_name='kw.chatbot.chat',
+        domain=lambda self: [
+            ('company_id', 'in', self.env.user.company_ids.ids)],
+    )
     partner_id = fields.Many2one(
         comodel_name='res.partner', required=True, )
     mobile = fields.Char(
@@ -26,8 +29,13 @@ class ConversationWizard(models.TransientModel):
         res = super(ConversationWizard, self).default_get(vals)
         partner_id = self.env['res.partner'].sudo().browse(
             self.env.context.get('active_id'))
-        chat_id = self.env['kw.chatbot.chat'].sudo().search([
-            ('provider', '=', 'echat')], limit=1)
+        allowed_companies = self.env.user.company_ids.ids
+
+        chat_id = self.env['kw.chatbot.chat'].search([
+            ('provider', '=', 'echat'),
+            ('company_id', 'in', allowed_companies)
+        ], limit=1)
+
         res['chat_ids'] = [(6, 0, chat_id.ids)]
         res['mobile'] = partner_id.mobile or partner_id.phone
         return res
