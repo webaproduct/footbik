@@ -54,10 +54,24 @@ class ConversationWizard(models.TransientModel):
         data = {
             'id': "%s | %s" % (self.mobile, self.partner_id.id),
             'name': "%s | %s" % (self.partner_id.name, self.mobile),
-            'phone': self.mobile}
+            'phone': self.mobile,
+            'number': self.mobile,
+            'sender': {
+                'name': "%s | %s" % (self.partner_id.name, self.mobile),
+                'phone': self.mobile,
+            },
+            'contact': {
+                'name': "%s | %s" % (self.partner_id.name, self.mobile),
+                'number': self.mobile,
+            }
+        }
         for chat in self.chat_ids:
             sender_id = self.env['kw.chatbot.sender'].sudo().get_or_create(
-                messenger=chat.messenger_id, sender=data)
+                messenger=chat.messenger_id,
+                echat_messanger=chat.echat_messanger,
+                json_data=data,
+                sender=data,
+            )
 
             if not sender_id.partner_id:
                 sender_id.write({'partner_id': self.partner_id.id})

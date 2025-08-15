@@ -31,7 +31,11 @@ class Chat(models.Model):
         ('lead', 'Lead'), ('opportunity', 'Opportunity')],
         default='opportunity', string='Type')
     echat_messanger = fields.Selection(
-        selection=[('viber', 'Viber'), ('telegram', 'Telegram')],
+        selection=[
+            ('viber', 'Viber'),
+            ('telegram', 'Telegram'),
+            ('whatsapp', 'WhatsApp'),
+        ],
         default='viber', )
     echat_incoming_webhook = fields.Char(
         compute='_compute_echat_webhook', readonly=True, )
@@ -52,21 +56,34 @@ class Chat(models.Model):
                                          "{}".format(base_url, obj.id)
 
     def _get_echat_url(self):
-        url = 'http://api.e-chat.tech/api'
-        if self.echat_messanger == 'telegram':
-            url = 'https://telegram.e-chat.tech/api'
-        return url
+        url_map = {
+            'telegram': 'https://telegram.e-chat.tech/api',
+            'viber': 'https://e-chat.tech/api/viber/v2',
+            'whatsapp': 'https://e-chat.tech/api/whatsapp/v1',
+        }
+        return url_map.get(self.echat_messanger, 'https://e-chat.tech/api')
 
     # pylint: disable=R1710
     def echat_create_chat(self):
-        url = "%s/CreateChannel.php" % self._get_echat_url()
+        base_url = self._get_echat_url()
+
+        if self.echat_messanger in ('viber', 'whatsapp'):
+            endpoint = "/channel/connect"
+            header_key = 'api-key'
+        else:
+            endpoint = "/CreateChannel.php"
+            header_key = 'API'
+
+        url = f"{base_url}{endpoint}"
+        headers = {header_key: self.echat_api_token}
+
         body = {
             "number": self.echat_mobile_phone,
-            "integration": self.echat_integration, }
+            "integration": self.echat_integration,
+        }
         # pylint: disable=E8106
-        response = requests.request(
-            method='post', url=url, json=body,
-            headers={'API': self.echat_api_token})
+        response = requests.request(method='post', url=url, json=body,
+                                    headers=headers)
         if 200 <= response.status_code < 300:
             channel = response.json()
             self.write({
@@ -78,7 +95,11 @@ class Chat(models.Model):
     def echat_process_message(self, message, log):
         self.ensure_one()
         sender = self.env['kw.chatbot.sender'].sudo().get_or_create(
-            messenger=self.messenger_id, sender=message.get('sender'))
+            messenger=self.messenger_id,
+            echat_messanger=self.echat_messanger,
+            json_data=message,
+            sender=message.get('sender'),
+        )
         conversation = self.env['kw.chatbot.conversation'].sudo(
         ).get_or_create(chat=self, message=message, sender=sender)
         log.sudo().write({
@@ -103,8 +124,5 @@ class Chat(models.Model):
     def echat_process_call(self, jsonrequest, log):
         self.ensure_one()
         if jsonrequest.get('direction') == 'incoming':
-            data = jsonrequest
-            if self.echat_messanger == 'viber':
-                data = jsonrequest['MESSAGES']
             self.echat_process_message(
-                message=data, log=log)
+                message=jsonrequest, log=log)
