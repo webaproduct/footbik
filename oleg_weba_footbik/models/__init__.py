@@ -4,5 +4,7 @@ from . import (
     class_program,
     class_attendance,
     class_location,
+    class_age,
+    class_color_group,
     res_partner,
 )

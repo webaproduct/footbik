@@ -41,7 +41,7 @@
         name="Location"
         action="action_class_location"
         parent="main_menu_addition_models"
-        sequence="1"
+        sequence="0"
     />
 
 </odoo>

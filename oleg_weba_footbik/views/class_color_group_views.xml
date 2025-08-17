@@ -1,0 +1,49 @@
+<odoo>
+
+    <record id="class_color_group_view_tree" model="ir.ui.view">
+        <field name="name">class.color.group.view.tree</field>
+        <field name="model">class.color.group</field>
+        <field name="arch" type="xml">
+            <tree string="Color group">
+                <field name="class_program_id" optional="show"/>
+                <field name="class_age_id" optional="show"/>
+                <field name="color" widget="color" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="class_color_group_view_form" model="ir.ui.view">
+        <field name="name">class.color.group.view.form</field>
+        <field name="model">class.color.group</field>
+        <field name="arch" type="xml">
+            <form string="Color group">
+                <sheet>
+                    <group>
+                        <group class="o_label_nowrap">
+                            <field name="class_program_id"/>
+                            <field name="class_age_id"/>
+                            <field name="color" widget="color"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_class_color_group" model="ir.actions.act_window">
+        <field name="name">Color group</field>
+        <field name="res_model">class.color.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_class_color_group"
+        name="Color group"
+        action="action_class_color_group"
+        parent="main_menu_addition_models"
+        sequence="3"
+    />
+
+</odoo>

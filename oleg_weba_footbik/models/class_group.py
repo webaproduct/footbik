@@ -21,18 +21,35 @@ class ClassGroup(models.Model):
         help=_("Date who use for start create training"))
     photo_group = fields.Binary(string="Photo Group")
 
-    @staticmethod
-    def generate_random_color():
-        r = random.randint(0, 255)
-        g = random.randint(0, 255)
-        b = random.randint(0, 255)
-        # Преобразуем в шестнадцатеричный формат и возвращаем в формате #RRGGBB
-        return f"#{r:02X}{g:02X}{b:02X}"
+    # @staticmethod
+    # def generate_random_color():
+    #     r = random.randint(0, 255)
+    #     g = random.randint(0, 255)
+    #     b = random.randint(0, 255)
+    #     # Преобразуем в шестнадцатеричный формат и возвращаем в формате #RRGGBB
+    #     return f"#{r:02X}{g:02X}{b:02X}"
 
-    color = fields.Char(string="Color", default=generate_random_color())
+    # color = fields.Char(string="Color", default=generate_random_color())
 
     class_program_id = fields.Many2one(
         comodel_name="class.program", string="Program", index=True)
+    class_age_id = fields.Many2one(comodel_name="class.age", string="Age", index=True)
+    class_color_group_id = fields.Many2one(
+        comodel_name="class.color.group", string="Color Group", index=True)
+
+    @api.onchange("class_program_id", "class_age_id")
+    def _onchange_color_group_id(self):
+        self.ensure_one()
+        if self.class_program_id and self.class_age_id:
+            class_color_group_id = self.env["class.color.group"].search([
+                ("class_program_id", "=", self.class_program_id.id),
+                ("class_age_id", "=", self.class_age_id.id),
+            ], limit=1)
+            if class_color_group_id:
+                self.class_color_group_id = class_color_group_id.id
+
+    color = fields.Char(related="class_color_group_id.color", store=True)
+
     trainer_id = fields.Many2one(
         comodel_name="hr.employee", string="Trainer", index=True)
     assistant_id = fields.Many2one(

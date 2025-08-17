@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-04 15:59+0000\n"
-"PO-Revision-Date: 2025-08-04 15:59+0000\n"
+"POT-Creation-Date: 2025-08-15 14:47+0000\n"
+"PO-Revision-Date: 2025-08-15 14:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -193,6 +193,16 @@ msgid "After Completed training you can not update record"
 msgstr "Після закінчення тренування ви не можете редагувати запис"
 
 #. module: oleg_weba_footbik
+#: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_age
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_age__name
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__class_age_id
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__class_age_id
+#: model:ir.ui.menu,name:oleg_weba_footbik.menu_class_age
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_age_view_tree
+msgid "Age"
+msgstr "Вік"
+
+#. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__assistant_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__assistant_id
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_group_search
@@ -232,7 +242,7 @@ msgstr "Скасувати тренування"
 #: model:ir.model.fields.selection,name:oleg_weba_footbik.selection__res_partner__type_person__child
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Child"
-msgstr "Дитина"
+msgstr "ПІ дитини"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__children_ids
@@ -252,9 +262,19 @@ msgid "City"
 msgstr "Місто"
 
 #. module: oleg_weba_footbik
+#: model:ir.model,name:oleg_weba_footbik.model_class_age
+msgid "Class Age"
+msgstr "Вік"
+
+#. module: oleg_weba_footbik
 #: model:ir.model,name:oleg_weba_footbik.model_class_attendance
 msgid "Class Attendance"
 msgstr "Відвідування"
+
+#. module: oleg_weba_footbik
+#: model:ir.model,name:oleg_weba_footbik.model_class_color_group
+msgid "Class Color Group"
+msgstr "Колір групи"
 
 #. module: oleg_weba_footbik
 #: model:ir.model,name:oleg_weba_footbik.model_class_group
@@ -287,10 +307,24 @@ msgstr "Клуб"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__color
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__color
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__color
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__color
 msgid "Color"
 msgstr "Колір"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__class_color_group_id
+msgid "Color Group"
+msgstr "Колір групи"
+
+#. module: oleg_weba_footbik
+#: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_color_group
+#: model:ir.ui.menu,name:oleg_weba_footbik.menu_class_color_group
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_color_group_view_form
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_color_group_view_tree
+msgid "Color group"
+msgstr "Колір групи"
 
 #. module: oleg_weba_footbik
 #. odoo-python
@@ -316,22 +350,26 @@ msgid "Create training"
 msgstr "Створити тренування"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_age__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__create_uid
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ким створено"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_age__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__create_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Коли створено"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__date_training
@@ -353,7 +391,9 @@ msgid "Date/Time training"
 msgstr "Дата та Час тренувань"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_age__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__display_name
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__display_name
@@ -418,7 +458,7 @@ msgstr "Група"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_group_search
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_search
 msgid "Group By"
-msgstr ""
+msgstr "Згрупувати за"
 
 #. module: oleg_weba_footbik
 #: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_group
@@ -437,7 +477,9 @@ msgid "Has Message"
 msgstr "Є повідомлення"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_age__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__id
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__id
@@ -487,22 +529,26 @@ msgid "Is trial training group"
 msgstr "Intro"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_age__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__write_uid
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ким востаннє оновлено"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_age__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__write_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Коли востаннє оновлено"
 
 #. module: oleg_weba_footbik
 #: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_location
@@ -635,6 +681,7 @@ msgstr "Заплановано"
 
 #. module: oleg_weba_footbik
 #: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_program
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_color_group__class_program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__class_program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__class_program_id
 #: model:ir.ui.menu,name:oleg_weba_footbik.menu_class_program

@@ -7,6 +7,8 @@
             <tree string="Groups" default_order="create_date">
                 <field name="name" optional="show"/>
                 <field name="class_program_id" optional="show"/>
+                <field name="class_age_id" optional="show"/>
+                <field name="color" widget="color" optional="show"/>
                 <field name="trainer_id" optional="show"/>
                 <field name="assistant_id" optional="show"/>
                 <field name="city" optional="show"/>
@@ -30,8 +32,13 @@
                         <group>
                             <field name="name" required="1"/>
                             <field name="start_date_for_create_training" readonly="0" required="1"/>
-                            <field name="color" widget="color"/>
+
                             <field name="class_program_id" required="1"/>
+                            <field name="class_age_id" required="1"/>
+                            <field name="class_color_group_id" invisible="1" readonly="1" force_save="1"/>
+                            <field name="color" widget="color"/>
+
+
                             <field name="trainer_id" widget="many2one_avatar_user" required="1"/>
                             <field name="assistant_id" widget="many2one_avatar_user"/>
                             <field name="city" required="1"/>

@@ -13,3 +13,9 @@ access_class_program_admin,Full access on class_program,model_class_program,base
 
 access_class_location_user,User access on class_location,model_class_location,base.group_user,1,0,0,0
 access_class_location_admin,Full access on class_location,model_class_location,base.group_system,1,1,1,1
+
+access_class_age_user,User access on class_age,model_class_age,base.group_user,1,0,0,0
+access_class_age_admin,Full access on class_age,model_class_age,base.group_system,1,1,1,1
+
+access_class_color_group_user,User access on class_color_group,model_class_color_group,base.group_user,1,0,0,0
+access_class_color_group_admin,Full access on class_color_group,model_class_color_group,base.group_system,1,1,1,1

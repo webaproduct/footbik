@@ -1,20 +1,20 @@
 <odoo>
 
-    <record id="class_program_view_tree" model="ir.ui.view">
-        <field name="name">class.program.view.tree</field>
-        <field name="model">class.program</field>
+    <record id="class_age_view_tree" model="ir.ui.view">
+        <field name="name">class.age.view.tree</field>
+        <field name="model">class.age</field>
         <field name="arch" type="xml">
-            <tree string="Program" editable="top" multi_edit="1">
+            <tree string="Age" editable="top" multi_edit="1">
                 <field name="name"/>
             </tree>
         </field>
     </record>
 
-<!--    <record id="class_program_view_form" model="ir.ui.view">-->
-<!--        <field name="name">class.program.view.form</field>-->
-<!--        <field name="model">class.program</field>-->
+<!--    <record id="class_age_view_form" model="ir.ui.view">-->
+<!--        <field name="name">class.age.view.form</field>-->
+<!--        <field name="model">class.age</field>-->
 <!--        <field name="arch" type="xml">-->
-<!--            <form string="Program">-->
+<!--            <form string="Age">-->
 <!--                <sheet>-->
 <!--                    <group>-->
 <!--                        <group class="o_label_nowrap">-->
@@ -28,18 +28,18 @@
 <!--        </field>-->
 <!--    </record>-->
 
-    <record id="action_class_program" model="ir.actions.act_window">
-        <field name="name">Program</field>
-        <field name="res_model">class.program</field>
+    <record id="action_class_age" model="ir.actions.act_window">
+        <field name="name">Age</field>
+        <field name="res_model">class.age</field>
         <field name="view_mode">tree</field>
     </record>
 
     <menuitem
-        id="menu_class_program"
-        name="Program"
-        action="action_class_program"
+        id="menu_class_age"
+        name="Age"
+        action="action_class_age"
         parent="main_menu_addition_models"
-        sequence="1"
+        sequence="2"
     />
 
 </odoo>

@@ -4,7 +4,7 @@
     "author": "Oleg (Weba)",
     "website": "https://weba.com.ua/",
     "category": "Uncategorized",
-    "version": "17.0.5.6.0",
+    "version": "17.0.6.0.0",
     "license": "LGPL-3",
     "depends": ["contacts", "hr"],
     "data": [
@@ -12,6 +12,8 @@
 
         "views/menu_view.xml",
         "views/class_program_views.xml",
+        "views/class_age_views.xml",
+        "views/class_color_group_views.xml",
         "views/class_location_views.xml",
         "views/class_group_views.xml",
         "views/class_training_views.xml",
