@@ -177,7 +177,19 @@ class CrmLead(models.Model):
 
                     "parent_id": child.id,
                 })
-                lead.parent_id = parent.id
+
+                lead.write({
+                    "parent_id": parent.id,
+
+                    "full_name_parent": parent.name,
+                    "type_parent": parent.type_parent,
+                    # "gender_parent": parent.gender_parent,
+                    "telephone_parent": parent.phone,
+
+                    "telegram": parent.phone,
+                    "instagram": parent.instagram,
+                    "whatsapp": parent.phone,
+                })
 
     # <-----------------Конвертація у нагоду--------------->
 
