@@ -4,11 +4,11 @@
     "author": "Oleg (Weba)",
     "website": "https://weba.com.ua/",
     "category": "Uncategorized",
-    "version": "17.0.9.1.0",
+    "version": "17.0.10.0.0",
     "license": "LGPL-3",
     "depends": ["contacts", "hr", "crm", "oleg_weba_footbik",
                 "utm", "subscription_oca", "calendar", "sale",
-                "purchase", "sale_crm", "crm_iap_enrich"],
+                "purchase", "sale_crm", "crm_iap_enrich", "account"],
     "data": [
         "security/ir.model.access.csv",
 
@@ -19,11 +19,15 @@
         "views/sale_subscription_views.xml",
         "views/sale_order_views.xml",
         "views/model_for_utm_views.xml",
+        "views/frozen_subscription_views.xml",
+
+        "wizard/wizard_frozen_subscription_views.xml",
 
         "data/utm_medium_data.xml",
         "data/utm_source_data.xml",
 
         "data/cron_sale_subscription.xml",
+        "data/cron_frozen_subscription.xml",
     ],
     "installable": True,
 }

@@ -7,3 +7,9 @@ access_utm_term_admin,Full access on utm_term,model_utm_term,base.group_system,1
 
 access_utm_content_user,User access on utm_content,model_utm_content,base.group_user,1,1,1,1
 access_utm_content_admin,Full access on utm_content,model_utm_content,base.group_system,1,1,1,1
+
+access_frozen_subscription_user,User access on frozen_subscription,model_frozen_subscription,base.group_user,1,0,0,0
+access_frozen_subscription_admin,Full access on frozen_subscription,model_frozen_subscription,base.group_system,1,1,1,1
+
+access_wizard_frozen_subscription_user,User access on wizard_frozen_subscription,model_wizard_frozen_subscription,base.group_user,1,0,0,0
+access_wizard_frozen_subscription_admin,Full access on wizard_frozen_subscription,model_wizard_frozen_subscription,base.group_system,1,1,1,1

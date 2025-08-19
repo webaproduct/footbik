@@ -7,6 +7,7 @@
             <tree string="Attendance" default_order="class_training_id" create="0" delete="0">
                 <field name="class_training_id" optional="show"/>
                 <field name="child_id" optional="show"/>
+                <field name="subscription_id" optional="show"/>
                 <field name="start_training" optional="show"/>
                 <field name="end_training" optional="show"/>
                 <field name="company_id" optional="show"/>
@@ -32,6 +33,7 @@
                         <group class="o_label_nowrap">
                             <field name="class_training_id" readonly="1"/>
                             <field name="child_id" widget="many2one_avatar_user" readonly="1"/>
+                            <field name="subscription_id" readonly="1"/>
 
                             <field name="start_training" widget="daterange" options="{'end_date_field': 'end_training'}" readonly="1"/>
                             <field name="end_training" invisible="1"/>
@@ -67,6 +69,7 @@
 
                 <field name="class_training_id" filters="1"/>
                 <field name="child_id" widget="many2one_avatar_user" filters="1"/>
+                <field name="subscription_id" filters="1"/>
                 <field name="start_training"/>
                 <field name="end_training"/>
             </calendar>

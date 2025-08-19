@@ -239,11 +239,15 @@ class ClassGroup(models.Model):
             "assistant_id": self.assistant_id.id,
         }
 
-    def _create_attendance(self, trainings: list, children_ids: list[int]) -> None:
+    def _create_attendance(
+            self, trainings: list, children_ids: list[int], subscription_id=None) -> None:
         for training in trainings:
             for child_id in children_ids:
                 self.env["class.attendance"].sudo().create({
                     "class_training_id": training.id,
+
+                    "subscription_id": subscription_id if subscription_id else False,
+
                     "child_id": child_id,
                     "start_training": training.start_training,
                     "end_training": training.end_training,
@@ -256,11 +260,13 @@ class ClassGroup(models.Model):
 
     # Метод добавления ученика в группу и во все тренировки которые еще не закончены
     # (Проверка на вместимость группы происходит до вызова метода)
-    def add_children_in_group_and_trainings(self, children_id):
+
+    # children_id - res.partner id, subscription_id - sale.subscription id
+    def add_children_in_group_and_trainings(self, children_id, subscription_id=None):
         # children_id - res.partner id
         self.children_ids = [(4, children_id)]  # Добавляем ученика в группу
         trainings = self.training_ids.filtered(lambda x: x.state == "planed")
-        self._create_attendance(trainings, [children_id])
+        self._create_attendance(trainings, [children_id], subscription_id)
 
     # Метод удаления ученика из группы и всех тренировках которые еще не закончены
     def delete_children_in_group_and_trainings(self, children_id):

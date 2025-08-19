@@ -78,6 +78,7 @@
                                     <field name="state" column_invisible="1"/>
 
                                     <field name="child_id"/>
+                                    <field name="subscription_id" readonly="1" optional="show"/>
                                     <field name="on_training" readonly="state in ('completed', 'cancel') or subscription_frozen"/>
                                     <field name="working_off" readonly="state in ('completed', 'cancel') or subscription_frozen"/>
                                     <field name="trial_training" readonly="1"/>

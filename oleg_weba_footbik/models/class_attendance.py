@@ -14,6 +14,9 @@ class ClassAttendance(models.Model):
         comodel_name="class.training", string="Training class", ondelete="cascade",
         index=True)
 
+    subscription_id = fields.Many2one(
+        comodel_name="sale.subscription", string="Subscription")
+
     state = fields.Selection(
         selection=[
             ("planed", _("Planed")),

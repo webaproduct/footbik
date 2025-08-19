@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-14 15:50+0000\n"
-"PO-Revision-Date: 2025-08-14 15:50+0000\n"
+"POT-Creation-Date: 2025-08-18 11:44+0000\n"
+"PO-Revision-Date: 2025-08-18 11:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,8 +42,8 @@ msgid ""
 "updated.\" invisible=\"not partner_phone_update\"/>"
 msgstr ""
 "<span class=\"fa fa-exclamation-triangle text-warning oe_edit_only\" "
-"title=\"Зберігаючи цю зміну, телефон клієнта також буде "
-"оновлено.\" invisible=\"not partner_phone_update\"/>"
+"title=\"Зберігаючи цю зміну, телефон клієнта також буде оновлено.\" "
+"invisible=\"not partner_phone_update\"/>"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
@@ -99,6 +99,15 @@ msgid "<span>Age:</span>"
 msgstr "<span>Вік:</span>"
 
 #. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__frozen_subscription__stage__active
+#, python-format
+msgid "Active"
+msgstr "Активна"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__added_trial_training
 msgid "Added trial training"
 msgstr "Записан на пробне тренування"
@@ -127,6 +136,17 @@ msgid "Age"
 msgstr "Вік"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.ui.menu,name:oleg_weba_footbik_system.frozen_subscription_all_frozen
+msgid "All Frozen"
+msgstr "Усі заморозки"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__frozen_subscription_ids
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
+msgid "All frozen"
+msgstr "Усі заморозки"
+
+#. module: oleg_weba_footbik_system
 #. odoo-python
 #: code:addons/oleg_weba_footbik_system/models/crm_lead.py:0
 #: code:addons/oleg_weba_footbik_system/models/res_partner.py:0
@@ -150,6 +170,20 @@ msgid "Brother"
 msgstr "Брат"
 
 #. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__frozen_subscription__stage__cancel
+#, python-format
+msgid "Cancel"
+msgstr "Закрити"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.frozen_subscription_form
+msgid "Cancel frozen subscription"
+msgstr "Скасувати заморозку"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__medium_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__medium_id
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_res_partner_filter
@@ -163,14 +197,20 @@ msgid "City"
 msgstr "Місто"
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.wizard_frozen_subscription_form
+msgid "Close"
+msgstr "Закрити"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__close_reason_id
 msgid "Close Reason"
 msgstr "Причина закриття"
 
 #. module: oleg_weba_footbik_system
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__reason_frozen
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__reason_frozen
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__reason_frozen
 msgid "Comment"
-msgstr "Причина"
+msgstr "Коментар"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_res_partner_filter
@@ -221,16 +261,38 @@ msgid "Country"
 msgstr "Країна"
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.wizard_frozen_subscription_form
+msgid "Create"
+msgstr "Створити"
+
+#. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/sale_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/sale_subscription.py:0
+#, python-format
+msgid "Create Frozen Subscription"
+msgstr "Створити заморозку"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
+msgid "Create frozen subscription"
+msgstr "Створити заморозку"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_term__create_uid
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_term__create_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__create_date
 msgid "Created on"
 msgstr ""
 
@@ -250,9 +312,11 @@ msgid "Date start subscription"
 msgstr "Дата активації підписки"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_term__display_name
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -283,6 +347,24 @@ msgid "Domain Training"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__frozen_subscription__stage__done
+#, python-format
+msgid "Done"
+msgstr "Завершено"
+
+#. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__frozen_subscription__stage__draft
+#, python-format
+msgid "Draft"
+msgstr "Чернетка"
+
+#. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Email"
 msgstr ""
@@ -298,9 +380,10 @@ msgid "End date"
 msgstr "Дата закриття"
 
 #. module: oleg_weba_footbik_system
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__end_frozen_date
-msgid "End frozen Date"
-msgstr "Дата кінця"
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__end_frozen_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__end_frozen_date
+msgid "End frozen"
+msgstr "Кінець заморозки"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
@@ -328,26 +411,37 @@ msgstr "Жіночий"
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
-#: code:addons/oleg_weba_footbik_system/models/sale_subscription.py:0
-#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/sale_subscription.py:0
-#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__sale_subscription__reason_frozen__free
+#: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/oleg_weba_footbik_system/wizard/wizard_frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/wizard/wizard_frozen_subscription.py:0
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__frozen_subscription__reason_frozen__free
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__wizard_frozen_subscription__reason_frozen__free
 #, python-format
 msgid "Free"
 msgstr "Безкоштовна"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_frozen_subscription
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__is_frozen
 msgid "Frozen Subscription"
 msgstr "Заморожено"
 
 #. module: oleg_weba_footbik_system
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__frozen_days
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__frozen_days
 msgid "Frozen days"
-msgstr "Кількість днів"
+msgstr "Кількість заморожених днів"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
 msgid "Frozen subscribe"
+msgstr "Заморозка підписки"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.act_window,name:oleg_weba_footbik_system.action_frozen_subscription
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.frozen_subscription_form
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.frozen_subscription_tree
+msgid "Frozen subscription"
 msgstr "Заморозка підписки"
 
 #. module: oleg_weba_footbik_system
@@ -405,9 +499,11 @@ msgid "Guardian"
 msgstr "Опікун"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_term__id
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__id
 msgid "ID"
 msgstr ""
 
@@ -429,16 +525,20 @@ msgid "Is Agreement"
 msgstr "Договір є"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_term__write_uid
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_term__write_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -517,9 +617,12 @@ msgstr "Інше"
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
-#: code:addons/oleg_weba_footbik_system/models/sale_subscription.py:0
-#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/sale_subscription.py:0
-#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__sale_subscription__reason_frozen__paid
+#: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/oleg_weba_footbik_system/wizard/wizard_frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/frozen_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/wizard/wizard_frozen_subscription.py:0
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__frozen_subscription__reason_frozen__paid
+#: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__wizard_frozen_subscription__reason_frozen__paid
 #, python-format
 msgid "Paid"
 msgstr "Платна"
@@ -528,6 +631,11 @@ msgstr "Платна"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__parent_id
 msgid "Parent"
 msgstr "Батько"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__partner_id
+msgid "Partner"
+msgstr "Партнер"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__program_id
@@ -552,6 +660,11 @@ msgstr "Замовлення на купівлю"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Record on Intro"
 msgstr "Запис на Intro"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__sale_subscription_id
+msgid "Sale Subscription"
+msgstr ""
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_order
@@ -590,14 +703,20 @@ msgid "Source"
 msgstr "Джерело"
 
 #. module: oleg_weba_footbik_system
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__start_frozen_date
-msgid "Start frozen Date"
-msgstr "Дата початку"
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__stage
+msgid "Stage"
+msgstr "Статус"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__start_frozen_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__start_frozen_date
+msgid "Start frozen"
+msgstr "Початок заморозки"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "State"
-msgstr ""
+msgstr "Статус"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
@@ -616,6 +735,7 @@ msgstr "Вулиця"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_subscription
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__subscription_id
 msgid "Subscription"
 msgstr "Абонемент"
 
@@ -714,6 +834,11 @@ msgid "WhatsApp"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_wizard_frozen_subscription
+msgid "Wizard Frozen Subscription"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "ZIP"
 msgstr "Індекс"
@@ -721,6 +846,11 @@ msgstr "Індекс"
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_end_ir_actions_server
 msgid "[OLEG-WEBA] Check subscription for ending"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_start_end_frozen_subscription_ir_actions_server
+msgid "[OLEG-WEBA] Select frozen subscription and start or end it"
 msgstr ""
 
 #. module: oleg_weba_footbik_system

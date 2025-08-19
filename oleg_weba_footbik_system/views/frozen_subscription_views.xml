@@ -1,0 +1,62 @@
+<odoo>
+
+    <record id="frozen_subscription_tree" model="ir.ui.view">
+        <field name="name">frozen.subscription.tree</field>
+        <field name="model">frozen.subscription</field>
+        <field name="arch" type="xml">
+            <tree string="Frozen subscription">
+                <field name="subscription_id" optional="show"/>
+                <field name="reason_frozen" optional="show"/>
+                <field name="start_frozen_date" optional="show"/>
+                <field name="end_frozen_date" optional="show"/>
+                <field name="frozen_days" optional="show"/>
+                <field name="partner_id" optional="show"/>
+                <field name="stage" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="frozen_subscription_form" model="ir.ui.view">
+        <field name="name">frozen.subscription.form</field>
+        <field name="model">frozen.subscription</field>
+        <field name="arch" type="xml">
+            <form string="Frozen subscription">
+                <header>
+                    <button string="Cancel frozen subscription" class="btn-danger"
+                        name="action_cancel_frozen_subscription" type="object" invisible="stage in ['cancel', 'done']"/>
+
+                    <field name="stage" widget="statusbar" readonly="0" options="{'clickable': '1', 'fold_field': 'fold'}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="subscription_id" readonly="1" force_save="1"/>
+                            <field name="partner_id"/>
+                            <field name="reason_frozen" readonly="1" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="start_frozen_date" readonly="1" force_save="1"/>
+                            <field name="end_frozen_date" readonly="1" force_save="1"/>
+                            <field name="frozen_days"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_frozen_subscription" model="ir.actions.act_window">
+        <field name="name">Frozen subscription</field>
+        <field name="res_model">frozen.subscription</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="frozen_subscription_all_frozen"
+        parent="subscription_oca.sale_subscription_root"
+        sequence="21"
+        name="All Frozen"
+        action="action_frozen_subscription"
+    />
+
+</odoo>

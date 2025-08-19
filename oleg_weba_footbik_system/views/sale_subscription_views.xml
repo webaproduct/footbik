@@ -9,6 +9,20 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
 
+            <xpath expr="//field[@name='stage_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='manual_invoice']" position="after">
+                <button
+                        string="Create frozen subscription"
+                        class="btn-warning"
+                        name="create_frozen_subscription"
+                        type="object"
+                        invisible="is_frozen"
+                    />
+            </xpath>
+
             <xpath expr="//group" position="after">
                 <group>
                     <group string="Program/Group" name="program_training">
@@ -17,13 +31,20 @@
                         <field name="domain_group_id" invisible="1"/>
                         <field name="group_id" domain="domain_group_id" invisible="not program_id"/>
                     </group>
-                    <group string="Frozen subscribe" name="frozen_subscribe" invisible="not is_frozen">
-                        <field name="is_frozen" readonly="1" force_save="1"/>
-                        <field name="reason_frozen" required="is_frozen"/>
-                        <field name="start_frozen_date" readonly="1"/>
-                        <field name="end_frozen_date" readonly="1"/>
-                        <field name="frozen_days" readonly="1"/>
-                    </group>
+                    <group></group>
+                </group>
+
+                <group string="Frozen subscribe" name="frozen_subscribe" invisible="not frozen_subscription_ids">
+                    <field name="is_frozen" readonly="1" force_save="1"/>
+                    <field name="frozen_subscription_ids">
+                        <tree string="All frozen" default_order="create_date desc" create="0">
+                            <field name="stage"/>
+                            <field name="reason_frozen"/>
+                            <field name="start_frozen_date"/>
+                            <field name="end_frozen_date"/>
+                            <field name="frozen_days"/>
+                        </tree>
+                    </field>
                 </group>
             </xpath>
 
