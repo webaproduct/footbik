@@ -22,6 +22,28 @@
     </record>
     <!--MENU-->
 
+    <record id="crm_case_tree_view_leads_inherit" model="ir.ui.view">
+        <field name="name">crm.case.tree.view.leads.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='city']" position="after">
+                <field name="age_store" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_case_tree_view_oppor_inherit" model="ir.ui.view">
+        <field name="name">crm.case.tree.view.oppor.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='city']" position="after">
+                <field name="age_from_partner" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="crm_lead_view_form_inherit" model="ir.ui.view">
         <field name="name">crm.lead.view.form.inherit</field>
         <field name="model">crm.lead</field>

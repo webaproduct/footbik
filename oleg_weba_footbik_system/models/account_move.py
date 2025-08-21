@@ -7,7 +7,7 @@ USER_FOR_CANCEL_INVOICE = [10, 12]  # 'Системний адміністрат
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    def button_cancel(self):
+    def button_draft(self):
 
         """
         Достаем роли, берем из них всех пользователей, проверяем наличие id текущего
@@ -21,7 +21,7 @@ class AccountMove(models.Model):
             raise UserError(
                 _("You can`t cancel Invoice because have`t permission!"))
 
-        return super().button_cancel()
+        return super().button_draft()
 
     def action_register_payment(self):
         res = super().action_register_payment()
