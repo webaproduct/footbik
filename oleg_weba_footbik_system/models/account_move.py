@@ -13,7 +13,7 @@ class AccountMove(models.Model):
         Достаем роли, берем из них всех пользователей, проверяем наличие id текущего
         пользователя в этих ролях, если нет - ошибка
         """
-        users = self.env["res.users.role"].search([
+        users = self.env["res.users.role"].sudo().search([
             ("id", "in", USER_FOR_CANCEL_INVOICE)
         ]).mapped("line_ids.user_id.id")  # exm. -> [2, 3, 4]
 
