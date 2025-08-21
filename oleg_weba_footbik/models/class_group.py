@@ -16,9 +16,12 @@ class ClassGroup(models.Model):
     _description = "Class Group"
 
     name = fields.Char(string="Name")
+
     start_date_for_create_training = fields.Date(
         string="Start date for create training", default=datetime.today(),
         help=_("Date who use for start create training"))
+    date_end_training = fields.Date(string="End date for training group")
+
     photo_group = fields.Binary(string="Photo Group")
 
     # @staticmethod
@@ -50,6 +53,8 @@ class ClassGroup(models.Model):
 
     color = fields.Char(related="class_color_group_id.color", store=True)
 
+    type_numbering_id = fields.Many2one(
+        comodel_name="class.type.numbering", string="Type numbering")
     trainer_id = fields.Many2one(
         comodel_name="hr.employee", string="Trainer", index=True)
     assistant_id = fields.Many2one(
@@ -87,8 +92,8 @@ class ClassGroup(models.Model):
     children_ids = fields.Many2many(
         string="Children",
         comodel_name="res.partner",
-        column1="class_group_id",
         relation="class_group_res_partner_rel",
+        column1="class_group_id",
         column2="res_partner_id",
         domain=[("is_company", "=", False), ("type_person", "=", "child")],
     )
@@ -179,6 +184,9 @@ class ClassGroup(models.Model):
 
         # Указываем дату с какой можно будет начать следующее создание тренировок
         self.start_date_for_create_training = current_date + timedelta(days=1)
+
+        # Фиксируем Дату последней тренировки в этой группе
+        self.date_end_training = current_date - timedelta(days=1)
 
         # Создаем записи в базе данных
         created_trainings = self.env["class.training"].create(trainings)

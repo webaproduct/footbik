@@ -1,0 +1,60 @@
+<odoo>
+    <data noupdate="1">
+
+        <record id="cron_update_create_date_crm_lead" model="ir.cron">
+            <field name="name">[OLEG] Update create_date in historical records crm.lead</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="False"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 06:00:00')"/>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="priority">5</field>
+            <field name="state">code</field>
+            <field name="code">model._cron_update_create_date()</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+
+        <record id="cron_update_create_date_account_move" model="ir.cron">
+            <field name="name">[OLEG] Update create_date in historical records account.move</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="False"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 06:00:00')"/>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="priority">5</field>
+            <field name="state">code</field>
+            <field name="code">model._cron_update_create_date()</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+
+        <record id="cron_update_create_date_sale_subscription" model="ir.cron">
+            <field name="name">[OLEG] Update create_date in historical records sale.subscription</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="False"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 06:00:00')"/>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="subscription_oca.model_sale_subscription"/>
+            <field name="priority">5</field>
+            <field name="state">code</field>
+            <field name="code">model._cron_update_create_date()</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+        <record id="cron_update_date_start_sale_subscription" model="ir.cron">
+            <field name="name">[OLEG] Update date_start in historical records sale.subscription</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="False"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 06:00:00')"/>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="subscription_oca.model_sale_subscription"/>
+            <field name="priority">5</field>
+            <field name="state">code</field>
+            <field name="code">model._cron_update_date_start()</field>
+            <field name="user_id" ref="base.user_root"/>
+        </record>
+
+    </data>
+</odoo>

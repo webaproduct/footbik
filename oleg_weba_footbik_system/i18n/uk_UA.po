@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 11:44+0000\n"
-"PO-Revision-Date: 2025-08-18 11:44+0000\n"
+"POT-Creation-Date: 2025-08-19 12:26+0000\n"
+"PO-Revision-Date: 2025-08-19 12:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -274,6 +274,15 @@ msgid "Create Frozen Subscription"
 msgstr "Створити заморозку"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_bank_statement_line__create_date2
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_move__create_date2
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_payment__create_date2
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__create_date2
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__create_date2
+msgid "Create date 2"
+msgstr "Дата створення 2"
+
+#. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
 msgid "Create frozen subscription"
 msgstr "Створити заморозку"
@@ -305,6 +314,16 @@ msgstr "Клієнт"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Dad"
 msgstr "Батько"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__date_convert_to_opportunity
+msgid "Date convert to opportunity"
+msgstr "Дата переходу на стадію Якісний лід"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__date_start2
+msgid "Date start 2"
+msgstr "Дата початку 2"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__date_start_subscription
@@ -499,6 +518,13 @@ msgid "Guardian"
 msgstr "Опікун"
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_move_form_inherit2
+msgid "Historical data"
+msgstr "Історичні данні"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__id
@@ -523,6 +549,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__is_agreement
 msgid "Is Agreement"
 msgstr "Договір є"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_account_move
+msgid "Journal Entry"
+msgstr "Запис у журналі"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__write_uid
@@ -604,6 +635,11 @@ msgstr "Няня"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__need_text
 msgid "Need"
 msgstr "Потреба"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__need_client
+msgid "Need client"
+msgstr "Потреба клієнта"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__recurring_next_date
@@ -856,6 +892,26 @@ msgstr ""
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_start_ir_actions_server
 msgid "[OLEG-WEBA] Select ready to start subscription and start"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_update_create_date_account_move_ir_actions_server
+msgid "[OLEG] Update create_date in historical records account.move"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_update_create_date_crm_lead_ir_actions_server
+msgid "[OLEG] Update create_date in historical records crm.lead"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_update_create_date_sale_subscription_ir_actions_server
+msgid "[OLEG] Update create_date in historical records sale.subscription"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_update_date_start_sale_subscription_ir_actions_server
+msgid "[OLEG] Update date_start in historical records sale.subscription"
 msgstr ""
 
 #. module: oleg_weba_footbik_system

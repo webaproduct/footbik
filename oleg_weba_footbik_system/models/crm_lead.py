@@ -1,3 +1,5 @@
+from typing import List
+
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from ..models.res_partner import TYPE_PARENT, GENDER
@@ -101,11 +103,12 @@ class CrmLead(models.Model):
 
     source2_id = fields.Many2one(
         comodel_name="utm.source", string="Source", tracking=True)
-    # <----------------------------------UTM---------------------------------->
 
     manager_promouter_id = fields.Many2one(
         comodel_name="hr.employee", string="Manager promouter", tracking=True)
+    # <----------------------------------UTM---------------------------------->
 
+    # <--------------------------Добавление на intro-------------------------->
     program_id = fields.Many2one(
         comodel_name="class.program", string="Program", index=True)
 
@@ -141,6 +144,8 @@ class CrmLead(models.Model):
                 _("The student has already been added to this training session!"))
 
     added_trial_training = fields.Boolean(string="Added trial training")
+
+    # <--------------------------Добавление на intro-------------------------->
 
     # <-----------------Конвертація у нагоду--------------->
     def _handle_partner_assignment(self, force_partner_id=False, create_missing=True):
@@ -280,6 +285,17 @@ class CrmLead(models.Model):
         }
     # <------------Кнопка перехода в тренировки--------->
 
+    # <-------------------------Для историчных данных------------------------->
+    create_date2 = fields.Datetime(string="Create date 2")
+    date_convert_to_opportunity = fields.Date(string="Date convert to opportunity")
+    need_client = fields.Char(string="Need client")
 
+    def _cron_update_create_date(self):
+        records = self.env[self._name].search([
+            ("create_date2", "!=", False),
+        ]).filtered(lambda x: x.create_date2 != x.create_date)
 
-
+        for rec in records:
+            query = f"UPDATE {self._table} SET create_date=%s WHERE id=%s"
+            self.env.cr.execute(query, (rec.create_date2, rec.id))
+    # <-------------------------Для историчных данных------------------------->

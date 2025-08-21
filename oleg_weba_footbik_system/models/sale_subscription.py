@@ -106,3 +106,27 @@ class SaleSubscription(models.Model):
         ])
         if subscriptions:
             subscriptions.write({"stage_id": 3})  # Closed
+
+    # <-------------------------Для историчных данных------------------------->
+    create_date2 = fields.Datetime(string="Create date 2")
+
+    def _cron_update_create_date(self):
+        records = self.env[self._name].search([
+            ("create_date2", "!=", False),
+        ]).filtered(lambda x: x.create_date2 != x.create_date)
+
+        for rec in records:
+            query = f"UPDATE {self._table} SET create_date=%s WHERE id=%s"
+            self.env.cr.execute(query, (rec.create_date2, rec.id))
+
+    date_start2 = fields.Date(string="Date start 2")
+
+    def _cron_update_date_start(self):
+        records = self.env[self._name].search([
+            ("date_start2", "!=", False),
+        ]).filtered(lambda x: x.date_start != x.date_start2)
+
+        for rec in records:
+            query = f"UPDATE {self._table} SET date_start=%s WHERE id=%s"
+            self.env.cr.execute(query, (rec.date_start2, rec.id))
+    # <-------------------------Для историчных данных------------------------->

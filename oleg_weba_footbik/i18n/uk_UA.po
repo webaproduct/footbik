@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 14:47+0000\n"
-"PO-Revision-Date: 2025-08-15 14:47+0000\n"
+"POT-Creation-Date: 2025-08-20 10:26+0000\n"
+"PO-Revision-Date: 2025-08-20 10:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -298,6 +298,11 @@ msgid "Class Training"
 msgstr "Тренування"
 
 #. module: oleg_weba_footbik
+#: model:ir.model,name:oleg_weba_footbik.model_class_type_numbering
+msgid "Class Type Numbering"
+msgstr ""
+
+#. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__company_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__company_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__company_id
@@ -357,6 +362,7 @@ msgstr "Створити тренування"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__create_uid
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_type_numbering__create_uid
 msgid "Created by"
 msgstr "Ким створено"
 
@@ -368,6 +374,7 @@ msgstr "Ким створено"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__create_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__create_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_type_numbering__create_date
 msgid "Created on"
 msgstr "Коли створено"
 
@@ -398,6 +405,7 @@ msgstr "Дата та Час тренувань"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__display_name
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__display_name
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_type_numbering__display_name
 msgid "Display Name"
 msgstr "Назва"
 
@@ -407,6 +415,11 @@ msgstr "Назва"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__duration_training
 msgid "Duration training"
 msgstr "Тривалість тренування"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__date_end_training
+msgid "End date for training group"
+msgstr "Дата завершення тренувань"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__end_training
@@ -484,6 +497,7 @@ msgstr "Є повідомлення"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__id
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__id
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_type_numbering__id
 msgid "ID"
 msgstr ""
 
@@ -536,6 +550,7 @@ msgstr "Intro"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__write_uid
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_type_numbering__write_uid
 msgid "Last Updated by"
 msgstr "Ким востаннє оновлено"
 
@@ -547,6 +562,7 @@ msgstr "Ким востаннє оновлено"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_location__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_program__write_date
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__write_date
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_type_numbering__write_date
 msgid "Last Updated on"
 msgstr "Коли востаннє оновлено"
 
@@ -626,6 +642,11 @@ msgid "Number of children cannot be greater than %(count)s"
 msgstr "Кількість дітей не може бути більшим, ніж %(count)s"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__without_freez
+msgid "Number of children without freez"
+msgstr "Кількість дітей без заморозки"
+
+#. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__message_has_error_counter
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__message_has_error_counter
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__message_has_error_counter
@@ -678,6 +699,11 @@ msgstr "Фото групи"
 #, python-format
 msgid "Planed"
 msgstr "Заплановано"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__presence
+msgid "Presence"
+msgstr "Явка"
 
 #. module: oleg_weba_footbik
 #: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_program
@@ -769,6 +795,11 @@ msgid "State"
 msgstr "Статус"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__subscription_id
+msgid "Subscription"
+msgstr "Підписка"
+
+#. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__subscription_frozen
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Subscription frozen"
@@ -831,6 +862,15 @@ msgstr "Вівторок"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_res_users__type_person
 msgid "Type Person"
 msgstr "Тип особи"
+
+#. module: oleg_weba_footbik
+#: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_type_numbering
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__type_numbering_id
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_type_numbering__name
+#: model:ir.ui.menu,name:oleg_weba_footbik.menu_class_type_numbering
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_type_numbering_view_tree
+msgid "Type numbering"
+msgstr "Тип нумерації"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__website_message_ids

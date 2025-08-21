@@ -1,0 +1,45 @@
+<odoo>
+
+    <record id="class_type_numbering_view_tree" model="ir.ui.view">
+        <field name="name">class.type.numbering.view.tree</field>
+        <field name="model">class.type.numbering</field>
+        <field name="arch" type="xml">
+            <tree string="Type numbering" editable="top" multi_edit="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    <record id="class_type_numbering_view_form" model="ir.ui.view">-->
+<!--        <field name="name">class.type.numbering.view.form</field>-->
+<!--        <field name="model">class.type.numbering</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Type numbering">-->
+<!--                <sheet>-->
+<!--                    <group>-->
+<!--                        <group class="o_label_nowrap">-->
+<!--                            <field name="name"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="action_class_type_numbering" model="ir.actions.act_window">
+        <field name="name">Type numbering</field>
+        <field name="res_model">class.type.numbering</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="menu_class_type_numbering"
+        name="Type numbering"
+        action="action_class_type_numbering"
+        parent="main_menu_addition_models"
+        sequence="4"
+    />
+
+</odoo>

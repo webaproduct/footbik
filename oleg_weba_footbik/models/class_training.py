@@ -141,6 +141,31 @@ class ClassTraining(models.Model):
             else:
                 rec.full_training = False
 
+    without_freez = fields.Integer(
+        compute="_compute_without_freez",
+        string="Number of children without freez",
+        store=True
+    )
+
+    @api.depends("children_ids.subscription_frozen")
+    def _compute_without_freez(self):
+        for rec in self:
+            if rec.children_ids:
+                rec.without_freez = len(rec.children_ids.filtered(
+                    lambda x: not x.subscription_frozen))
+            else:
+                rec.without_freez = 0
+
+    presence = fields.Integer(compute="_compute_presence", string="Presence", store=True)
+
+    @api.depends("children_ids.on_training")
+    def _compute_presence(self):
+        for rec in self:
+            if rec.children_ids:
+                rec.presence = len(rec.children_ids.filtered(lambda x: x.on_training))
+            else:
+                rec.presence = 0
+
     # def _raise_error_count_children(self, max_count_children):
     #     raise UserError(_(
     #         "Number of children cannot be greater than %(count)s",

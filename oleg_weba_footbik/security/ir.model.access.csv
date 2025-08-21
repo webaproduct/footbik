@@ -19,3 +19,6 @@ access_class_age_admin,Full access on class_age,model_class_age,base.group_syste
 
 access_class_color_group_user,User access on class_color_group,model_class_color_group,base.group_user,1,0,0,0
 access_class_color_group_admin,Full access on class_color_group,model_class_color_group,base.group_system,1,1,1,1
+
+access_class_type_numbering_user,User access on class_type_numbering,model_class_type_numbering,base.group_user,1,0,0,0
+access_class_type_numbering_admin,Full access on class_type_numbering,model_class_type_numbering,base.group_system,1,1,1,1

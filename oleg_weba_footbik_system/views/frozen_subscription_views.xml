@@ -25,7 +25,7 @@
                     <button string="Cancel frozen subscription" class="btn-danger"
                         name="action_cancel_frozen_subscription" type="object" invisible="stage in ['cancel', 'done']"/>
 
-                    <field name="stage" widget="statusbar" readonly="0" options="{'clickable': '1', 'fold_field': 'fold'}"/>
+                    <field name="stage" widget="statusbar" readonly="1" options="{'clickable': '1', 'fold_field': 'fold'}"/>
                 </header>
                 <sheet>
                     <group>

@@ -9,4 +9,5 @@ from . import (
     model_for_utm,
     action_lead_to_opportunity,
     frozen_subscription,
+    account_move,
 )

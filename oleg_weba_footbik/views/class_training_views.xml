@@ -67,10 +67,12 @@
                                 <group>
                                     <field name="max_count_children" required="1"/>
                                     <field name="full_training" invisible="0"/>
+                                    <field name="without_freez"/>
                                 </group>
                                 <group>
                                     <field name="count_children"/>
                                     <field name="quantity_free_place"/>
+                                    <field name="presence"/>
                                 </group>
                             </group>
                             <field name="children_ids" widget="one2many">

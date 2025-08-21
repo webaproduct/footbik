@@ -474,6 +474,20 @@
                 <attribute name="class">o_hidden</attribute>
             </xpath>
             <!--Customization in OPPORTUNITY-->
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Historical data" name="historical_data">
+                    <group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="create_date2" readonly="1" force_save="1"/>
+                            <field name="date_convert_to_opportunity" readonly="1" force_save="1"/>
+                            <field name="need_client" readonly="1" force_save="1"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 

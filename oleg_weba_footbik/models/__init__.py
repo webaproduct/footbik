@@ -6,5 +6,6 @@ from . import (
     class_location,
     class_age,
     class_color_group,
+    class_type_numbering,
     res_partner,
 )
