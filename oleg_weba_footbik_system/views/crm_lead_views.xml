@@ -61,8 +61,8 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
 
-            <xpath expr="//div[hasclass('col-auto')][2]" position="attributes">
-                <attribute name="style">display: none;</attribute>
+            <xpath expr="//h2" position="attributes">
+                <attribute name="class">row g-0 pb-3 pb-sm-4 o_hidden</attribute>
             </xpath>
 
             <!--Rewrite global group for swap fields-->

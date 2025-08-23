@@ -1,4 +1,4 @@
-from odoo import models, fields, _
+from odoo import models, fields, _, api
 
 
 class ClassAttendance(models.Model):
@@ -16,6 +16,17 @@ class ClassAttendance(models.Model):
 
     subscription_id = fields.Many2one(
         comodel_name="sale.subscription", string="Subscription")
+    subscription_product = fields.Char(
+        string="Product", compute="_compute_subscription_product", store=True)
+
+    @api.depends("subscription_id")
+    def _compute_subscription_product(self):
+        for rec in self:
+            if rec.subscription_id and rec.subscription_id.sale_subscription_line_ids:
+                product_id = rec.subscription_id.sale_subscription_line_ids[0]
+                rec.subscription_product = product_id.display_name
+            else:
+                rec.subscription_product = ""
 
     state = fields.Selection(
         selection=[
@@ -26,7 +37,6 @@ class ClassAttendance(models.Model):
         default="planed",
         index=True
     )
-
     child_id = fields.Many2one(
         comodel_name="res.partner",
         string="Child",

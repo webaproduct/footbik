@@ -65,7 +65,7 @@ class ClassGroup(models.Model):
     location_id = fields.Many2one(comodel_name="class.location", string="Location")
     is_trial_training_group = fields.Boolean(
         string="Is trial training group", default=True, index=True)
-    duration_training = fields.Float(string="Duration training", default=1)
+    duration_training = fields.Float(string="Duration training", default=0.75)
     information_about_group = fields.Text(string="Information about group")
 
     training_on_monday = fields.Boolean(string="Monday")

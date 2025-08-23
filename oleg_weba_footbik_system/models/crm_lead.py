@@ -5,8 +5,17 @@ from odoo.exceptions import UserError
 from ..models.res_partner import TYPE_PARENT, GENDER
 
 
+USER_FOR_WRITE_PAYMENT_TERM_ID = [10]  # 'Системний адміністратор'
+
+
 class CrmLead(models.Model):
     _inherit = "crm.lead"
+
+    """Для передачи payment_term_id по умолчанию в контекст при создании продажи"""
+    def action_new_quotation(self):
+        res = super().action_new_quotation()
+        res["context"]["default_payment_term_id"] = 1
+        return res
 
     @api.depends('partner_id')
     def _compute_name(self):

@@ -1,10 +1,13 @@
 import logging
 from datetime import date
 
-from odoo import models, fields
+from odoo import models, fields, _, api
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
+
+
+USER_FOR_WRITE_PARTNER = [10]  # 'Системний адміністратор'
 
 
 class SaleOrder(models.Model):
@@ -15,6 +18,21 @@ class SaleOrder(models.Model):
     date_start_subscription = fields.Date(string="Date start subscription")
 
     recurring_next_date = fields.Date(string="Next invoice date")
+
+    can_write = fields.Boolean(compute="_compute_can_write")
+
+    @api.depends("partner_id", "payment_term_id")
+    def _compute_can_write(self):
+        """
+        Достаем роли, берем из них всех пользователей, проверяем наличие id текущего
+        пользователя в этих ролях, если нет - ошибка
+        """
+        users = self.env["res.users.role"].sudo().search([
+            ("id", "in", USER_FOR_WRITE_PARTNER)
+        ]).mapped("line_ids.user_id.id")  # exm. -> [2, 3, 4]
+
+        for rec in self:
+            rec.can_write = self.env.uid in users
 
     def create_subscription(self, lines, subscription_tmpl):
         subscription_lines = []
