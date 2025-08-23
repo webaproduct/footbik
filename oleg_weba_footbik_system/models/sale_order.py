@@ -34,6 +34,88 @@ class SaleOrder(models.Model):
         for rec in self:
             rec.can_write = self.env.uid in users
 
+    # <--------------------------Добавление на intro-------------------------->
+    view_group_add_intro = fields.Boolean(compute="_compute_view_group_add_intro")
+
+    """Проверяем наличие метки qualification=True в добавленных товарах, если хотя в 1 
+    есть, отображаем группу для записи на intro"""
+    @api.depends("order_line")
+    def _compute_view_group_add_intro(self):
+        for rec in self:
+            view_group_add_intro = False
+            if rec.order_line and rec.order_line.mapped(
+                    lambda x: x.product_template_id).filtered(lambda y: y.qualification):
+                view_group_add_intro = True
+
+            rec.view_group_add_intro = view_group_add_intro
+
+
+    program_id = fields.Many2one(
+        comodel_name="class.program", string="Program", index=True)
+
+    def _get_default_domain(self):
+        return [
+            ("class_program_id", "=", self.program_id.id),
+            ("is_trial_training", "=", True),
+            ("state", "=", "planed"),
+            ("full_training", "=", False),
+            ("company_id", "=", self.company_id.id),
+        ]
+
+    domain_training_1_id = fields.Binary(
+        compute="_compute_domain_training_1_id", store=False)
+
+    @api.depends("program_id", "training_2_id")
+    def _compute_domain_training_1_id(self):
+        for rec in self:
+            if rec.program_id:
+                domain = rec._get_default_domain()
+
+                if rec.training_2_id:
+                    domain.append(("id", "!=", rec.training_2_id.id))
+
+                rec.domain_training_1_id = domain
+            else:
+                rec.domain_training_1_id = [("id", "=", 0)]
+
+    training_1_id = fields.Many2one(
+        comodel_name="class.training", string="Training class 1", index=True)
+
+    domain_training_2_id = fields.Binary(
+        compute="_compute_domain_training_2_id", store=False)
+
+    @api.depends("program_id", "training_1_id")
+    def _compute_domain_training_2_id(self):
+        for rec in self:
+            if rec.program_id:
+                domain = rec._get_default_domain()
+
+                if rec.training_1_id:
+                    domain.append(("id", "!=", rec.training_1_id.id))
+
+                rec.domain_training_2_id = domain
+            else:
+                rec.domain_training_2_id = [("id", "=", 0)]
+
+    training_2_id = fields.Many2one(
+        comodel_name="class.training", string="Training class 2", index=True)
+
+    def action_add_child_on_trial_trainings(self):
+        self.ensure_one()
+        self.training_1_id.add_child_trial_training(self.partner_id.id)
+        self.training_2_id.add_child_trial_training(self.partner_id.id)
+        self.added_trial_training = True
+
+    added_trial_training = fields.Boolean(string="Added trial training")
+
+    @api.onchange("training_1_id", "training_2_id")
+    def _onchange_added_trial_training(self):
+        self.ensure_one()
+        if not self.training_1_id and not self.training_2_id:
+            self.added_trial_training = False
+
+    # <--------------------------Добавление на intro-------------------------->
+
     def create_subscription(self, lines, subscription_tmpl):
         subscription_lines = []
         for line in lines:

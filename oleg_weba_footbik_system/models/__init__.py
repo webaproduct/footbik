@@ -10,4 +10,5 @@ from . import (
     action_lead_to_opportunity,
     frozen_subscription,
     account_move,
+    product_template,
 )

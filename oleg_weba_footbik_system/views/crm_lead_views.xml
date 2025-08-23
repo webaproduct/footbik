@@ -337,19 +337,28 @@
                     </group>
 
 
-                    <group string="Record on Intro" invisible="type == 'lead'">
+                    <group string="Record on Intro" invisible="type == 'lead' or not partner_id">
                         <field name="program_id"/>
 
                         <field name="domain_training_id" invisible="1"/>
                         <label for="training_id" invisible="not program_id"/>
                         <div class="o_row" invisible="not program_id">
-                            <field name="training_id" domain="domain_training_id"/>
-                            <button name="action_add_child_trial_training" type="object"
-                                    string="Trial training" class="btn btn-success"
-                                    invisible="not training_id or not partner_id"/>
+                            <field name="training_id" domain="domain_training_id" required="program_id"/>
                         </div>
-                        <field name="added_trial_training"
-                               invisible="not training_id or not added_trial_training"/>
+
+                        <label for="added_trial_training" invisible="not program_id"/>
+                        <div class="o_row" invisible="not program_id">
+                            <field name="added_trial_training" readonly="1" force_save="1"
+                               invisible="not program_id"/>
+
+                            <button name="action_add_child_trial_training" type="object"
+                                    string="Add to trainings" class="btn btn-success text-nowrap"
+                                    invisible="not training_id or not program_id or added_trial_training"/>
+                        </div>
+
+
+<!--                        <field name="added_trial_training"-->
+<!--                               invisible="not training_id or not added_trial_training"/>-->
                     </group>
                     <group string="Other" invisible="type == 'lead'">
                         <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>

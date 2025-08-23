@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-19 12:26+0000\n"
-"PO-Revision-Date: 2025-08-19 12:26+0000\n"
+"POT-Creation-Date: 2025-08-23 11:54+0000\n"
+"PO-Revision-Date: 2025-08-23 11:54+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -108,9 +108,20 @@ msgid "Active"
 msgstr "Активна"
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_order_form_inherit
+msgid "Add to trainings"
+msgstr "Записати"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+msgid "Add to trainings"
+msgstr "Записати"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__added_trial_training
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__added_trial_training
 msgid "Added trial training"
-msgstr "Записан на пробне тренування"
+msgstr "Записан"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.ui.menu,name:oleg_weba_footbik_system.res_partner_menu_аdditional_groups
@@ -168,6 +179,11 @@ msgstr "Дата народження"
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__res_partner__type_parent__brother
 msgid "Brother"
 msgstr "Брат"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__can_write
+msgid "Can Write"
+msgstr ""
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
@@ -363,6 +379,16 @@ msgstr ""
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__domain_training_id
 msgid "Domain Training"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__domain_training_1_id
+msgid "Domain Training 1"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__domain_training_2_id
+msgid "Domain Training 2"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
@@ -674,9 +700,15 @@ msgid "Partner"
 msgstr "Партнер"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_product_template
+msgid "Product"
+msgstr "Товар"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__class_program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__class_program_id
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__program_id
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_res_partner_filter
 msgid "Program"
@@ -693,7 +725,14 @@ msgid "Purchase Order"
 msgstr "Замовлення на купівлю"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_product_product__qualification
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_product_template__qualification
+msgid "Qualification"
+msgstr "Кваліфікація"
+
+#. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_order_form_inherit
 msgid "Record on Intro"
 msgstr "Запис на Intro"
 
@@ -798,14 +837,6 @@ msgid "Telephone parent"
 msgstr "Телефон батьків"
 
 #. module: oleg_weba_footbik_system
-#. odoo-python
-#: code:addons/oleg_weba_footbik_system/models/crm_lead.py:0
-#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/crm_lead.py:0
-#, python-format
-msgid "The student has already been added to this training session!"
-msgstr "Студента вже додано до цього тренування!"
-
-#. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "This email is blacklisted for mass mailings. Click to unblacklist."
 msgstr ""
@@ -822,6 +853,16 @@ msgid "Training class"
 msgstr "Тренування"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__training_1_id
+msgid "Training class 1"
+msgstr "Тренування 1"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__training_2_id
+msgid "Training class 2"
+msgstr "Тренування 2"
+
+#. module: oleg_weba_footbik_system
 #. odoo-python
 #: code:addons/oleg_weba_footbik_system/models/crm_lead.py:0
 #: code:addons/oleg_weba_footbik_system/models/res_partner.py:0
@@ -830,11 +871,6 @@ msgstr "Тренування"
 #, python-format
 msgid "Trainings"
 msgstr "Тренування"
-
-#. module: oleg_weba_footbik_system
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
-msgid "Trial training"
-msgstr "Пробне тренування"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__type_parent
@@ -865,6 +901,11 @@ msgid "UTM Term"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__view_group_add_intro
+msgid "View Group Add Intro"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__whatsapp
 msgid "WhatsApp"
 msgstr ""
@@ -873,6 +914,14 @@ msgstr ""
 #: model:ir.model,name:oleg_weba_footbik_system.model_wizard_frozen_subscription
 msgid "Wizard Frozen Subscription"
 msgstr ""
+
+#. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/account_move.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/account_move.py:0
+#, python-format
+msgid "You can`t cancel Invoice because haven`t permission!"
+msgstr "Ви не можете скасувати рахунок, оскільки не маєте дозволу!"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit

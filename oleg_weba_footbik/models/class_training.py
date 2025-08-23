@@ -207,6 +207,9 @@ class ClassTraining(models.Model):
     # группы принимать учеников на пробные занятия происходит до вызова метода,
     # вместимость группы не учитывается)
     def add_child_trial_training(self, child_id):  # child_id - res.partner id
+        if child_id in self.children_ids.mapped("child_id.id"):
+            raise UserError(_("This child already been added in training session!"))
+
         if self.is_trial_training:
             attendance_id = self.env["class.attendance"].sudo().create({
                 "class_training_id": self.id,

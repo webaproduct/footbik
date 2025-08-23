@@ -19,7 +19,7 @@ class AccountMove(models.Model):
 
         if self.env.uid not in users:
             raise UserError(
-                _("You can`t cancel Invoice because have`t permission!"))
+                _("You can`t cancel Invoice because haven`t permission!"))
 
         return super().button_draft()
 

@@ -139,20 +139,20 @@ class CrmLead(models.Model):
                 rec.domain_training_id = [("id", "=", 0)]
 
     training_id = fields.Many2one(
-        comodel_name="class.training", string="Training class", ondelete="cascade",
-        index=True
-    )
+        comodel_name="class.training", string="Training class", index=True)
 
     def action_add_child_trial_training(self):
         self.ensure_one()
-        if not self.added_trial_training:
-            self.training_id.add_child_trial_training(self.partner_id.id)
-            self.added_trial_training = True
-        else:
-            raise UserError(
-                _("The student has already been added to this training session!"))
+        self.training_id.add_child_trial_training(self.partner_id.id)
+        self.added_trial_training = True
 
     added_trial_training = fields.Boolean(string="Added trial training")
+
+    @api.onchange("training_id")
+    def _onchange_added_trial_training(self):
+        self.ensure_one()
+        if not self.training_id:
+            self.added_trial_training = False
 
     # <--------------------------Добавление на intro-------------------------->
 

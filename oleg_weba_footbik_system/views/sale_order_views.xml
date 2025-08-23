@@ -37,6 +37,37 @@
             <xpath expr="//field[@name='validity_date']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
+
+            <xpath expr="//group" position="inside">
+                <field name="view_group_add_intro" invisible="1"/>
+
+                <group string="Record on Intro" invisible="not partner_id or not view_group_add_intro">
+                    <field name="program_id"/>
+
+                    <field name="domain_training_1_id" invisible="1"/>
+                    <label for="training_1_id" invisible="not program_id"/>
+                    <div invisible="not program_id">
+                        <field name="training_1_id" domain="domain_training_1_id" required="program_id"/>
+                    </div>
+
+                    <field name="domain_training_2_id" invisible="1"/>
+                    <label for="training_2_id" invisible="not program_id"/>
+                    <div invisible="not program_id">
+                        <field name="training_2_id" domain="domain_training_2_id" required="program_id"/>
+                    </div>
+
+                    <label for="added_trial_training" invisible="not program_id"/>
+                    <div class="o_row" invisible="not program_id">
+                        <field name="added_trial_training" readonly="1" force_save="1"
+                           invisible="not program_id"/>
+
+                        <button name="action_add_child_on_trial_trainings" type="object"
+                            string="Add to trainings" class="btn btn-success text-nowrap"
+                            invisible="not training_1_id or not training_2_id or not program_id or added_trial_training"/>
+                    </div>
+
+                </group>
+            </xpath>
         </field>
     </record>
 
