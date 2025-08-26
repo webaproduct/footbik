@@ -83,6 +83,18 @@
                 <field name="instagram" widget="url"/>
                 <field name="telegram" widget="url"/>
             </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Historical data" name="historical_data">
+                    <group>
+                        <group>
+                            <field name="create_date"/>
+                            <field name="create_date2" readonly="1" force_save="1"/>
+                        </group>
+                        <group></group>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 

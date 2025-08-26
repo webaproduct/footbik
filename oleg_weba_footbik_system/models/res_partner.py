@@ -151,3 +151,16 @@ class ResPartner(models.Model):
             "domain": [("child_id", "=", self.id)],
         }
     # <------------Кнопка перехода в тренировки--------->
+
+    # <-------------------------Для историчных данных------------------------->
+    create_date2 = fields.Datetime(string="Create date 2")
+
+    def _cron_update_create_date(self):
+        records = self.env[self._name].search([
+            ("create_date2", "!=", False),
+        ]).filtered(lambda x: x.create_date2 != x.create_date)
+
+        for rec in records:
+            query = f"UPDATE {self._table} SET create_date=%s WHERE id=%s"
+            self.env.cr.execute(query, (rec.create_date2, rec.id))
+    # <-------------------------Для историчных данных------------------------->
