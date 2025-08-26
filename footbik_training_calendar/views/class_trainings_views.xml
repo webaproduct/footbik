@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="class_training_view_calendar" model="ir.ui.view">
+        <field name="name">class.training.view.calendar.inherited</field>
+        <field name="model">class.training</field>
+        <field name="inherit_id" ref="oleg_weba_footbik.class_training_view_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="attributes">
+                <attribute name="js_class">trainings_calendar</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>
