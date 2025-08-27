@@ -1,24 +1,32 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_class_group_user,User access on class_group,model_class_group,base.group_user,1,0,0,0
 access_class_group_admin,Full access on class_group,model_class_group,base.group_system,1,1,1,1
+access_class_group_custom_role,Full access on class_group,model_class_group,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_training_user,User access on class_training,model_class_training,base.group_user,1,0,0,0
 access_class_training_admin,Full access on class_training,model_class_training,base.group_system,1,1,1,1
+access_class_training_custom_role,Full access on class_training,model_class_training,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_attendance_user,User access on class_attendance,model_class_attendance,base.group_user,1,0,0,0
 access_class_attendance_admin,Full access on class_attendance,model_class_attendance,base.group_system,1,1,1,1
+access_class_attendance_custom_role,Full access on class_attendance,model_class_attendance,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_program_user,User access on class_program,model_class_program,base.group_user,1,0,0,0
 access_class_program_admin,Full access on class_program,model_class_program,base.group_system,1,1,1,1
+access_class_program_custom_role,Full access on class_program,model_class_program,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_location_user,User access on class_location,model_class_location,base.group_user,1,0,0,0
 access_class_location_admin,Full access on class_location,model_class_location,base.group_system,1,1,1,1
+access_class_location_custom_role,Full access on class_location,model_class_location,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_age_user,User access on class_age,model_class_age,base.group_user,1,0,0,0
 access_class_age_admin,Full access on class_age,model_class_age,base.group_system,1,1,1,1
+access_class_age_custom_role,Full access on class_age,model_class_age,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_color_group_user,User access on class_color_group,model_class_color_group,base.group_user,1,0,0,0
 access_class_color_group_admin,Full access on class_color_group,model_class_color_group,base.group_system,1,1,1,1
+access_class_color_group_custom_role,Full access on class_color_group,model_class_color_group,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_type_numbering_user,User access on class_type_numbering,model_class_type_numbering,base.group_user,1,0,0,0
 access_class_type_numbering_admin,Full access on class_type_numbering,model_class_type_numbering,base.group_system,1,1,1,1
+access_class_type_numbering_custom_role,Full access on class_type_numbering,model_class_type_numbering,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1

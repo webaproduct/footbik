@@ -4,10 +4,11 @@
     "author": "Oleg (Weba)",
     "website": "https://weba.com.ua/",
     "category": "Uncategorized",
-    "version": "17.0.9.2.0",
+    "version": "17.0.9.3.0",
     "license": "LGPL-3",
     "depends": ["contacts", "hr", "subscription_oca"],
     "data": [
+        "security/security.xml",
         "security/ir.model.access.csv",
 
         "views/menu_view.xml",
