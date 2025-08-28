@@ -67,6 +67,7 @@
                             <field name="create_date"/>
                             <field name="create_date2" readonly="1" force_save="1"/>
                             <field name="date_start2" readonly="1" force_save="1"/>
+                            <field name="trainer_id" readonly="1" force_save="1"/>
                         </group>
                         <group></group>
                     </group>

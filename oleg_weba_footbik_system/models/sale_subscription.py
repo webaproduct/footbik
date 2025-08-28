@@ -108,6 +108,8 @@ class SaleSubscription(models.Model):
             subscriptions.write({"stage_id": 3})  # Closed
 
     # <-------------------------Для историчных данных------------------------->
+    trainer_id = fields.Many2one(comodel_name="hr.employee", string="Trainer")
+
     create_date2 = fields.Datetime(string="Create date 2")
 
     def _cron_update_create_date(self):
