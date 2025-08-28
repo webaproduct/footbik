@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
     # <--------------------------Добавление на intro-------------------------->
     view_group_add_intro = fields.Boolean(compute="_compute_view_group_add_intro")
 
-    """Проверяем наличие метки qualification=True в добавленных товарах, если хотя в 1 
+    """Проверяем наличие метки qualification=True в добавленных товарах, если хотя бы в 1 
     есть, отображаем группу для записи на intro"""
     @api.depends("order_line")
     def _compute_view_group_add_intro(self):
@@ -49,6 +49,17 @@ class SaleOrder(models.Model):
 
             rec.view_group_add_intro = view_group_add_intro
 
+    status_paid = fields.Boolean(compute="_compute_status_paid")
+
+    @api.depends("invoice_ids")
+    def _compute_status_paid(self):
+        for rec in self:
+            if rec.invoice_ids:
+                # Если все инвойсы оплачены - True, иначе - False
+                rec.status_paid = all(rec.invoice_ids.mapped(
+                    lambda x: True if x.payment_state == "paid" else False))
+            else:
+                rec.status_paid = False
 
     program_id = fields.Many2one(
         comodel_name="class.program", string="Program", index=True)
@@ -56,7 +67,7 @@ class SaleOrder(models.Model):
     def _get_default_domain(self):
         return [
             ("class_program_id", "=", self.program_id.id),
-            ("is_trial_training", "=", True),
+            # ("is_trial_training", "=", True),
             ("state", "=", "planed"),
             ("full_training", "=", False),
             ("company_id", "=", self.company_id.id),
@@ -100,19 +111,29 @@ class SaleOrder(models.Model):
     training_2_id = fields.Many2one(
         comodel_name="class.training", string="Training class 2", index=True)
 
-    def action_add_child_on_trial_trainings(self):
+    def action_add_child_on_trial_training_1(self):
         self.ensure_one()
-        self.training_1_id.add_child_trial_training(self.partner_id.id)
-        self.training_2_id.add_child_trial_training(self.partner_id.id)
-        self.added_trial_training = True
+        if self.training_1_id:
+            self.training_1_id.add_child_qualification(self.partner_id.id)
+            self.added_trial_training_1 = True
 
-    added_trial_training = fields.Boolean(string="Added trial training")
+    def action_add_child_on_trial_training_2(self):
+        self.ensure_one()
+        if self.training_2_id:
+            self.training_2_id.add_child_qualification(self.partner_id.id)
+            self.added_trial_training_2 = True
+
+    added_trial_training_1 = fields.Boolean(string="Added trial training 1")
+    added_trial_training_2 = fields.Boolean(string="Added trial training 2")
 
     @api.onchange("training_1_id", "training_2_id")
     def _onchange_added_trial_training(self):
         self.ensure_one()
-        if not self.training_1_id and not self.training_2_id:
-            self.added_trial_training = False
+        if not self.training_1_id:
+            self.added_trial_training_1 = False
+
+        if not self.training_2_id:
+            self.added_trial_training_2 = False
 
     # <--------------------------Добавление на intro-------------------------->
 

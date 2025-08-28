@@ -59,6 +59,7 @@ class ClassAttendance(models.Model):
     working_off = fields.Boolean(string="Working off", index=True)
     trial_training = fields.Boolean(string="Trial training", index=True)
     subscription_frozen = fields.Boolean(string="Subscription frozen", index=True)
+    qualification = fields.Boolean(string="Qualification", index=True)
 
     color = fields.Char(string="Color")
     company_id = fields.Many2one(comodel_name="res.company", string="Club")

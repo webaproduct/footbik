@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-28 11:52+0000\n"
-"PO-Revision-Date: 2025-08-28 11:52+0000\n"
+"POT-Creation-Date: 2025-08-28 13:00+0000\n"
+"PO-Revision-Date: 2025-08-28 13:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -108,15 +108,28 @@ msgid "Active"
 msgstr "Активна"
 
 #. module: oleg_weba_footbik_system
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_order_form_inherit
+msgid "Add to training"
+msgstr "Записати"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Add to trainings"
 msgstr "Записати"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__added_trial_training
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__added_trial_training
 msgid "Added trial training"
+msgstr "Записан"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__added_trial_training_1
+msgid "Added trial training 1"
+msgstr "Записан"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__added_trial_training_2
+msgid "Added trial training 2"
 msgstr "Записан"
 
 #. module: oleg_weba_footbik_system
@@ -731,9 +744,13 @@ msgstr "Кваліфікація"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_order_form_inherit
 msgid "Record on Intro"
 msgstr "Запис на Intro"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_order_form_inherit
+msgid "Record on Qualification"
+msgstr "Запис на Кваліфікацію"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__sale_subscription_id
@@ -791,6 +808,11 @@ msgstr "Початок заморозки"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "State"
 msgstr "Статус"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__status_paid
+msgid "Status Paid"
+msgstr "Статус оплати"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit

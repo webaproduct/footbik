@@ -19,6 +19,7 @@
                 <field name="working_off" optional="show"/>
                 <field name="trial_training" optional="show"/>
                 <field name="subscription_frozen" optional="show"/>
+                <field name="qualification" optional="show"/>
             </tree>
         </field>
     </record>
@@ -51,6 +52,7 @@
                             <field name="working_off" readonly="state == 'completed' or subscription_frozen"/>
                             <field name="trial_training" readonly="1"/>
                             <field name="subscription_frozen" readonly="1"/>
+                            <field name="qualification" readonly="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -211,7 +213,7 @@
     <record id="action_class_attendance" model="ir.actions.act_window">
         <field name="name">Attendance</field>
         <field name="res_model">class.attendance</field>
-        <field name="view_mode">kanban,tree,form,calendar</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
     </record>
 
     <menuitem

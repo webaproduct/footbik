@@ -211,17 +211,35 @@ class ClassTraining(models.Model):
             raise UserError(_("This child already been added in training session!"))
 
         if self.is_trial_training:
-            attendance_id = self.env["class.attendance"].sudo().create({
-                "class_training_id": self.id,
-                "child_id": child_id,
-                "start_training": self.start_training,
-                "end_training": self.end_training,
-                "company_id": self.company_id.id,
-                "color": self.color,
-                "duration_training": self.duration_training,
+            data = self._get_data_attendance(child_id)
 
-                "trial_training": True,
-            }).id
-            self.children_ids = [(4, attendance_id)]
+            attendance_id = self.env["class.attendance"].sudo().create(data)
+            attendance_id.trial_training = True
+
+            self.children_ids = [(4, attendance_id.id)]
         else:
             raise UserError(_("A trial record for this training is prohibited!"))
+
+    # Метод добавления ученика на квалификацию
+    def add_child_qualification(self, child_id):  # child_id - res.partner id
+        if child_id in self.children_ids.mapped("child_id.id"):
+            raise UserError(_("This child already been added in qualification in "
+                              "training session!"))
+
+        data = self._get_data_attendance(child_id)
+
+        attendance_id = self.env["class.attendance"].sudo().create(data)
+        attendance_id.qualification = True
+
+        self.children_ids = [(4, attendance_id.id)]
+
+    def _get_data_attendance(self, child_id):
+        return {
+            "class_training_id": self.id,
+            "child_id": child_id,
+            "start_training": self.start_training,
+            "end_training": self.end_training,
+            "company_id": self.company_id.id,
+            "color": self.color,
+            "duration_training": self.duration_training,
+        }

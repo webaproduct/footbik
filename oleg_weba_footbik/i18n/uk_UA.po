@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-23 11:53+0000\n"
-"PO-Revision-Date: 2025-08-23 11:53+0000\n"
+"POT-Creation-Date: 2025-08-28 12:59+0000\n"
+"PO-Revision-Date: 2025-08-28 12:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -186,6 +186,11 @@ msgstr "Необхідні дії"
 #: model:ir.ui.menu,name:oleg_weba_footbik.main_menu_addition_models
 msgid "Addition models"
 msgstr "Додаткові моделі"
+
+#. module: oleg_weba_footbik
+#: model:res.groups,name:oleg_weba_footbik.admin_access_for_custom_role
+msgid "Admin access for custom roles"
+msgstr ""
 
 #. module: oleg_weba_footbik
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_view_form
@@ -723,6 +728,11 @@ msgid "Program"
 msgstr "Програма"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__qualification
+msgid "Qualification"
+msgstr "КВ"
+
+#. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__quantity_free_place
 msgid "Quantity free place"
 msgstr "Кількість вільних місць"
@@ -820,6 +830,14 @@ msgstr "Неділя"
 #: code:addons/oleg_weba_footbik/models/class_training.py:0
 #: code:addons/user_addons/footbik/oleg_weba_footbik/models/class_training.py:0
 #, python-format
+msgid "This child already been added in qualification in training session!"
+msgstr ""
+
+#. module: oleg_weba_footbik
+#. odoo-python
+#: code:addons/oleg_weba_footbik/models/class_training.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik/models/class_training.py:0
+#, python-format
 msgid "This child already been added in training session!"
 msgstr "Ця дитина вже була додана на тренування!"
 
@@ -886,6 +904,11 @@ msgid "Type numbering"
 msgstr "Тип нумерації"
 
 #. module: oleg_weba_footbik
+#: model:ir.module.category,description:oleg_weba_footbik.category_oleg_weba_footbik
+msgid "User access levels for the custom model in module oleg_weba_footbik"
+msgstr ""
+
+#. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__website_message_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__website_message_ids
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__website_message_ids
@@ -909,3 +932,8 @@ msgstr "Середа"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Working off"
 msgstr "Відпрацювання"
+
+#. module: oleg_weba_footbik
+#: model:ir.module.category,name:oleg_weba_footbik.category_oleg_weba_footbik
+msgid "oleg_weba_footbik"
+msgstr ""

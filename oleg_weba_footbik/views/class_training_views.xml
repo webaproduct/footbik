@@ -88,6 +88,7 @@
                                     <field name="working_off" readonly="state in ('completed', 'cancel') or subscription_frozen"/>
                                     <field name="trial_training" readonly="1"/>
                                     <field name="subscription_frozen" readonly="1"/>
+                                    <field name="qualification" readonly="1"/>
                                 </tree>
                             </field>
                         </page>
