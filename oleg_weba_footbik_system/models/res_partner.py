@@ -30,7 +30,10 @@ class ResPartner(models.Model):
     @api.depends("birthday")
     def _compute_age(self):
         for rec in self:
-            age = rec.get_age(rec.birthday)
+            age = False
+            if rec.birthday:
+                age = rec.get_age(rec.birthday)
+
             rec.age = age
             rec.age_store = age
 

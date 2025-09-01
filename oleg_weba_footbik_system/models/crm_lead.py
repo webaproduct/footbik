@@ -1,7 +1,4 @@
-from typing import List
-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
 from ..models.res_partner import TYPE_PARENT, GENDER
 
 
@@ -24,18 +21,20 @@ class CrmLead(models.Model):
                 lead.name = _("%s's client") % lead.partner_id.name
 
     birthday = fields.Date(string="Birthday", tracking=True)
+    birthday_from_partner = fields.Date(related="partner_id.birthday")
+
     age = fields.Char(compute="_compute_age", store=False)  # Для обновления на форме
     age_store = fields.Char(string="Age", tracking=True)
 
-    @api.depends("birthday")
+    @api.depends("birthday", "birthday_from_partner")
     def _compute_age(self):
         for rec in self:
-            age = self.env["res.partner"].get_age(rec.birthday)
+            age = False
+            if rec.birthday or rec.birthday_from_partner:
+                age = self.env["res.partner"].get_age(rec.birthday)
+
             rec.age = age
             rec.age_store = age
-
-    age_from_partner = fields.Char(related="partner_id.age_store", store=True)
-    birthday_from_partner = fields.Date(related="partner_id.birthday", store=True)
 
     skills_id = fields.Many2one(
         comodel_name="skills",

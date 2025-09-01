@@ -64,7 +64,7 @@
                 <field name="birthday"/>
 
                 <field name="age" invisible="1"/>
-                <field name="age_store" readonly="1"/>
+                <field name="age_store" readonly="1" force_save="1"/>
 
                 <field name="gender"/>
             </xpath>
