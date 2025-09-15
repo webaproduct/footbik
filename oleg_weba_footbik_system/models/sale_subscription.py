@@ -129,12 +129,11 @@ class SaleSubscription(models.Model):
 
             else:
                 if subscription.date_start == today:
-                    company = subscription.company_id.id  # Custom
-                    subscription.with_company(company).action_start_subscription()
-                    subscription.with_company(company).generate_invoice()
+                    subscription.action_start_subscription()
 
-                    # subscription.action_start_subscription()
                     # subscription.generate_invoice()
+                    subscription.with_company(
+                        subscription.company_id.id).generate_invoice()  # Custom
 
     # <-------------------------Для историчных данных------------------------->
     trainer_id = fields.Many2one(comodel_name="hr.employee", string="Trainer")

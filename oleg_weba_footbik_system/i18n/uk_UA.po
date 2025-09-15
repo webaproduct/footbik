@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-28 13:00+0000\n"
-"PO-Revision-Date: 2025-08-28 13:00+0000\n"
+"POT-Creation-Date: 2025-09-15 12:03+0000\n"
+"PO-Revision-Date: 2025-09-15 12:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -145,7 +145,6 @@ msgstr "Місто"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__age
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__age_from_partner
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__age_store
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__age
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__age_store
@@ -388,6 +387,11 @@ msgid "Domain Source2"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__domain_sub_group_id_sub
+msgid "Domain Sub Group Id Sub"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__domain_training_id
 msgid "Domain Training"
 msgstr ""
@@ -534,6 +538,7 @@ msgid "Grandmother"
 msgstr "Бабуся"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__sub_group_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__group_id
 msgid "Group"
 msgstr "Група"
@@ -546,7 +551,7 @@ msgstr "Група"
 #: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/res_partner.py:0
 #, python-format
 msgid "Groups"
-msgstr ""
+msgstr "Групи"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__crm_lead__type_parent__guardian
@@ -587,6 +592,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__is_agreement
 msgid "Is Agreement"
 msgstr "Договір є"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__is_required_sub_program_id_group_id
+msgid "Is Required Sub Program Id Group"
+msgstr ""
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_account_move
@@ -721,6 +731,7 @@ msgstr "Товар"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__class_program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__class_program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__program_id
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__sub_program_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__program_id
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_res_partner_filter
 msgid "Program"
@@ -832,6 +843,8 @@ msgstr "Вулиця"
 #. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_subscription
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__subscription_id
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_product_product__subscription
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_product_template__subscription
 msgid "Subscription"
 msgstr "Абонемент"
 
