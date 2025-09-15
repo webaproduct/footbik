@@ -17,6 +17,12 @@
                 <field name="is_agreement"/>
 
                 <field name="can_write" invisible="1"/>
+                <field name="is_required_sub_program_id_group_id" invisible="1"/>
+
+                <field name="domain_sub_group_id_sub" invisible="1"/>
+                <field name="sub_program_id" required="is_required_sub_program_id_group_id"/>
+                <field name="sub_group_id" domain="domain_sub_group_id_sub"
+                       required="is_required_sub_program_id_group_id"/>
             </xpath>
 
             <xpath expr="//field[@name='partner_id']" position="attributes">
@@ -27,7 +33,7 @@
             </xpath>
 
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="date_start_subscription"/>
+                <field name="date_start_subscription" required="is_required_sub_program_id_group_id"/>
             </xpath>
 
             <xpath expr="//tree/control/create[@name='add_section_control']" position="attributes">

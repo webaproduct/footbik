@@ -39,7 +39,7 @@ class SaleOrder(models.Model):
 
     """Проверяем наличие метки qualification=True в добавленных товарах, если хотя бы в 1 
     есть, отображаем группу для записи на intro"""
-    @api.depends("order_line")
+    @api.depends("order_line", "order_line.product_template_id.qualification")
     def _compute_view_group_add_intro(self):
         for rec in self:
             view_group_add_intro = False
@@ -135,7 +135,49 @@ class SaleOrder(models.Model):
         if not self.training_2_id:
             self.added_trial_training_2 = False
 
-    # <--------------------------Добавление на intro-------------------------->
+    # <-------------------------------------------------------------------->
+
+    is_required_sub_program_id_group_id = fields.Boolean(
+        compute="_compute_is_required_sub_program_id_group_id")
+
+    """Проверяем наличие метки subscription=True в добавленных товарах, если хотя бы в 1 
+    есть: поля sub_program_id и sub_group_id - обязательны"""
+    @api.depends("order_line", "order_line.product_template_id.subscription")
+    def _compute_is_required_sub_program_id_group_id(self):
+        for rec in self:
+            is_required_sub_program_id_group_id = False
+            if rec.order_line and rec.order_line.mapped(
+                    lambda x: x.product_template_id).filtered(lambda y: y.subscription):
+                is_required_sub_program_id_group_id = True
+
+            rec.is_required_sub_program_id_group_id = is_required_sub_program_id_group_id
+
+    sub_program_id = fields.Many2one(
+        comodel_name="class.program", string="Program", index=True)
+
+    @api.onchange("sub_program_id")
+    def _onchange_sub_program_id(self):
+        self.ensure_one()
+        if self.sub_program_id:
+            self.program_id = self.sub_program_id.id
+
+    domain_sub_group_id_sub = fields.Binary(
+        compute="_compute_sub_domain_group_id", store=False)
+
+    @api.depends("sub_program_id")
+    def _compute_sub_domain_group_id(self):
+        for rec in self:
+            if rec.sub_program_id:
+                rec.domain_sub_group_id_sub = [
+                    ("class_program_id", "=", rec.sub_program_id.id),
+                    ("full_group", "=", False),
+                    ("company_id", "=", rec.company_id.id),
+                ]
+            else:
+                rec.domain_sub_group_id_sub = [("id", "=", 0)]
+
+    sub_group_id = fields.Many2one(
+        comodel_name="class.group", string="Group", index=True)
 
     def create_subscription(self, lines, subscription_tmpl):
         subscription_lines = []
@@ -156,13 +198,20 @@ class SaleOrder(models.Model):
                     # "date_start": date.today(),  # Custom
                     "sale_order_id": self.id,
                     "sale_subscription_line_ids": subscription_lines,
+                    "company_id": self.company_id.id,
 
                     "close_reason_id": False,  # Custom
                     "stage_id": 1,  # Custom
                     "date_start": date_start,  # Custom
                     "recurring_next_date": date_start,  # Custom
+
+                    "program_id": self.sub_program_id.id,  # Custom
+                    "group_id": self.sub_group_id.id,  # Custom
                 }
             )
+            rec.group_id.add_children_in_group_and_trainings_after_sub(
+                rec.partner_id.id, rec.id)  # Добавление ребенка в группу и тренировки у
+            # которых дата начала >= дате начала подписки
 
             # rec.action_start_subscription()  # Custom. Without start subscription
 

@@ -271,17 +271,29 @@ class ClassGroup(models.Model):
 
     # children_id - res.partner id, subscription_id - sale.subscription id
     def add_children_in_group_and_trainings(self, children_id, subscription_id=None):
-        # children_id - res.partner id
         self.children_ids = [(4, children_id)]  # Добавляем ученика в группу
         trainings = self.training_ids.filtered(lambda x: x.state == "planed")
         self._create_attendance(trainings, [children_id], subscription_id)
 
     # Метод удаления ученика из группы и всех тренировках которые еще не закончены
+    # children_id - res.partner id
     def delete_children_in_group_and_trainings(self, children_id):
-        # children_id - res.partner id
         self.children_ids = [(3, children_id)]  # Удаляем ученика из группы
 
         self.env["class.attendance"].search([
             ("child_id", "=", children_id),
             ("state", "=", "planed"),
         ]).unlink()
+
+    """Для добавления ребенка в группу и тренировки (начало тренировки => дате начала 
+    подписки) при создании подписки"""
+    # child_id - res.partner id, sub_id - sale.subscription id
+    def add_children_in_group_and_trainings_after_sub(self, child_id, sub_id=None):
+        self.children_ids = [(4, child_id)]  # Добавляем ученика в группу
+
+        sub_id = self.env["sale.subscription"].browse(sub_id)
+        trainings = self.training_ids.filtered(
+            lambda x: x.state == "planed" and
+                      x.start_training.date() >= sub_id.date_start)
+
+        self._create_attendance(trainings, [child_id], sub_id.id)

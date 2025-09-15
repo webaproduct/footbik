@@ -1,6 +1,10 @@
 import datetime
+import logging
 
 from odoo import models, fields, api, _
+
+
+logger = logging.getLogger(__name__)
 
 
 class SaleSubscription(models.Model):
@@ -43,8 +47,7 @@ class SaleSubscription(models.Model):
             else:
                 rec.domain_group_id = [("id", "=", 0)]
 
-    group_id = fields.Many2one(
-        comodel_name="class.group", string="Group", ondelete="cascade", index=True)
+    group_id = fields.Many2one(comodel_name="class.group", string="Group", index=True)
 
     date_end = fields.Date(string="End date")
     close_reason_id = fields.Many2one()
@@ -54,11 +57,11 @@ class SaleSubscription(models.Model):
 
         if values.get("stage_id") and values["stage_id"]:  # Если есть изменения статуса
             if self.group_id:  # Если указана группа
-                if self.stage_id.id == 1 and values["stage_id"] == 2:
-                    # "Ready to start" -> "In progress"
-
-                    # Добавляем ребенка в группу и незавершенные тренировки
-                    self.group_id.add_children_in_group_and_trainings(partner_id, self.id)
+                # if self.stage_id.id == 1 and values["stage_id"] == 2:
+                #     # "Ready to start" -> "In progress"
+                #
+                #     # Добавляем ребенка в группу и незавершенные тренировки
+                #     self.group_id.add_children_in_group_and_trainings(partner_id, self.id)
 
                 if values["stage_id"] == 3:  # "Closed"
                     # Удаляем ребенка из группы и незавершенных тренировок
@@ -89,14 +92,14 @@ class SaleSubscription(models.Model):
 
         return super(SaleSubscription, self).write(values)
 
-    # Крон для поиска ожидающих подписок и активации
-    def _cron_check_subscription_start(self):
-        subscriptions = self.env["sale.subscription"].search([
-            ("stage_id", "=", 1),  # Ready to start
-            ("date_start", "=", datetime.date.today()),
-        ])
-        if subscriptions:
-            subscriptions.write({"stage_id": 2})  # In progress
+    # # Крон для поиска ожидающих подписок и активации. УДАЛЕН!
+    # def _cron_check_subscription_start(self):
+    #     subscriptions = self.env["sale.subscription"].search([
+    #         ("stage_id", "=", 1),  # Ready to start
+    #         ("date_start", "=", datetime.date.today()),
+    #     ])
+    #     if subscriptions:
+    #         subscriptions.write({"stage_id": 2})  # In progress
 
     # Крон для поиска заканчивающихся подписок и закрытие
     def _cron_check_subscription_end(self):
@@ -106,6 +109,32 @@ class SaleSubscription(models.Model):
         ])
         if subscriptions:
             subscriptions.write({"stage_id": 3})  # Closed
+
+    """OverDefinition cron who start subscription"""
+    def cron_subscription_management(self):
+        today = datetime.date.today()
+        for subscription in self.search([]):
+            if subscription.in_progress:
+                if (
+                    subscription.recurring_next_date == today
+                    and subscription.sale_subscription_line_ids
+                ):
+                    try:
+                        subscription.generate_invoice()
+                    except Exception:
+                        logger.exception("Error on subscription invoice generate")
+                if not subscription.recurring_rule_boundary:
+                    if subscription.date == today:
+                        subscription.action_close_subscription()
+
+            else:
+                if subscription.date_start == today:
+                    company = subscription.company_id.id  # Custom
+                    subscription.with_company(company).action_start_subscription()
+                    subscription.with_company(company).generate_invoice()
+
+                    # subscription.action_start_subscription()
+                    # subscription.generate_invoice()
 
     # <-------------------------Для историчных данных------------------------->
     trainer_id = fields.Many2one(comodel_name="hr.employee", string="Trainer")

@@ -7,6 +7,10 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@name='options']" position="inside">
                 <span class="d-inline-flex">
+                    <field name="subscription"/>
+                    <label for="subscription"/>
+                </span>
+                <span class="d-inline-flex">
                     <field name="qualification"/>
                     <label for="qualification"/>
                 </span>
