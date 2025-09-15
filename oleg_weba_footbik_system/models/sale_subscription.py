@@ -95,7 +95,7 @@ class SaleSubscription(models.Model):
 
     def create_invoice(self):
         self = self.with_company(self.company_id)  # Custom
-        return super(SaleSubscription, self).create()
+        return super(SaleSubscription, self).create_invoice()
 
     # Крон для поиска ожидающих подписок и активации.
     def _cron_check_subscription_start(self):
