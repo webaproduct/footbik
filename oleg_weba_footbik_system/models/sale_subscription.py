@@ -2,7 +2,7 @@ import datetime
 import logging
 
 from odoo import models, fields, api, _
-
+from odoo.exceptions import AccessError
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +51,7 @@ class SaleSubscription(models.Model):
 
     date_end = fields.Date(string="End date")
     close_reason_id = fields.Many2one()
+    added_in_group = fields.Boolean()
 
     def write(self, values):
         partner_id = self.partner_id.id
@@ -92,48 +93,54 @@ class SaleSubscription(models.Model):
 
         return super(SaleSubscription, self).write(values)
 
-    # # Крон для поиска ожидающих подписок и активации. УДАЛЕН!
-    # def _cron_check_subscription_start(self):
-    #     subscriptions = self.env["sale.subscription"].search([
-    #         ("stage_id", "=", 1),  # Ready to start
-    #         ("date_start", "=", datetime.date.today()),
-    #     ])
-    #     if subscriptions:
-    #         subscriptions.write({"stage_id": 2})  # In progress
+    def create_invoice(self):
+        self = self.with_company(self.company_id)  # Custom
+        return super(SaleSubscription, self).create()
+
+    # Крон для поиска ожидающих подписок и активации.
+    def _cron_check_subscription_start(self):
+        subscriptions = self.env["sale.subscription"].search([
+            ("stage_id", "=", 1),  # Ready to start
+            ("date_start", "=", datetime.date.today()),
+        ])
+        if subscriptions:
+            for subscription in subscriptions:
+                # subscriptions.write({"stage_id": 2})  # In progress
+                subscription.action_start_subscription()
+
+                try:
+                    subscription.generate_invoice()
+                except Exception:
+                    logger.exception("Error on subscription invoice generate")
+
+    # Крон для выборки записей у которых поле "Наступна дата рахунку" == сегодняшней дате
+    # и выставление инвойса
+    def _cron_check_subscription_generate_invoice(self):
+        subscriptions = self.env["sale.subscription"].search([
+            ("stage_id", "=", 2),  # In progress
+            ("recurring_next_date", "=", datetime.date.today()),
+        ])
+        if subscriptions:
+            for subscription in subscriptions:
+                try:
+                    subscription.generate_invoice()
+                except Exception:
+                    logger.exception("Error on subscription invoice generate")
 
     # Крон для поиска заканчивающихся подписок и закрытие
     def _cron_check_subscription_end(self):
         subscriptions = self.env["sale.subscription"].search([
             ("stage_id", "=", 2),  # In progress
             ("date_end", "=", datetime.date.today()),
+            ("recurring_rule_boundary", "=", False)
         ])
         if subscriptions:
-            subscriptions.write({"stage_id": 3})  # Closed
-
-    """OverDefinition cron who start subscription"""
-    def cron_subscription_management(self):
-        today = datetime.date.today()
-        for subscription in self.search([]):
-            if subscription.in_progress:
-                if (
-                    subscription.recurring_next_date == today
-                    and subscription.sale_subscription_line_ids
-                ):
-                    try:
-                        subscription.generate_invoice()
-                    except Exception:
-                        logger.exception("Error on subscription invoice generate")
-                if not subscription.recurring_rule_boundary:
-                    if subscription.date == today:
-                        subscription.action_close_subscription()
-
-            else:
-                if subscription.date_start == today:
-                    subscription.action_start_subscription()
-
-                    # subscription.generate_invoice()
-                    subscription.with_company(
-                        subscription.company_id.id).generate_invoice()  # Custom
+            for subscription in subscriptions:
+                subscription.action_close_subscription()
+                subscriptions.write({
+                    "stage_id": 3,  # Closed
+                    "recurring_next_date": False,
+                })
 
     # <-------------------------Для историчных данных------------------------->
     trainer_id = fields.Many2one(comodel_name="hr.employee", string="Trainer")

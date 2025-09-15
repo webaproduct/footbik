@@ -209,7 +209,7 @@ class SaleOrder(models.Model):
                     "group_id": self.sub_group_id.id,  # Custom
                 }
             )
-            rec.group_id.add_children_in_group_and_trainings_after_sub(
+            rec.group_id.add_children_in_group_and_trainings(
                 rec.partner_id.id, rec.id)  # Добавление ребенка в группу и тренировки у
             # которых дата начала >= дате начала подписки
 
