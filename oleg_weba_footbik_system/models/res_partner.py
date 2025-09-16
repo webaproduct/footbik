@@ -155,6 +155,9 @@ class ResPartner(models.Model):
         }
     # <------------Кнопка перехода в тренировки--------->
 
+    def _cron_calculate_age(self):
+        self.env["res.partner"].search([("birthday", "!=", False)])._compute_age()
+
     # <-------------------------Для историчных данных------------------------->
     create_date2 = fields.Datetime(string="Create date 2")
 

@@ -50,6 +50,8 @@ class ClassGroup(models.Model):
             ], limit=1)
             if class_color_group_id:
                 self.class_color_group_id = class_color_group_id.id
+            else:
+                self.class_color_group_id = False
 
     color = fields.Char(related="class_color_group_id.color", store=True)
 
@@ -61,7 +63,11 @@ class ClassGroup(models.Model):
         comodel_name="hr.employee", string="Assistant", index=True)
     city = fields.Char(string="City")
     company_id = fields.Many2one(
-        comodel_name="res.company", string="Club", default=lambda self: self.env.company)
+        comodel_name="res.company",
+        string="Club",
+        default=lambda self: self.env.company,
+        index=True
+    )
     location_id = fields.Many2one(comodel_name="class.location", string="Location")
     is_trial_training_group = fields.Boolean(
         string="Is trial training group", default=True, index=True)
@@ -236,15 +242,15 @@ class ClassGroup(models.Model):
         return {
             "class_group_id": self.id,
             "city": self.city,
-            "company_id": self.company_id.id,
+            # "company_id": self.company_id.id,
             "location_id": self.location_id.id,
-            "trainer_id": self.trainer_id.id,
-            "class_program_id": self.class_program_id.id,
+            # "trainer_id": self.trainer_id.id,
+            # "class_program_id": self.class_program_id.id,
             "duration_training": self.duration_training,
-            "color": self.color,
+            # "color": self.color,
             "max_count_children": self.max_count_children,
             "is_trial_training": self.is_trial_training_group,
-            "assistant_id": self.assistant_id.id,
+            # "assistant_id": self.assistant_id.id,
         }
 
     def _create_attendance(
@@ -259,8 +265,8 @@ class ClassGroup(models.Model):
                     "child_id": child_id,
                     "start_training": training.start_training,
                     "end_training": training.end_training,
-                    "company_id": training.company_id.id,
-                    "color": training.color,
+                    # "company_id": training.company_id.id,
+                    # "color": training.color,
                     "duration_training": training.duration_training,
                 })
 

@@ -36,16 +36,26 @@ class ClassTraining(models.Model):
         default="planed",
         index=True
     )
-    color = fields.Char(string="Color")
+    color = fields.Char(
+        string="Color", related="class_group_id.color", store=True, index=True)
     city = fields.Char(string="City")
-    company_id = fields.Many2one(comodel_name="res.company", string="Club")
+    company_id = fields.Many2one(
+        related="class_group_id.company_id", string="Club", store=True, index=True)
     location_id = fields.Many2one(comodel_name="class.location", string="Location")
     trainer_id = fields.Many2one(
-        comodel_name="hr.employee", string="Trainer", index=True)
+        related="class_group_id.trainer_id", string="Trainer", store=True, index=True)
     assistant_id = fields.Many2one(
-        comodel_name="hr.employee", string="Assistant", index=True)
+        related="class_group_id.assistant_id",
+        string="Assistant",
+        store=True,
+        index=True
+    )
     class_program_id = fields.Many2one(
-        comodel_name="class.program", string="Program", index=True)
+        string="Program",
+        related="class_group_id.class_program_id",
+        store=True,
+        index=True
+    )
     is_trial_training = fields.Boolean(string="Is trial training", index=True)
 
     date_training = fields.Date(string="Date training")
@@ -99,7 +109,8 @@ class ClassTraining(models.Model):
     children_ids = fields.One2many(
         comodel_name="class.attendance",
         inverse_name="class_training_id",
-        string="Children")
+        string="Children"
+    )
 
     max_count_children = fields.Integer(string="Max Count Children")
     count_children = fields.Integer(
@@ -239,7 +250,7 @@ class ClassTraining(models.Model):
             "child_id": child_id,
             "start_training": self.start_training,
             "end_training": self.end_training,
-            "company_id": self.company_id.id,
-            "color": self.color,
+            # "company_id": self.company_id.id,
+            # "color": self.color,
             "duration_training": self.duration_training,
         }

@@ -32,7 +32,7 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='city']" position="after">
-                <field name="age" optional="show"/>
+                <field name="age_store" optional="show"/>
             </xpath>
         </field>
     </record>
@@ -43,7 +43,7 @@
         <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='city']" position="after">
-                <field name="age" optional="show"/>
+                <field name="age_store" optional="show"/>
             </xpath>
         </field>
     </record>
@@ -197,9 +197,11 @@
                         <field name="gender"/>  <!--Custom-->
 
                         <!--Custom-->
-                        <label for="birthday_from_partner"/>
+                        <label for="birthday"/>
                         <div class="o_row">
-                            <field name="birthday_from_partner"/>
+                            <field name="age" invisible="1"/>
+
+                            <field name="birthday"/>
                             <span>Age:</span>
                             <field name="age_store" readonly="1" force_save="1"/>
                         </div>

@@ -1,0 +1,18 @@
+<odoo>
+
+    <record id="class_training_view_form_inherit" model="ir.ui.view">
+        <field name="name">class.training.view.form.inherit</field>
+        <field name="model">class.training</field>
+        <field name="inherit_id" ref="oleg_weba_footbik.class_training_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="after">
+                <field name="age"/>
+            </xpath>
+            <xpath expr="//field[@name='comment']" position="after">
+                <field name="sum_pay"/>
+                <field name="date_pay"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

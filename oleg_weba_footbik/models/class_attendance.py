@@ -10,6 +10,16 @@ class ClassAttendance(models.Model):
         for rec in self:
             rec.display_name = f"{rec.class_training_id.name}, {rec.child_id.name}"
 
+    sequence = fields.Integer(string="Sequence", default=1)
+    number_sequence = fields.Integer(
+        string="№", compute="_compute_number_sequence", store=False)
+
+    def _compute_number_sequence(self):
+        for training in self.mapped("class_training_id"):
+            childrens = training.children_ids.sorted(lambda x: x.sequence)
+            for _id, child in enumerate(childrens, start=1):
+                child.number_sequence = _id
+
     class_training_id = fields.Many2one(
         comodel_name="class.training", string="Training class", ondelete="cascade",
         index=True)
@@ -45,6 +55,9 @@ class ClassAttendance(models.Model):
         domain=[("is_company", "=", False), ("type_person", "=", "child")]
     )
 
+    phone = fields.Char(string="Phone", related="child_id.phone", store=True, index=True)
+    comment = fields.Char(string="Comment")
+
     # def _phone_get_number_fields(self):  # For sms templates
     #     return ["phone"]
 
@@ -61,8 +74,10 @@ class ClassAttendance(models.Model):
     subscription_frozen = fields.Boolean(string="Subscription frozen", index=True)
     qualification = fields.Boolean(string="Qualification", index=True)
 
-    color = fields.Char(string="Color")
-    company_id = fields.Many2one(comodel_name="res.company", string="Club")
+    color = fields.Char(
+        string="Color", related="class_training_id.color", store=True, index=True)
+    company_id = fields.Many2one(
+        related="class_training_id.company_id", string="Club", store=True, index=True)
 
     # Метод заморозки абонемента у ученика в тренировках которые еще не закончены
     def freeze_subscription_child(self, child_id):  # child_id - res.partner id

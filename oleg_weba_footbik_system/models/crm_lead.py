@@ -21,16 +21,21 @@ class CrmLead(models.Model):
                 lead.name = _("%s's client") % lead.partner_id.name
 
     birthday = fields.Date(string="Birthday", tracking=True)
-    birthday_from_partner = fields.Date(related="partner_id.birthday")
+
+    @api.onchange("birthday")
+    def _onchange_birthday(self):
+        self.ensure_one()
+        if self.birthday and self.partner_id:
+            self.partner_id.birthday = self.birthday
 
     age = fields.Char(compute="_compute_age", store=False)  # Для обновления на форме
     age_store = fields.Char(string="Age", tracking=True)
 
-    @api.depends("birthday", "birthday_from_partner")
+    @api.depends("birthday")
     def _compute_age(self):
         for rec in self:
             age = False
-            if rec.birthday or rec.birthday_from_partner:
+            if rec.birthday:
                 age = self.env["res.partner"].get_age(rec.birthday)
 
             rec.age = age
@@ -292,6 +297,9 @@ class CrmLead(models.Model):
             "domain": [("child_id", "=", self.partner_id.id)],
         }
     # <------------Кнопка перехода в тренировки--------->
+
+    def _cron_calculate_age(self):
+        self.env["crm.lead"].search([("birthday", "!=", False)])._compute_age()
 
     # <-------------------------Для историчных данных------------------------->
     create_date2 = fields.Datetime(string="Create date 2")

@@ -6,7 +6,8 @@
         <field name="arch" type="xml">
             <tree string="Attendance" default_order="class_training_id" create="0" delete="0">
                 <field name="class_training_id" optional="show"/>
-                <field name="child_id" optional="show"/>
+                <field name="child_id" widget="many2one_avatar" optional="show"/>
+                <field name="phone" optional="show"/>
 
                 <field name="subscription_id" optional="show"/>
                 <field name="subscription_product" optional="show"/>
@@ -18,8 +19,9 @@
                 <field name="on_training" optional="show"/>
                 <field name="working_off" optional="show"/>
                 <field name="trial_training" optional="show"/>
-                <field name="subscription_frozen" optional="show"/>
                 <field name="qualification" optional="show"/>
+                <field name="subscription_frozen" optional="show"/>
+                <field name="comment" optional="show"/>
             </tree>
         </field>
     </record>
@@ -36,7 +38,9 @@
                     <group>
                         <group class="o_label_nowrap">
                             <field name="class_training_id" readonly="1"/>
-                            <field name="child_id" widget="many2one_avatar_user" readonly="1"/>
+                            <field name="child_id" widget="many2one_avatar" readonly="1"/>
+                            <field name="phone"/>
+
                             <field name="subscription_id" readonly="1"/>
                             <field name="subscription_product"/>
 
@@ -53,6 +57,7 @@
                             <field name="trial_training" readonly="1"/>
                             <field name="subscription_frozen" readonly="1"/>
                             <field name="qualification" readonly="1"/>
+                            <field name="comment" readonly="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -74,7 +79,7 @@
                       date_delay="duration_training">
 
                 <field name="class_training_id" filters="1"/>
-                <field name="child_id" widget="many2one_avatar_user" filters="1"/>
+                <field name="child_id" widget="many2one_avatar" filters="1"/>
 
                 <field name="subscription_id" filters="1"/>
                 <field name="subscription_product" filters="1"/>

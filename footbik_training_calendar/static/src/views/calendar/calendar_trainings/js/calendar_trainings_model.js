@@ -35,10 +35,8 @@ export class CalendarTrainingsModel extends CalendarModel {
             record.group_name = raw.class_group_id?.[1] || '';
             record.training_number = raw.name || '';
             record.max_count_children = `${raw.max_count_children || 0}/${raw.count_children || 0}/${raw.max_count_children || 0}`;
-            record.trainer_names = [
-                raw.trainer_id?.[1],
-                raw.assistant_id?.[1]
-            ].filter(Boolean).join(', ') || 'No trainer assigned';
+            record.trainer_name = raw.trainer_id?.[1] || 'No trainer assigned';
+            record.assistant_name = raw.assistant_id?.[1] || 'No assistant assigned';
         }
     }
 

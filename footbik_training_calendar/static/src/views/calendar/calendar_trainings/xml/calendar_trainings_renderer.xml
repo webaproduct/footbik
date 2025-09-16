@@ -6,17 +6,20 @@
     <div class="fc-content" style="display: flex !important; height: 100%; overflow: hidden;">
         <div style="width: 100%; height: 100%; justify-content: space-between;">
             <div class="o_event_title text-dark"
-               style="font-size: 0.6em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
+               style="font-size: 0.5em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
                t-out="group_name"/>
             <div class="o_event_title text-dark"
-               style="font-size: 0.6em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
+               style="font-size: 0.5em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
                t-out="training_number"/>
             <div class="o_event_title text-dark"
-               style="font-size: 0.6em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
+               style="font-size: 0.5em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
                t-out="max_count_children"/>
             <div class="o_event_title text-dark"
-               style="font-size: 0.6em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
-               t-out="trainer_names"/>
+               style="font-size: 0.5em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
+               t-out="trainer_name"/>
+            <div class="o_event_title text-dark"
+               style="font-size: 0.5em; line-height: 0.9; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 0;"
+               t-out="assistant_name"/>
         </div>
     </div>
 </t>

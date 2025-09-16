@@ -2,7 +2,7 @@ import datetime
 import logging
 
 from odoo import models, fields, api, _
-from odoo.exceptions import AccessError
+from odoo.exceptions import AccessError, UserError
 
 logger = logging.getLogger(__name__)
 
@@ -53,6 +53,44 @@ class SaleSubscription(models.Model):
     close_reason_id = fields.Many2one()
     added_in_group = fields.Boolean()
 
+    sum_pay = fields.Float(string="Sum pay", compute="_compute_sum_pay", store=True)
+
+    @api.depends("amount_total", "invoice_ids.amount_residual",
+                 "invoice_ids.state")
+    def _compute_sum_pay(self):
+        for rec in self:
+            _sum = sum(
+                rec.invoice_ids.filtered(
+                    lambda x: x.move_type == "out_invoice" and
+                              x.state != "cancel" and
+                              x.payment_state != "paid"
+                ).mapped("amount_residual")
+            )
+
+            if _sum != 0:
+                rec.sum_pay = _sum
+            else:
+                rec.sum_pay = rec.amount_total
+
+    date_pay = fields.Date(string="Date pay", compute="_compute_date_pay", store=True)
+
+    @api.depends("recurring_next_date", "invoice_ids.amount_residual",
+                 "invoice_ids.state", "invoice_ids.invoice_date")
+    def _compute_date_pay(self):
+        for rec in self:
+            recs = rec.invoice_ids.filtered(
+                lambda x: x.move_type == "out_invoice" and
+                          x.state != "cancel" and
+                          x.payment_state != "paid"
+            )
+
+            if len(recs) > 1:
+                rec.date_pay = recs[-1].invoice_date
+            elif len(recs) == 1:
+                rec.date_pay = recs.invoice_date
+            else:
+                rec.date_pay = rec.recurring_next_date
+
     def write(self, values):
         partner_id = self.partner_id.id
 
@@ -94,7 +132,7 @@ class SaleSubscription(models.Model):
         return super(SaleSubscription, self).write(values)
 
     def create_invoice(self):
-        self = self.with_company(self.company_id)  # Custom
+        self = self.with_company(self.partner_id.company_id)
         return super(SaleSubscription, self).create_invoice()
 
     # Крон для поиска ожидающих подписок и активации.
@@ -111,7 +149,8 @@ class SaleSubscription(models.Model):
                 try:
                     subscription.generate_invoice()
                 except Exception:
-                    logger.exception("Error on subscription invoice generate")
+                    logger.exception(
+                        f"Error on subscription invoice generate, {subscription.id}")
 
     # Крон для выборки записей у которых поле "Наступна дата рахунку" == сегодняшней дате
     # и выставление инвойса
@@ -125,7 +164,8 @@ class SaleSubscription(models.Model):
                 try:
                     subscription.generate_invoice()
                 except Exception:
-                    logger.exception("Error on subscription invoice generate")
+                    logger.exception(
+                        f"Error on subscription invoice generate, {subscription.id}")
 
     # Крон для поиска заканчивающихся подписок и закрытие
     def _cron_check_subscription_end(self):

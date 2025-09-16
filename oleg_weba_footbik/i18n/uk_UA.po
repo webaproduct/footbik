@@ -681,7 +681,7 @@ msgstr "Не відвідав"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__on_training
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "On training"
-msgstr "Відвідав"
+msgstr "Явка"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields.selection,name:oleg_weba_footbik.selection__res_partner__type_person__parent
@@ -713,7 +713,7 @@ msgstr "Явка"
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__subscription_product
 msgid "Product"
-msgstr "Продукт"
+msgstr "Абонемент"
 
 #. module: oleg_weba_footbik
 #: model:ir.actions.act_window,name:oleg_weba_footbik.action_class_program
@@ -818,7 +818,7 @@ msgstr "Підписка"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__subscription_frozen
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Subscription frozen"
-msgstr "Абонемент заморожено"
+msgstr "Заморозка"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__training_on_sunday
@@ -831,7 +831,7 @@ msgstr "Неділя"
 #: code:addons/user_addons/footbik/oleg_weba_footbik/models/class_training.py:0
 #, python-format
 msgid "This child already been added in qualification in training session!"
-msgstr ""
+msgstr "Ця дитина вже була додана до кваліфікації на тренуванні!"
 
 #. module: oleg_weba_footbik
 #. odoo-python
@@ -881,7 +881,7 @@ msgstr "Тренування"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__trial_training
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_attendance_search
 msgid "Trial training"
-msgstr "Пробне тренування"
+msgstr "Intro"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__training_on_tuesday

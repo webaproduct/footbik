@@ -56,6 +56,11 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
 
+            <xpath expr="//field[@name='company_id'][2]" position="after">
+                <field name="sum_pay"/>
+                <field name="date_pay"/>
+            </xpath>
+
             <xpath expr="//notebook" position="inside">
                 <page string="Historical data" name="historical_data">
                     <group>

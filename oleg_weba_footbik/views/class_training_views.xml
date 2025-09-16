@@ -79,16 +79,21 @@
                                 <tree string="Children" editable="bottom">
                                     <field name="state" column_invisible="1"/>
 
-                                    <field name="child_id"/>
+                                    <field name="sequence" widget="handle" optional="show"/>
+                                    <field name="number_sequence" optional="show"/>
+
+                                    <field name="child_id" readonly="1" optional="show"/>
+                                    <field name="phone" optional="show"/>
 
                                     <field name="subscription_id" readonly="1" optional="show"/>
                                     <field name="subscription_product" optional="show"/>
 
-                                    <field name="on_training" readonly="state in ('completed', 'cancel') or subscription_frozen"/>
-                                    <field name="working_off" readonly="state in ('completed', 'cancel') or subscription_frozen"/>
-                                    <field name="trial_training" readonly="1"/>
-                                    <field name="subscription_frozen" readonly="1"/>
-                                    <field name="qualification" readonly="1"/>
+                                    <field name="on_training" readonly="state in ('completed', 'cancel') or subscription_frozen" optional="show"/>
+                                    <field name="working_off" readonly="state in ('completed', 'cancel') or subscription_frozen" optional="show"/>
+                                    <field name="trial_training" readonly="1" optional="show"/>
+                                    <field name="qualification" readonly="1" optional="show"/>
+                                    <field name="subscription_frozen" readonly="1" optional="show"/>
+                                    <field name="comment" optional="show"/>
                                 </tree>
                             </field>
                         </page>
