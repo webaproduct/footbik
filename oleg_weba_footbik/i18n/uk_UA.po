@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-28 12:59+0000\n"
-"PO-Revision-Date: 2025-08-28 12:59+0000\n"
+"POT-Creation-Date: 2025-09-17 08:47+0000\n"
+"PO-Revision-Date: 2025-09-17 08:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -335,6 +335,11 @@ msgstr "Колір групи"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_color_group_view_tree
 msgid "Color group"
 msgstr "Колір групи"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__comment
+msgid "Comment"
+msgstr "Коментар"
 
 #. module: oleg_weba_footbik
 #. odoo-python
@@ -689,6 +694,11 @@ msgid "Parent"
 msgstr "Батько"
 
 #. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__phone
+msgid "Phone"
+msgstr "Телефон"
+
+#. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__photo_group
 msgid "Photo Group"
 msgstr "Фото групи"
@@ -755,6 +765,11 @@ msgstr "Помилка доставки SMS"
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__training_on_saturday
 msgid "Saturday"
 msgstr "Субота"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_attendance__sequence
+msgid "Sequence"
+msgstr "№"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__start_training_friday

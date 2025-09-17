@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-15 12:03+0000\n"
-"PO-Revision-Date: 2025-09-15 12:03+0000\n"
+"POT-Creation-Date: 2025-09-17 08:50+0000\n"
+"PO-Revision-Date: 2025-09-17 08:50+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -118,6 +118,11 @@ msgid "Add to trainings"
 msgstr "Записати"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__added_in_group
+msgid "Added In Group"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__added_trial_training
 msgid "Added trial training"
 msgstr "Записан"
@@ -144,6 +149,7 @@ msgid "Address"
 msgstr "Місто"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_class_attendance__age
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__age
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__age_store
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__age
@@ -177,7 +183,6 @@ msgstr "Відвідування"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__birthday
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__birthday_from_partner
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__birthday
 msgid "Birthday"
 msgstr "Дата народження"
@@ -219,6 +224,11 @@ msgstr "Канал"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_res_partner_filter
 msgid "City"
 msgstr "Місто"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_class_attendance
+msgid "Class Attendance"
+msgstr "Відвідування"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.wizard_frozen_subscription_form
@@ -345,6 +355,12 @@ msgstr "Батько"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__date_convert_to_opportunity
 msgid "Date convert to opportunity"
 msgstr "Дата переходу на стадію Якісний лід"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_class_attendance__date_pay
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__date_pay
+msgid "Date pay"
+msgstr "Дата оплати"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__date_start2
@@ -659,7 +675,7 @@ msgstr "Канал"
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Mobile"
-msgstr ""
+msgstr "Мобільний"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__crm_lead__type_parent__mother
@@ -859,6 +875,12 @@ msgid "Subscriptions"
 msgstr "Підписка"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_class_attendance__sum_pay
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__sum_pay
+msgid "Sum pay"
+msgstr "Сума оплати"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__telegram
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__telegram
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__telegram
@@ -968,19 +990,34 @@ msgid "ZIP"
 msgstr "Індекс"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_calculate_age_crm_lead_ir_actions_server
+msgid "[OLEG-WEBA] Calculate age in crm.lead"
+msgstr "[OLEG] Calculate age in crm.lead"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_calculate_age_res_partner_ir_actions_server
+msgid "[OLEG-WEBA] Calculate age in res.partner"
+msgstr "[OLEG] Calculate age in res.partner"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_end_ir_actions_server
 msgid "[OLEG-WEBA] Check subscription for ending"
-msgstr ""
+msgstr "[OLEG] Select records and ending"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_start_end_frozen_subscription_ir_actions_server
 msgid "[OLEG-WEBA] Select frozen subscription and start or end it"
-msgstr ""
+msgstr "[OLEG] Select frozen subscription and start or end it"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_start_ir_actions_server
 msgid "[OLEG-WEBA] Select ready to start subscription and start"
-msgstr ""
+msgstr "[OLEG] Select records and starting"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_generate_invoice_ir_actions_server
+msgid "[OLEG-WEBA] Select records and generate invoice"
+msgstr "[OLEG] Select records and generate invoice"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_update_create_date_account_move_ir_actions_server

@@ -57,8 +57,8 @@
             </xpath>
 
             <xpath expr="//field[@name='company_id'][2]" position="after">
-                <field name="sum_pay"/>
-                <field name="date_pay"/>
+                <field name="sum_pay" groups="base.group_system"/>
+                <field name="date_pay" groups="base.group_system"/>
             </xpath>
 
             <xpath expr="//notebook" position="inside">
