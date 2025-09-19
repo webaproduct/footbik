@@ -96,7 +96,7 @@ class SaleSubscription(models.Model):
 
         if values.get("stage_id") and values["stage_id"]:  # Если есть изменения статуса
             if self.group_id:  # Если указана группа
-                # if self.stage_id.id == 1 and values["stage_id"] == 2:
+                # if self.stage_id.id == 1 and values["stage_id"] == 6:
                 #     # "Ready to start" -> "In progress"
                 #
                 #     # Добавляем ребенка в группу и незавершенные тренировки
@@ -143,7 +143,7 @@ class SaleSubscription(models.Model):
         ])
         if subscriptions:
             for subscription in subscriptions:
-                # subscriptions.write({"stage_id": 2})  # In progress
+                # subscriptions.write({"stage_id": 6})  # In progress
                 subscription.action_start_subscription()
 
                 try:
@@ -156,7 +156,7 @@ class SaleSubscription(models.Model):
     # и выставление инвойса
     def _cron_check_subscription_generate_invoice(self):
         subscriptions = self.env["sale.subscription"].search([
-            ("stage_id", "=", 2),  # In progress
+            ("stage_id", "=", 6),  # In progress
             ("recurring_next_date", "=", datetime.date.today()),
         ])
         if subscriptions:
@@ -170,7 +170,7 @@ class SaleSubscription(models.Model):
     # Крон для поиска заканчивающихся подписок и закрытие
     def _cron_check_subscription_end(self):
         subscriptions = self.env["sale.subscription"].search([
-            ("stage_id", "=", 2),  # In progress
+            ("stage_id", "=", 6),  # In progress
             ("date_end", "=", datetime.date.today()),
             ("recurring_rule_boundary", "=", False)
         ])
