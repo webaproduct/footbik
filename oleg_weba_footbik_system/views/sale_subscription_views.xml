@@ -18,6 +18,16 @@
                         invisible="is_frozen"
                     />
             </xpath>
+            <xpath expr="//button[@name='create_frozen_subscription']" position="after">
+                <button
+                        string="Set Active State"
+                        class="btn-warning"
+                        name="set_action_stage"
+                        type="object"
+                        invisible="stage_id == 7"
+                        groups="oleg_weba_footbik_system.access_change_state_on_active"
+                    />
+            </xpath>
 
             <xpath expr="//group" position="after">
                 <group>

@@ -1,3 +1,5 @@
+import datetime
+
 from odoo import models, fields, api, _
 from ..models.res_partner import TYPE_PARENT, GENDER
 
@@ -19,6 +21,16 @@ class CrmLead(models.Model):
         for lead in self:
             if not lead.name and lead.partner_id and lead.partner_id.name:
                 lead.name = _("%s's client") % lead.partner_id.name
+
+    """При дисквалификации меняем статус на 'Дискваліфіковано' и не архивируем запись"""
+    def action_set_lost(self, **additional_values):
+        # res = self.action_archive()
+
+        additional_values["stage_id"] = 13  # "Дискваліфіковано"
+        if additional_values:
+            self.write(dict(additional_values))
+
+        return True
 
     birthday = fields.Date(string="Birthday", tracking=True)
 
@@ -138,6 +150,7 @@ class CrmLead(models.Model):
                     ("state", "=", "planed"),
                     ("full_training", "=", False),
                     ("company_id", "=", rec.company_id.id),
+                    ("start_training", ">=", datetime.datetime.now()),
                 ]
             else:
                 rec.domain_training_id = [("id", "=", 0)]

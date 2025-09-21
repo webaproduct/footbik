@@ -91,6 +91,9 @@ class SaleSubscription(models.Model):
             else:
                 rec.date_pay = rec.recurring_next_date
 
+    def set_action_stage(self):
+        self.stage_id = 7  # In progress
+
     def write(self, values):
         partner_id = self.partner_id.id
 

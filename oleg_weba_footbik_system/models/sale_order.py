@@ -1,3 +1,4 @@
+import datetime
 import logging
 from datetime import date
 
@@ -71,6 +72,7 @@ class SaleOrder(models.Model):
             ("state", "=", "planed"),
             ("full_training", "=", False),
             ("company_id", "=", self.company_id.id),
+            ("start_training", ">=", datetime.datetime.now()),
         ]
 
     domain_training_1_id = fields.Binary(
