@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-17 08:50+0000\n"
-"PO-Revision-Date: 2025-09-17 08:50+0000\n"
+"POT-Creation-Date: 2025-09-21 10:55+0000\n"
+"PO-Revision-Date: 2025-09-21 10:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "<span>Age:</span>"
 msgstr "<span>Вік:</span>"
+
+#. module: oleg_weba_footbik_system
+#: model:res.groups,name:oleg_weba_footbik_system.access_change_state_on_active
+msgid "Access change state on active in sale.subscription"
+msgstr ""
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
@@ -790,6 +795,11 @@ msgid "Sales Order"
 msgstr "Замовлення на продаж"
 
 #. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
+msgid "Set Active State"
+msgstr "Перевести статус у 'Активний'"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__crm_lead__type_parent__sister
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__res_partner__type_parent__sister
 msgid "Sister"
@@ -962,6 +972,11 @@ msgid "UTM Term"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:ir.module.category,description:oleg_weba_footbik_system.category_oleg_weba_footbik_system
+msgid "User access levels for oleg_weba_footbik_system"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__view_group_add_intro
 msgid "View Group Add Intro"
 msgstr ""
@@ -1012,7 +1027,7 @@ msgstr "[OLEG] Select frozen subscription and start or end it"
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_start_ir_actions_server
 msgid "[OLEG-WEBA] Select ready to start subscription and start"
-msgstr "[OLEG] Select records and starting"
+msgstr ""
 
 #. module: oleg_weba_footbik_system
 #: model:ir.actions.server,name:oleg_weba_footbik_system.cron_check_subscription_generate_invoice_ir_actions_server
@@ -1048,6 +1063,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "e.g. https://footbik.odoo24.online"
 msgstr "Наприклад: https://footbik.odoo24.online"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.module.category,name:oleg_weba_footbik_system.category_oleg_weba_footbik_system
+msgid "oleg_weba_footbik_system"
+msgstr ""
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
