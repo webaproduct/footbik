@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="rt_activity_mgmt.RTActivityMgmtKanbanRenderer" owl="1">
+        <div class="rt_activity_mgmt_content d-flex flex-column h-100">
+            <RTActivityMgmtDashboard domain="props.list.domain" />
+            <div class="overflow-auto border-top">
+                <t t-call="web.KanbanRenderer"/>
+            </div>
+        </div>
+    </t>
+</templates>

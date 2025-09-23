@@ -149,7 +149,8 @@ class SaleOrder(models.Model):
         for rec in self:
             is_required_sub_program_id_group_id = False
             if rec.order_line and rec.order_line.mapped(
-                    lambda x: x.product_template_id).filtered(lambda y: y.subscription):
+                    lambda x: x.product_template_id).filtered(lambda y: y.subscription or
+                                                                        y.qualification):
                 is_required_sub_program_id_group_id = True
 
             rec.is_required_sub_program_id_group_id = is_required_sub_program_id_group_id

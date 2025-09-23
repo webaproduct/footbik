@@ -24,7 +24,7 @@
                         class="btn-warning"
                         name="set_action_stage"
                         type="object"
-                        invisible="stage_id == 7"
+                        invisible="stage_id != 4"
                         groups="oleg_weba_footbik_system.access_change_state_on_active"
                     />
             </xpath>
@@ -61,6 +61,7 @@
             <xpath expr="//field[@name='date_start']" position="after">
                 <field name="date_end"/>
                 <field name="close_reason_id" required="date_end"/>
+                <field name="trainer_id"/>
             </xpath>
             <xpath expr="//field[@name='date']" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -78,11 +79,22 @@
                             <field name="create_date"/>
                             <field name="create_date2" readonly="1" force_save="1"/>
                             <field name="date_start2" readonly="1" force_save="1"/>
-                            <field name="trainer_id" readonly="1" force_save="1"/>
                         </group>
                         <group></group>
                     </group>
                 </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_pending_filter_inherit" model="ir.ui.view">
+        <field name="name">sale.order.pending.filter.inherit</field>
+        <field name="model">sale.subscription</field>
+        <field name="inherit_id" ref="subscription_oca.view_sale_order_pending_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='to_renew']" position="before">
+                <field name="name"/>
+                <field name="partner_id"/>
             </xpath>
         </field>
     </record>

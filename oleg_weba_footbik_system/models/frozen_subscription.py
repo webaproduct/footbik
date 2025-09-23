@@ -58,7 +58,7 @@ class FrozenSubscription(models.Model):
                 # 'В заморозці'
 
             if vals["stage"] in ["done", "cancel"]:
-                self.subscription_id.stage_id = 2  # "In progress"  Переводим подписку
+                self.subscription_id.stage_id = 7  # "In progress"  Переводим подписку
                 # на этап 'Активний'
 
         return super().write(vals)
