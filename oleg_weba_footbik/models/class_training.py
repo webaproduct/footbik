@@ -89,7 +89,8 @@ class ClassTraining(models.Model):
         return int(
             datetime.now(tz).utcoffset().total_seconds() / 3600)
 
-    duration_training = fields.Float(string="Duration training")
+    duration_training = fields.Float(
+        related="class_group_id.duration_training", string="Duration training")
     end_training = fields.Datetime(
         string="End training", compute="_compute_end_training", store=True)
 
@@ -112,7 +113,8 @@ class ClassTraining(models.Model):
         string="Children"
     )
 
-    max_count_children = fields.Integer(string="Max Count Children")
+    max_count_children = fields.Integer(
+        related="class_group_id.max_count_children", string="Max Count Children")
     count_children = fields.Integer(
         string="Number of children", compute="_compute_count_children", store=True)
 

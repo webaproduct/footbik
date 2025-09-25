@@ -22,4 +22,4 @@ class CloseSubscriptionWizard(models.TransientModel):
         )
         if stage != closed_stage:
             sale_subscription.stage_id = closed_stage
-            sale_subscription.active = False
+            # sale_subscription.active = False  # Custom

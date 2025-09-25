@@ -37,7 +37,6 @@ class SaleSubscription(models.Model):
     group_id = fields.Many2one(comodel_name="class.group", string="Group", index=True)
 
     date_end = fields.Date(string="End date")
-    close_reason_id = fields.Many2one()
     added_in_group = fields.Boolean()
 
     sum_pay = fields.Float(string="Sum pay", compute="_compute_sum_pay", store=True)
@@ -82,36 +81,41 @@ class SaleSubscription(models.Model):
         partner_id = self.partner_id.id
 
         if values.get("stage_id") and values["stage_id"]:  # Если есть изменения статуса
-            if self.group_id:  # Если указана группа
-                # if self.stage_id.id == 1 and values["stage_id"] == 7:
-                #     # "Ready to start" -> "In progress"
-                #
+            # if self.stage_id.id == 1 and values["stage_id"] == 7:
+                # "Ready to start" -> "In progress"
+
+                # if self.group_id:
                 #     # Добавляем ребенка в группу и незавершенные тренировки
                 #     self.group_id.add_children_in_group_and_trainings(partner_id, self.id)
 
-                if values["stage_id"] == 3:  # "Closed"
+            if values["stage_id"] == 3:  # "Closed"
+                if self.group_id:
                     # Удаляем ребенка из группы и незавершенных тренировок
                     self.group_id.delete_children_in_group_and_trainings(partner_id)
 
-                if values["stage_id"] == 4:  # "Frozen"
-                    values["is_frozen"] = True
+                if not self.date_end:
+                    values["date_end"] = datetime.date.today()
 
+            if values["stage_id"] == 4:  # "Frozen"
+                values["is_frozen"] = True
+
+                if self.group_id:
                     # Делаем пометку заморозки подписки в незавершенных посещениях
                     self.env["class.attendance"].freeze_subscription_child(partner_id)
 
-                if self.stage_id.id == 4:  # "Frozen" -> All other state
-                    values["is_frozen"] = False
+            if self.stage_id.id == 4:  # "Frozen" -> All other state
+                values["is_frozen"] = False
 
-                    # Добавляем к дате след. выставления счета кол-во дней заморозки
-                    if self.recurring_next_date and self.frozen_subscription_ids:
-                        frozen_days = self.frozen_subscription_ids[0].frozen_days
-                        values["recurring_next_date"] = (
-                                self.recurring_next_date +
-                                datetime.timedelta(days=frozen_days)
-                        )
+                # Добавляем к дате след. выставления счета кол-во дней заморозки
+                if self.recurring_next_date and self.frozen_subscription_ids:
+                    frozen_days = self.frozen_subscription_ids[0].frozen_days
+                    values["recurring_next_date"] = (
+                            self.recurring_next_date +
+                            datetime.timedelta(days=frozen_days)
+                    )
 
-                    # Делаем разморозку подписки в незавершенных посещениях
-                    self.env["class.attendance"].unfreeze_subscription_child(partner_id)
+                # Делаем разморозку подписки в незавершенных посещениях
+                self.env["class.attendance"].unfreeze_subscription_child(partner_id)
 
         if values.get("date") and values["date"]:
             values["date_end"] = values["date"]

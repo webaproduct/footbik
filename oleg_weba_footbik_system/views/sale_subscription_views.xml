@@ -36,6 +36,8 @@
 
                         <field name="domain_group_id" invisible="1"/>
                         <field name="group_id" domain="domain_group_id" invisible="not program_id"/>
+
+                        <field name="added_in_group" invisible="1"/>
                     </group>
                     <group></group>
                 </group>
@@ -60,7 +62,7 @@
 
             <xpath expr="//field[@name='date_start']" position="after">
                 <field name="date_end"/>
-                <field name="close_reason_id" required="date_end"/>
+                <field name="close_reason_id" invisible="not close_reason_id" readonly="1" force_save="1"/>
                 <field name="trainer_id"/>
             </xpath>
             <xpath expr="//field[@name='date']" position="attributes">

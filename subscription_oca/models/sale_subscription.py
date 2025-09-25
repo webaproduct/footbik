@@ -435,7 +435,7 @@ class SaleSubscription(models.Model):
                         record.in_progress = True
                         record.date_start = date.today()
                     elif record.stage_id.type == "post":
-                        record.close_reason_id = False
+                        # record.close_reason_id = False  # Custom
                         record.in_progress = False
                     else:
                         record.in_progress = False
