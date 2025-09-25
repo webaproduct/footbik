@@ -215,8 +215,16 @@ class SaleSubscription(models.Model):
                 # subscriptions.write({"stage_id": 7})  # In progress
                 subscription.action_start_subscription()
 
+                # Нам не нужно создавать инвойс при активации абонемента, т.к. он
+                # создается при подтверждении оплаты и связывается с абонементом,
+                # остается только пересчитать дату выставления следующего инвойса, если
+                # инвойс по какой-то причине не создался из продажи - создаем его.
                 try:
-                    subscription.generate_invoice()
+                    if not subscription.invoice_ids:
+                        subscription.generate_invoice()
+                    else:
+                        subscription.calculate_recurring_next_date(
+                            subscription.recurring_next_date)
                 except Exception:
                     logger.exception(
                         f"Error on subscription invoice generate, {subscription.id}")

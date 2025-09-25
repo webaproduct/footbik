@@ -1,6 +1,5 @@
 import datetime
 import logging
-from datetime import date
 
 from odoo import models, fields, _, api
 from odoo.exceptions import UserError
@@ -15,11 +14,8 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     is_agreement = fields.Boolean(string="Is Agreement")
-
     date_start_subscription = fields.Date(string="Date start subscription")
-
     recurring_next_date = fields.Date(string="Next invoice date")
-
     can_write = fields.Boolean(compute="_compute_can_write")
 
     @api.depends("partner_id", "payment_term_id")
@@ -242,6 +238,11 @@ class SaleOrder(models.Model):
                     }).sudo().create_invoices()
 
                     rec.invoice_ids[0].action_post()
+
+                    # Связываем первый инвойс с первой подпиской
+                    if rec.subscription_ids:
+                        rec.invoice_ids[0].subscription_id = rec.subscription_ids[0].id
+
                 except UserError as e:
                     _logger.error(
                         msg=f"Invoice was not created from sale.order: {rec.id}."

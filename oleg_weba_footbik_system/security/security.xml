@@ -14,5 +14,11 @@
             <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
 
+
+<!--        &lt;!&ndash;Rewrite access to sale.subscription from module subscription_oca&ndash;&gt;-->
+<!--        <record id="subscription_oca.access_custom_sale_subscription" model="ir.model.access">-->
+<!--            <field name="perm_unlink">0</field>-->
+<!--        </record>-->
+
     </data>
 </odoo>

@@ -1,5 +1,9 @@
 <odoo>
 
+    <record id="subscription_oca.sale_subscription_action" model="ir.actions.act_window">
+        <field name="context">{'create': False, 'delete': False}</field>
+    </record>
+
     <record id="sale_subscription_form_inherit" model="ir.ui.view">
         <field name="name">sale.subscription.form.inherit</field>
         <field name="model">sale.subscription</field>

@@ -22,8 +22,29 @@
     </record>
     <!--MENU-->
 
+    <record id="crm.crm_lead_all_leads" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,graph,pivot,calendar,form,activity</field>
+    </record>
+    <record id="crm.crm_lead_all_leads_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+    </record>
+    <record id="crm.crm_lead_all_leads_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+    </record>
+
     <record id="crm.crm_lead_action_pipeline" model="ir.actions.act_window">
         <field name="context">{'default_type': 'opportunity'}</field>
+    </record>
+
+    <record id="view_crm_lead_kanban_inherit" model="ir.ui.view">
+        <field name="name">view.crm.lead.kanban.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_lead_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="default_group_by">stage_id</attribute>
+            </xpath>
+        </field>
     </record>
 
     <record id="crm_case_tree_view_leads_inherit" model="ir.ui.view">
