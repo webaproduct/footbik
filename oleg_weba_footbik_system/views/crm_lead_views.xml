@@ -125,7 +125,7 @@
                             <field name="age_store" readonly="1"/>
                         </div>
 
-                        <label for="street" string="Address"/>
+                        <label for="city" string="City"/>
                         <div class="o_address_format">
                             <field name="street" placeholder="Street..." class="o_address_street" invisible="1"/> <!--Custom-->
                             <field name="street2" placeholder="Street 2..." class="o_address_street" invisible="1"/> <!--Custom-->

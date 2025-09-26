@@ -210,7 +210,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:oleg_weba_footbik_system.selection__frozen_subscription__stage__cancel
 #, python-format
 msgid "Cancel"
-msgstr "Закрити"
+msgstr "Скасовано"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.frozen_subscription_form
