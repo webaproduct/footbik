@@ -151,6 +151,9 @@ class SaleOrder(models.Model):
 
             rec.is_required_sub_program_id_group_id = is_required_sub_program_id_group_id
 
+    trainer_id = fields.Many2one(
+        comodel_name="hr.employee", string="Trainer", index=True)
+
     sub_program_id = fields.Many2one(
         comodel_name="class.program", string="Program", index=True)
 
@@ -206,6 +209,7 @@ class SaleOrder(models.Model):
 
                     "program_id": self.sub_program_id.id,  # Custom
                     "group_id": self.sub_group_id.id,  # Custom
+                    "trainer_id": self.trainer_id.id,  # Custom
                 }
             )
             rec.group_id.add_children_in_group_and_trainings(

@@ -40,6 +40,8 @@
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="date_start_subscription" required="is_required_sub_program_id_group_id"
                        invisible="is_required_sub_program_id_group_id == False"/>
+                <field name="trainer_id" required="is_required_sub_program_id_group_id"
+                       invisible="is_required_sub_program_id_group_id == False"/>
             </xpath>
 
             <xpath expr="//tree/control/create[@name='add_section_control']" position="attributes">

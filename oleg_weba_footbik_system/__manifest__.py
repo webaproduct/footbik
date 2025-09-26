@@ -4,7 +4,7 @@
     "author": "Oleg (Weba)",
     "website": "https://weba.com.ua/",
     "category": "Uncategorized",
-    "version": "17.0.19.2.0",
+    "version": "17.0.20.0.0",
     "license": "LGPL-3",
     "depends": ["contacts", "hr", "crm", "oleg_weba_footbik",
                 "utm", "subscription_oca", "calendar", "sale",

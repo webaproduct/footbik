@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-21 10:55+0000\n"
-"PO-Revision-Date: 2025-09-21 10:55+0000\n"
+"POT-Creation-Date: 2025-09-25 16:40+0000\n"
+"PO-Revision-Date: 2025-09-25 16:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -241,11 +241,6 @@ msgid "Close"
 msgstr "Закрити"
 
 #. module: oleg_weba_footbik_system
-#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__close_reason_id
-msgid "Close Reason"
-msgstr "Причина закриття"
-
-#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__reason_frozen
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__reason_frozen
 msgid "Comment"
@@ -335,6 +330,14 @@ msgstr "Створити заморозку"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_term__create_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__create_uid
 msgid "Created by"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/sale_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/sale_subscription.py:0
+#, python-format
+msgid "Created invoice with reference"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
@@ -785,6 +788,11 @@ msgid "Record on Qualification"
 msgstr "Запис на Кваліфікацію"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__code
+msgid "Reference"
+msgstr "Референс"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__sale_subscription_id
 msgid "Sale Subscription"
 msgstr ""
@@ -914,6 +922,15 @@ msgid ""
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#. odoo-python
+#: code:addons/oleg_weba_footbik_system/models/sale_subscription.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/sale_subscription.py:0
+#, python-format
+msgid "To validate"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__trainer_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__trainer_id
 msgid "Trainer"
 msgstr "Тренер"
