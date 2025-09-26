@@ -67,7 +67,7 @@
             <xpath expr="//field[@name='date_start']" position="after">
                 <field name="date_end"/>
                 <field name="close_reason_id" invisible="not close_reason_id" readonly="1" force_save="1"/>
-                <field name="trainer_id"/>
+                <field name="trainer_id" required="1"/>
             </xpath>
             <xpath expr="//field[@name='date']" position="attributes">
                 <attribute name="invisible">1</attribute>
