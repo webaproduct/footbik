@@ -69,13 +69,17 @@ class FrozenSubscription(models.Model):
 
     def _cron_start_end_frozen_subscription(self):
         """Переводим запись frozen.subscription и подписку в статус заморожено"""
-        self.env["frozen.subscription"].search([
+        records = self.env["frozen.subscription"].search([
             ("stage", "=", "draft"),
             ("start_frozen_date", "=", datetime.date.today()),
-        ]).write({"stage": "active"})
+        ])
+        for rec in records:
+            rec.write({"stage": "active"})
 
         """Переводим запись frozen.subscription и подписку в статус активно"""
-        self.env["frozen.subscription"].search([
+        records = self.env["frozen.subscription"].search([
             ("stage", "=", "active"),
             ("end_frozen_date", "=", datetime.date.today()),
-        ]).write({"stage": "done"})
+        ])
+        for rec in records:
+            rec.write({"stage": "done"})
