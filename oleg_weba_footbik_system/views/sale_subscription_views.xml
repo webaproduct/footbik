@@ -41,7 +41,7 @@
                         <field name="domain_group_id" invisible="1"/>
                         <field name="group_id" domain="domain_group_id" invisible="not program_id"/>
 
-                        <field name="added_in_group" invisible="1"/>
+                        <field name="added_in_group" readonly="1" force_save="1" invisible="0" groups="base.group_no_one"/>
                     </group>
                     <group></group>
                 </group>

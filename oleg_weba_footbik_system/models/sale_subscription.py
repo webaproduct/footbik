@@ -123,6 +123,23 @@ class SaleSubscription(models.Model):
         return super(SaleSubscription, self).write(values)
 
     # <---------------------------Buttons----------------------------->
+    """Переопределяем для подсчета кол-во связанных инвойсов без платежей"""
+    @api.depends("invoice_ids", "sale_order_ids.invoice_ids")
+    def _compute_account_invoice_ids_count(self):
+        for record in self:
+            record.account_invoice_ids_count = len(self.invoice_ids.filtered(
+                lambda x: x.move_type == "out_invoice"
+            ))
+
+    """Переопределяем для отображения по кнопке инвойсов без платежей"""
+    def action_view_account_invoice_ids(self):
+        res = super().action_view_account_invoice_ids()
+        res["domain"] = [
+            ("id", "in", self.invoice_ids.ids),
+            ("move_type", "=", "out_invoice")
+        ]
+        return res
+
     def create_frozen_subscription(self):
         self.ensure_one()
         return {
