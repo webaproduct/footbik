@@ -294,7 +294,7 @@ class ClassGroup(models.Model):
 
         self._create_attendance(trainings, [child_id], sub_id.id)
 
-    # Метод удаления ученика из группы и всех тренировках которые еще не закончены
+    # Метод удаления ученика из группы и всех тренировок которые еще не закончены
     # children_id - res.partner id
     def delete_children_in_group_and_trainings(self, children_id):
         self.children_ids = [(3, children_id)]  # Удаляем ученика из группы
@@ -302,4 +302,5 @@ class ClassGroup(models.Model):
         self.env["class.attendance"].search([
             ("child_id", "=", children_id),
             ("state", "=", "planed"),
+            ("start_training", ">=", datetime.now()),
         ]).unlink()

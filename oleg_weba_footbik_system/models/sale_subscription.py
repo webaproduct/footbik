@@ -156,6 +156,12 @@ class SaleSubscription(models.Model):
     def set_action_stage(self):
         self.stage_id = 7  # In progress
 
+    def action_add_partner_in_group_trainings(self):
+        self.group_id.add_children_in_group_and_trainings(self.partner_id.id, self.id)
+        self.write({
+            "added_in_group": True,
+        })
+
     def action_delete_partner_from_group_trainings(self):
         self.group_id.delete_children_in_group_and_trainings(self.partner_id.id)
         self.write({
