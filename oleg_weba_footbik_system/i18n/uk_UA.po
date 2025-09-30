@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 16:40+0000\n"
-"PO-Revision-Date: 2025-09-25 16:40+0000\n"
+"POT-Creation-Date: 2025-09-30 10:17+0000\n"
+"PO-Revision-Date: 2025-09-30 10:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "Записати"
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_subscription__added_in_group
 msgid "Added In Group"
-msgstr ""
+msgstr "Додано до групи"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__added_trial_training
@@ -379,6 +379,11 @@ msgstr "Дата початку 2"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__date_start_subscription
 msgid "Date start subscription"
 msgstr "Дата активації підписки"
+
+#. module: oleg_weba_footbik_system
+#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
+msgid "Delete from group"
+msgstr "Видалити з групи"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__display_name

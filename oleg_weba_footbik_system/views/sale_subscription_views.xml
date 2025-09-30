@@ -41,7 +41,20 @@
                         <field name="domain_group_id" invisible="1"/>
                         <field name="group_id" domain="domain_group_id" invisible="not program_id"/>
 
-                        <field name="added_in_group" readonly="1" force_save="1" invisible="0" groups="base.group_no_one"/>
+                        <label for="added_in_group"/>
+                        <div class="o_row">
+                            <field name="added_in_group" readonly="1" force_save="1"
+                                   invisible="0" groups="base.group_system" class="oe_inline"/>
+
+                            <button
+                                string="Delete from group"
+                                class="btn-danger oe_inline"
+                                name="action_delete_partner_from_group_trainings"
+                                type="object"
+                                invisible="not added_in_group"
+                                groups="base.group_system"
+                            />
+                        </div>
                     </group>
                     <group></group>
                 </group>
