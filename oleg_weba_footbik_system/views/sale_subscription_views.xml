@@ -52,7 +52,7 @@
                                 class="btn-danger oe_inline"
                                 name="action_delete_partner_from_group_trainings"
                                 type="object"
-                                invisible="not added_in_group"
+                                invisible="not added_in_group or not group_id"
                                 groups="base.group_system"
                             />
 
@@ -61,7 +61,7 @@
                                 class="btn-success oe_inline"
                                 name="action_add_partner_in_group_trainings"
                                 type="object"
-                                invisible="added_in_group"
+                                invisible="added_in_group or not group_id"
                                 groups="base.group_system"
                             />
                         </div>
