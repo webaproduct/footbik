@@ -1,3 +1,5 @@
+import datetime
+
 from odoo import models, fields, _
 
 
@@ -20,13 +22,18 @@ class WizardFrozenSubscription(models.TransientModel):
     def action_create(self):
         self.ensure_one()
 
-        self.env["frozen.subscription"].create({
+        data = {
             "subscription_id": self.sale_subscription_id.id,
             "start_frozen_date": self.start_frozen_date,
             "end_frozen_date": self.end_frozen_date,
             "reason_frozen": self.reason_frozen,
-
             "stage": "draft",
-        })
+        }
+
+        if self.start_frozen_date == datetime.date.today():
+            data["stage"] = "active"
+            self.sale_subscription_id.sudo().write({"stage_id": 4})  # "Frozen"
+
+        self.env["frozen.subscription"].create(data)
 
         return {"type": "ir.actions.act_window_close"}
