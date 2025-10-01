@@ -14,6 +14,12 @@
             <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
 
+        <record id="access_create_frozen_in_subscription" model="res.groups">
+            <field name="name">Access to create frozen in subscription</field>
+            <field name="category_id" ref="category_oleg_weba_footbik_system"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
 
 <!--        &lt;!&ndash;Rewrite access to sale.subscription from module subscription_oca&ndash;&gt;-->
 <!--        <record id="subscription_oca.access_custom_sale_subscription" model="ir.model.access">-->

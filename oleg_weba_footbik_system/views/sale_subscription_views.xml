@@ -20,6 +20,7 @@
                         name="create_frozen_subscription"
                         type="object"
                         invisible="is_frozen"
+                        groups="oleg_weba_footbik_system.access_create_frozen_in_subscription"
                     />
             </xpath>
             <xpath expr="//button[@name='create_frozen_subscription']" position="after">
