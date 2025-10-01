@@ -14,8 +14,8 @@
             <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
 
-        <record id="access_create_frozen_in_subscription" model="res.groups">
-            <field name="name">Access to create frozen in subscription</field>
+        <record id="add_delete_child_from_sub" model="res.groups">
+            <field name="name">Access to add or delete child in subscription from group and training</field>
             <field name="category_id" ref="category_oleg_weba_footbik_system"/>
             <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>

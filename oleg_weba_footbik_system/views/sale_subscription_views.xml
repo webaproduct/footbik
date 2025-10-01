@@ -20,7 +20,6 @@
                         name="create_frozen_subscription"
                         type="object"
                         invisible="is_frozen"
-                        groups="oleg_weba_footbik_system.access_create_frozen_in_subscription"
                     />
             </xpath>
             <xpath expr="//button[@name='create_frozen_subscription']" position="after">
@@ -54,7 +53,7 @@
                                 name="action_delete_partner_from_group_trainings"
                                 type="object"
                                 invisible="not added_in_group or not group_id"
-                                groups="base.group_system"
+                                groups="oleg_weba_footbik_system.add_delete_child_from_sub"
                             />
 
                             <button
@@ -63,7 +62,7 @@
                                 name="action_add_partner_in_group_trainings"
                                 type="object"
                                 invisible="added_in_group or not group_id"
-                                groups="base.group_system"
+                                groups="oleg_weba_footbik_system.add_delete_child_from_sub"
                             />
                         </div>
                     </group>
