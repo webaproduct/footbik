@@ -56,7 +56,7 @@ msgstr "Касовий апарат"
 #. module: kw_checkbox_pos
 #: model:ir.model.fields.selection,name:kw_checkbox_pos.selection__pos_payment_method__kw_checkbox_payment_method_type__1
 msgid "Cashless"
-msgstr "Безготівкова"
+msgstr "Безготівковий"
 
 #. module: kw_checkbox_pos
 #: model_terms:ir.ui.view,arch_db:kw_checkbox_pos.kw_checkbox_pos_pos_order_form

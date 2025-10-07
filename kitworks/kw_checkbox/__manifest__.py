@@ -6,7 +6,7 @@
 
     'category': 'Point of Sale',
     'license': 'OPL-1',
-    'version': '17.0.2.8.5',
+    'version': '17.0.2.8.9',
     'summary': 'Checkbox, Чекбокс, Україна, Модулі для України',
 
     'depends': ['base', 'web', 'product', 'account', ],

@@ -13,7 +13,6 @@ access_class_attendance_custom_role,Full access on class_attendance,model_class_
 
 access_class_program_user,User access on class_program,model_class_program,base.group_user,1,0,0,0
 access_class_program_admin,Full access on class_program,model_class_program,base.group_system,1,1,1,1
-access_class_program_custom_role,Full access on class_program,model_class_program,oleg_weba_footbik.admin_access_for_custom_role,1,1,1,1
 
 access_class_location_user,User access on class_location,model_class_location,base.group_user,1,0,0,0
 access_class_location_admin,Full access on class_location,model_class_location,base.group_system,1,1,1,1

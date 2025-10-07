@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="CheckBox">
+                <page string="CheckBox" name="checkbox">
                     <group>
                         <field name="is_offline"/>
                         <field name="kw_checkbox_receipt_id"/>

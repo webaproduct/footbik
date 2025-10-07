@@ -67,7 +67,8 @@ class AccountPayment(models.Model):
 
     def get_payment_goods(self):
         self.ensure_one()
-        goods = {'goods': [], 'discounts': [], 'payments': []}
+        goods = {"id": self.env["kw.checkbox.receipt"].generate_uuid(),
+                 'goods': [], 'discounts': [], 'payments': []}
         payment_method_type = (
             self.journal_id.kw_checkbox_payment_method_type
         )

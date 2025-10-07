@@ -344,7 +344,7 @@ msgstr "Касири"
 #. module: kw_checkbox
 #: model:ir.model.fields.selection,name:kw_checkbox.selection__account_journal__kw_checkbox_payment_method_type__1
 msgid "Cashless"
-msgstr "Безготівкова"
+msgstr "Безготівковий"
 
 #. module: kw_checkbox
 #: model:ir.ui.menu,name:kw_checkbox.kw_checkbox_menu_main
@@ -1423,6 +1423,12 @@ msgid "Settings"
 msgstr "Налаштування"
 
 #. module: kw_checkbox
+#: model:ir.actions.server,name:kw_checkbox.kw_cron_update_checkbox_shift_info_ir_actions_server
+#: model:ir.cron,cron_name:kw_checkbox.kw_cron_update_checkbox_shift_info
+msgid "Update Checkbox Shift"
+msgstr "Оновити Checkbox зміни"
+
+#. module: kw_checkbox
 #: model:ir.model.fields,field_description:kw_checkbox.field_kw_wizard_tax_line__setup_date
 msgid "Setup Date"
 msgstr ""
@@ -1718,11 +1724,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:kw_checkbox.field_kw_checkbox_receipt__tax_gov_url
 msgid "tax.gov.ua url"
 msgstr ""
-
-#. module: kw_checkbox
-#: model:ir.actions.server,name:kw_checkbox.kw_cron_update_checkbox_shift_info_ir_actions_server
-msgid "Update Checkbox Shift"
-msgstr "Оновити Checkbox зміни"
 
 #. module: kw_checkbox
 #: model:ir.model.fields.selection,name:kw_checkbox.selection__res_company__kw_checkbox_mode__test

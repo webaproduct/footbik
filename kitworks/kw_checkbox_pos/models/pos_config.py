@@ -31,6 +31,9 @@ class CheckboxPosConfig(models.Model):
     @api.onchange('kw_checkbox_category_ids')
     def _compute_cash_register(self):
         self.ensure_one()
+        if len(self.kw_checkbox_category_ids) > 1:
+            raise exceptions.ValidationError(_(
+                'You should add only one checkbox organization'))
         if self.kw_checkbox_category_ids:
             for checkbox_category in self.kw_checkbox_category_ids:
                 self.kw_checkbox_cash_register_ids += \

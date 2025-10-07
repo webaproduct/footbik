@@ -2,6 +2,7 @@ import base64
 import logging
 
 from datetime import datetime
+from typing import List
 import requests
 from odoo import models, fields, api, exceptions, _
 from odoo.tools import float_round
@@ -48,8 +49,9 @@ class PosOrder(models.Model):
         self.ensure_one()
         session_id = self.session_id
         cash_register_id = session_id.kw_checkbox_shift_ids.cash_register_id
-        goods = {'goods': [], 'discounts': [],
-                 'payments': [], 'context': {'order_id': self.id}}
+        goods = {"id": self.env["kw.checkbox.receipt"].generate_uuid(),
+                 'goods': [], 'discounts': [], 'payments': [],
+                 'context': {'order_id': self.id}}
         cash_payment = self.payment_ids.filtered(
             lambda x: x.payment_method_id.is_cash_count)
         bank_payment = self.payment_ids.filtered(
@@ -144,9 +146,7 @@ class PosOrder(models.Model):
         return goods
 
     # pylint: disable=too-many-locals,too-many-branches,too-many-statements
-    @api.model
-    def create_from_ui(self, orders, draft=False):
-        res = super(PosOrder, self).create_from_ui(orders)
+    def _kw_create_checkbox_receipt_from_ui(self, res: List[dict]) -> None:
         for order_id in res:
             order = self.browse(order_id['id'])
             ps = self.env["pos.payment"].search(
@@ -176,7 +176,7 @@ class PosOrder(models.Model):
             shift = order.session_id.kw_checkbox_get_shift(
                 j.kw_checkbox_organization_id)
             if not shift:
-                return res
+                continue
             if ps.amount < 0 and order.amount_paid < 0:
                 # refund
                 res_val = goods
@@ -187,7 +187,7 @@ class PosOrder(models.Model):
                     checkbox.license_key = cash_register_id.license_key
                     for obj in res_val.get('goods'):
                         obj['is_return'] = True
-                    res2 = checkbox.shift()
+                    checkbox.shift()
                     payment_method_type = int(
                         ps.payment_method_id.kw_checkbox_payment_method_type
                     )
@@ -202,7 +202,8 @@ class PosOrder(models.Model):
                                 "type": "CASH",
                                 "value": round(ps.amount * 100, 2) * -1,
                                 "label": payment_method_name,
-                            }]
+                            }
+                        ]
                     else:
                         res_val['payments'] = [
                             {
@@ -210,34 +211,36 @@ class PosOrder(models.Model):
                                 "type": "CASHLESS",
                                 "value": round(ps.amount * 100, 2) * -1,
                                 "label": payment_method_name,
-                            }]
-                    res2 = checkbox.receipts_sell(res_val)
-                    kw_checkbox_receipt_id = \
-                        self.env['kw.checkbox.receipt'].create({
-                            'status': res2['status'],
-                            'cb_id': res2['id'],
-                            'type': res2['type'],
-                            'transaction_cb_id': res2['transaction']['id'],
-                            'shift_cb_id': res2['shift']['id'],
-                            'cashier_id': cashier_id.id,
-                            'cash_register_id': cash_register_id.id,
-                            'cashier_cb_id': cashier_id.cb_id,
-                            'res_val': res2,
-                            'cash_register_cb_id': cash_register_id.cb_id
-                        })
+                            }
+                        ]
+                    kw_checkbox_receipt_id = self.env[
+                        'kw.checkbox.receipt'
+                    ].sell(
+                        payload=res_val,
+                        cashier_id=shift.cashier_id,
+                        cash_register_id=shift.cash_register_id,
+                    )
                     kw_checkbox_receipt_id.wait_receipt_done()
                     kw_checkbox_receipt_id.update_info()
                     order.kw_checkbox_receipt_id = kw_checkbox_receipt_id.id
-                    return res
+                    continue
             if shift and not shift.cash_register_id.is_offline:
                 receipt = self.env['kw.checkbox.receipt'].sell(
-                    payload=goods, cashier_id=shift.cashier_id,
-                    cash_register_id=shift.cash_register_id, )
+                    payload=goods,
+                    cashier_id=shift.cashier_id,
+                    cash_register_id=shift.cash_register_id,
+                )
                 receipt.wait_receipt_done()
                 receipt.update_info()
                 order.kw_checkbox_receipt_id = receipt.id
             else:
                 order.is_offline = True
+
+    # pylint: disable=too-many-locals,too-many-branches,too-many-statements
+    @api.model
+    def create_from_ui(self, orders, draft=False):
+        res = super(PosOrder, self).create_from_ui(orders)
+        self._kw_create_checkbox_receipt_from_ui(res)
         return res
 
     def get_checkbox_refund_goods(self, goods):

@@ -142,13 +142,13 @@ class CheckboxShift(models.Model):
                             'status': res['status'], })
         return super(CheckboxShift, self).create(vals_list)
 
-    def update_info_by_token(self, token, ):
+    def update_info_by_token(self, token, environment=False):
         self.ensure_one()
 
         checkbox = CheckBoxApi(
             test_mode=self.company_id.kw_checkbox_mode != 'prod',
             access_token=token,
-            environment=self.env,
+            environment=environment if environment else self.env,
         )
         res = checkbox.shift_info(self.cb_id)
         data = {

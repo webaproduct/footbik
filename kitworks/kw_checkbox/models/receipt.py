@@ -1,5 +1,6 @@
 import logging
 
+import uuid
 import pytz
 from odoo import models, fields, api, exceptions, _
 
@@ -78,13 +79,20 @@ class CheckboxReceipts(models.Model):
         return res
 
     @api.model
+    def generate_uuid(self):
+        while True:
+            uuid_str = str(uuid.uuid4())
+            if not self.search_count([("cb_id", "=", uuid_str)]):
+                return uuid_str
+
+    @api.model
     def sell(self, cashier_id, cash_register_id, payload, environment=False):
         # _logger.info(cash_register_id)
         checkbox = cashier_id.get_checkbox(environment=environment)
         checkbox.license_key = cash_register_id.license_key
         res = checkbox.shift()
         res = checkbox.receipts_sell(payload)
-        cashier_id.update_shifts()
+        cashier_id.update_shifts(environment=environment)
         return self.create({
             'name': res['fiscal_code'], 'fiscal_date': res['fiscal_date'],
             'status': res['status'], 'cb_id': res['id'], 'type': res['type'],

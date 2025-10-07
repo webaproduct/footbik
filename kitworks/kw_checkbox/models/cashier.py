@@ -1,4 +1,5 @@
 import logging
+import time
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
@@ -6,6 +7,8 @@ from odoo.exceptions import UserError
 from .checkbox import CheckBoxApi
 
 _logger = logging.getLogger(__name__)
+
+OPEN_SHIFT_STATUS = ['CREATED', 'OPENING', 'OPENED', 'CLOSING']
 
 
 class CheckboxCashier(models.Model):
@@ -100,9 +103,9 @@ class CheckboxCashier(models.Model):
         action['domain'] = [('cashier_id', '=', self.id)]
         return action
 
-    def update_shifts(self):
+    def update_shifts(self, environment=False):
         self.ensure_one()
-        checkbox = self.get_checkbox()
+        checkbox = self.get_checkbox(environment=environment)
         res = checkbox.shifts_get({
             'status': ['CREATED', 'OPENING', 'OPENED', 'CLOSING',
                        'CLOSED'],
@@ -111,15 +114,44 @@ class CheckboxCashier(models.Model):
             r['cashier'] = {'id': self.cb_id}
             self.env['kw.checkbox.shift'].get_or_create(r)
 
-    def update_open_shifts(self):
+    def update_open_shifts(self, environment=False):
         self.ensure_one()
-        checkbox = self.get_checkbox()
+        checkbox = self.get_checkbox(environment=environment)
         res = checkbox.shifts_get({
             'status': ['CREATED', 'OPENING', 'OPENED', 'CLOSING', ],
             'desc': True, 'limit': 25, 'offset': 0, })
         for r in res['results']:
             r['cashier'] = {'id': self.cb_id}
             self.env['kw.checkbox.shift'].get_or_create(r)
+
+    def open_checkbox_shift(self, register_id, environment=False):
+        self.ensure_one()
+        checkbox = self.get_checkbox(environment=environment)
+        self.update_shifts(environment=environment)
+        checkbox_shift_ids = self.env['kw.checkbox.shift'].sudo().search([
+            ('cashier_id', '=', self.id)])
+        if not checkbox_shift_ids.filtered(
+                lambda x: x.status in OPEN_SHIFT_STATUS):
+            checkbox.license_key = register_id.license_key
+            res = checkbox.shift_open()
+            if 'message' in res:
+                _logger.info(res.get('message'))
+            try:
+                if res and res.get('status'):
+                    self.update_open_shifts(environment=environment)
+                    shift = self.env['kw.checkbox.shift'].sudo().search([
+                        ('cb_id', '=', res.get('id')),
+                        ('name', '=', res.get('serial'))])
+                    while shift.status != 'OPENED':
+                        time.sleep(1)
+                        shift.update_info_by_token(
+                            environment=environment,
+                            token=checkbox.access_token,)
+            except Exception as e:
+                _logger.info('Open Checkbox Shift')
+                _logger.info('++++++++++++++++++++++++++++++++++++++++++++++')
+                _logger.info(e)
+                _logger.info('++++++++++++++++++++++++++++++++++++++++++++++')
 
     def checking_users_other_cashiers(self):
         for obj in self:

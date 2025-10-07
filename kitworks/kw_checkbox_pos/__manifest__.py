@@ -6,7 +6,7 @@
 
     'category': 'Customizations',
     'license': 'OPL-1',
-    'version': '17.0.2.3.4',
+    'version': '17.0.2.4.3',
     'summary': '''Checkbox, CheckboxPOS, Point of Sale, Чекбокс,
 Україна, Модулі для України''',
 
