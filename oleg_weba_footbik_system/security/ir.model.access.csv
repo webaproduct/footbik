@@ -13,3 +13,5 @@ access_frozen_subscription_admin,Full access on frozen_subscription,model_frozen
 
 access_wizard_frozen_subscription_user,User access on wizard_frozen_subscription,model_wizard_frozen_subscription,base.group_user,1,1,1,1
 access_wizard_frozen_subscription_admin,Full access on wizard_frozen_subscription,model_wizard_frozen_subscription,base.group_system,1,1,1,1
+
+access_crad_sale_subscription_stage_admin,Full access to sale_subscription_stage,subscription_oca.model_sale_subscription_stage,oleg_weba_footbik_system.crad_sale_subscription_stage_for_admin,1,1,1,1
