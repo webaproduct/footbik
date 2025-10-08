@@ -72,22 +72,29 @@
 
                                     <span style="font-size: 1em; margin-top: 10px; display: block;">
                                         Check out our <b>Looker SQL Connector</b> addon for seamless integration with
-                                        Odoo using SQL queries directly in Looker!
+                                        Odoo using SQL queries directly in Looker and <b>Odoo Data Model :</b> Models Relationships and Diagram - a game-changing Odoo addon that revolutionizes how you visualize Odoo models as elegant ER diagrams
 
                                         Enhance your analytics capabilities effortlessly!
                                         <br/>
 
                                         <div style="display:flex; ">
-                                            <a href="https://techfinna.com/looker-odoo-connector/"
-                                               target="_blank" rel="noopener noreferrer"
-                                               style="margin-right: 7px;padding-top:12px;margin-top: 10px; padding: 10px 15px; background-color: #0056b3; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
-                                                View Installation Manual
-                                            </a>
+                                            
 
                                             <a href="https://apps.odoo.com/apps/modules/17.0/looker_sql_connector"
                                                target="_blank" rel="noopener noreferrer"
                                                style="padding-top:12px;margin-top: 10px; padding: 10px 15px; background-color: #0056b3; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
                                                 Looker Sql Addon
+                                            </a>
+
+                                            <a href="https://techfinna.com/odoo-data-model/"
+                                               target="_blank" rel="noopener noreferrer"
+                                               style="margin-left: 7px;margin-right: 7px;padding-top:12px;margin-top: 10px; padding: 10px 15px; background-color: #0056b3; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
+                                                Odoo Data Model
+                                            </a>
+                                            <a href="https://apps.odoo.com/apps/modules/browse?author=TechFinna"
+                                               target="_blank" rel="noopener noreferrer"
+                                               style="margin-left: 7px;padding-top:12px;margin-top: 10px; padding: 10px 15px; background-color: #0056b3; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
+                                                View Module Gallery
                                             </a>
                                         </div>
                                     </span>

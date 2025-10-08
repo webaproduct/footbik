@@ -17,7 +17,7 @@ The Odoo to Looker Connector seamlessly integrates your Odoo ERP data with Googl
     'currency': 'USD',
     'version': '2.0.3',
     'installable': True,
-    'live_test_url': 'https://techfinna.com/looker-odoo-connector',
+    'live_test_url': 'https://www.youtube.com/watch?v=q7y2wgLomTQ',
     'support': "info@techfinna.com",
     'application': True,
     'auto_install': False,
