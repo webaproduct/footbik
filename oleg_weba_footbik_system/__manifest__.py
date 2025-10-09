@@ -4,7 +4,7 @@
     "author": "Oleg (Weba)",
     "website": "https://weba.com.ua/",
     "category": "Uncategorized",
-    "version": "17.0.21.5.0",
+    "version": "17.0.22.0.0",
     "license": "LGPL-3",
     "depends": ["contacts", "hr", "crm", "oleg_weba_footbik",
                 "utm", "subscription_oca", "calendar", "sale",
@@ -24,6 +24,8 @@
         "views/frozen_subscription_views.xml",
         "views/account_move_views.xml",
         "views/product_template_views.xml",
+        "views/account_move_line_views.xml",
+        "views/account_payment_views.xml",
 
         "views/class_training_views.xml",
         "views/class_attendance_views.xml",

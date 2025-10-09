@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-30 13:03+0000\n"
-"PO-Revision-Date: 2025-09-30 13:03+0000\n"
+"POT-Creation-Date: 2025-10-09 13:48+0000\n"
+"PO-Revision-Date: 2025-10-09 13:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -104,6 +104,16 @@ msgid "Access change state on active in sale.subscription"
 msgstr ""
 
 #. module: oleg_weba_footbik_system
+#: model:res.groups,name:oleg_weba_footbik_system.add_delete_child_from_sub
+msgid "Access to add or delete child in subscription from group and training"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:res.groups,name:oleg_weba_footbik_system.crad_sale_subscription_stage_for_admin
+msgid "Access to full CRAD in sale.subscription.stage for Admin"
+msgstr ""
+
+#. module: oleg_weba_footbik_system
 #. odoo-python
 #: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
 #: code:addons/user_addons/footbik/oleg_weba_footbik_system/models/frozen_subscription.py:0
@@ -180,6 +190,16 @@ msgstr "Усі заморозки"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.sale_subscription_form_inherit
 msgid "All frozen"
 msgstr "Усі заморозки"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_payment__analytic_from_account_move_line
+msgid "Analytic"
+msgstr "Аналітичний розподіл"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_payment__analytic_precision
+msgid "Analytic Precision"
+msgstr ""
 
 #. module: oleg_weba_footbik_system
 #. odoo-python
@@ -504,6 +524,11 @@ msgid "Female"
 msgstr "Жіночий"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,help:oleg_weba_footbik_system.field_account_move_line__account_payment_id
+msgid "For link between account.move.line and account.payment"
+msgstr "Для звʼязку моделі account.move.line та account.payment"
+
+#. module: oleg_weba_footbik_system
 #. odoo-python
 #: code:addons/oleg_weba_footbik_system/models/frozen_subscription.py:0
 #: code:addons/oleg_weba_footbik_system/wizard/wizard_frozen_subscription.py:0
@@ -638,6 +663,11 @@ msgid "Journal Entry"
 msgstr "Запис у журналі"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_account_move_line
+msgid "Journal Item"
+msgstr "Елемент журналу"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_frozen_subscription__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_skills__write_uid
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_utm_content__write_uid
@@ -756,7 +786,23 @@ msgid "Partner"
 msgstr "Партнер"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_move_line__account_payment_id
+msgid "Payment"
+msgstr "Платіж"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_payment__payment_reference_custom
+msgid "Payment reference"
+msgstr "Референс оплати"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model,name:oleg_weba_footbik_system.model_account_payment
+msgid "Payments"
+msgstr "Платежі"
+
+#. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_product_template
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_payment__product_from_account_move_line
 msgid "Product"
 msgstr "Товар"
 
@@ -806,6 +852,11 @@ msgstr "Референс"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_wizard_frozen_subscription__sale_subscription_id
 msgid "Sale Subscription"
 msgstr ""
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_account_payment__account_move_line_ids
+msgid "Sale data"
+msgstr "Дані платежу"
 
 #. module: oleg_weba_footbik_system
 #: model:ir.model,name:oleg_weba_footbik_system.model_sale_order

@@ -1,0 +1,42 @@
+<odoo>
+
+    <record id="view_account_payment_form_inherit" model="ir.ui.view">
+        <field name="name">view.account.payment.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[@name='payment_notebook']" position="before">
+                <field name="payment_reference_custom" readonly="1"/>
+
+                <field name="product_from_account_move_line" readonly="1"/>
+                <field name="analytic_from_account_move_line" widget="analytic_distribution"
+                       readonly="1"/>
+                <field name="analytic_precision" invisible="1"/>
+
+                <field name="account_move_line_ids" readonly="1">
+                    <tree create="0" edit="0" delete="0">
+                        <field name="product_id" optional="show"/>
+                        <field name="analytic_distribution" widget="analytic_distribution"
+                               optional="show"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_payment_tree_inherit" model="ir.ui.view">
+        <field name="name">view.account.payment.tree.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="payment_reference_custom" optional="show"/>
+
+                <field name="product_from_account_move_line" optional="show"/>
+                <field name="analytic_from_account_move_line" widget="analytic_distribution"
+                       optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -23,11 +23,15 @@
 
         <!--Rewrite access to sale.subscription from module subscription_oca-->
         <record id="subscription_oca.access_custom_sale_subscription" model="ir.model.access">
+            <field name="perm_unlink">0</field>
+        </record>
+
+        <!--Close access to sale.subscription.stage on create,write,unlink-->
+        <record id="subscription_oca.access_custom_sale_subscription_stage" model="ir.model.access">
             <field name="perm_create">0</field>
             <field name="perm_write">0</field>
             <field name="perm_unlink">0</field>
         </record>
-
         <record id="crad_sale_subscription_stage_for_admin" model="res.groups">
             <field name="name">Access to full CRAD in sale.subscription.stage for Admin</field>
             <field name="category_id" ref="category_oleg_weba_footbik_system"/>
