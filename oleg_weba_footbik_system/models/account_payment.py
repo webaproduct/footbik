@@ -12,7 +12,8 @@ class AccountPayment(models.Model):
 
     # <--------Поля для вывода в список---------->
     payment_reference_custom = fields.Char(string="Payment reference")
-    product_from_account_move_line = fields.Char(string="Product")
+    product_from_account_move_line_id = fields.Many2one(
+        comodel_name="product.product", string="Product")
     analytic_from_account_move_line = fields.Json(string="Analytic")
     analytic_precision = fields.Integer()  # Help field for
     # analytic_from_account_move_line and widget="analytic_distribution"
@@ -43,7 +44,7 @@ class AccountPayment(models.Model):
                     # Add payment reference from account.move
                     "payment_reference_custom": account_move_id.payment_reference,
 
-                    "product_from_account_move_line": line.product_id.name,
+                    "product_from_account_move_line_id": line.product_id.id,
                     "analytic_from_account_move_line": line.analytic_distribution,
                     "analytic_precision": line.analytic_precision,
                 })
