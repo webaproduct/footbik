@@ -11,7 +11,6 @@ from . import (
     frozen_subscription,
     account_move,
     product_template,
-    account_move_line,
     account_payment,
 
     class_attendance,

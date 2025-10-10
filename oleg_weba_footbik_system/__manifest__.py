@@ -24,7 +24,6 @@
         "views/frozen_subscription_views.xml",
         "views/account_move_views.xml",
         "views/product_template_views.xml",
-        "views/account_move_line_views.xml",
         "views/account_payment_views.xml",
 
         "views/class_training_views.xml",

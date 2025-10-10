@@ -6,20 +6,11 @@
         <field name="inherit_id" ref="account.view_account_payment_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook[@name='payment_notebook']" position="before">
-                <field name="payment_reference_custom" readonly="1"/>
+                <field name="payment_reference_custom"/>
+                <field name="product_from_account_move_line_id"/>
 
-                <field name="product_from_account_move_line_id" readonly="1"/>
-                <field name="analytic_from_account_move_line" widget="analytic_distribution"
-                       readonly="1"/>
                 <field name="analytic_precision" invisible="1"/>
-
-                <field name="account_move_line_ids" readonly="1">
-                    <tree create="0" edit="0" delete="0">
-                        <field name="product_id" optional="show"/>
-                        <field name="analytic_distribution" widget="analytic_distribution"
-                               optional="show"/>
-                    </tree>
-                </field>
+                <field name="analytic_from_account_move_line" widget="analytic_distribution"/>
             </xpath>
         </field>
     </record>
@@ -31,7 +22,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='name']" position="after">
                 <field name="payment_reference_custom" optional="show"/>
-
                 <field name="product_from_account_move_line_id" optional="show"/>
                 <field name="analytic_from_account_move_line" widget="analytic_distribution"
                        optional="show"/>
