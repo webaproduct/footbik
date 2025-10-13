@@ -29,7 +29,7 @@ class IntegrationSite(http.Controller):
             "child_name": "Child name",
             "email": "test@test.com",
             "phone": "0123456789",
-            "city": "Ukraine",
+            "city": "Kyiv",
             "birthday": "04-08-2025",
 
             "utm": {

@@ -20,7 +20,8 @@ class AccountPayment(models.Model):
                  "kw_checkbox_invoice_id.payment_reference",
                  "kw_checkbox_invoice_id.invoice_line_ids",
                  "kw_checkbox_invoice_id.invoice_line_ids.product_id",
-                 "kw_checkbox_invoice_id.invoice_line_ids.analytic_distribution")
+                 "kw_checkbox_invoice_id.invoice_line_ids.analytic_distribution",
+                 "kw_checkbox_invoice_id.invoice_line_ids.analytic_precision")
     def _compute_account_move(self):
         for rec in self:
             payment_reference_custom = False
