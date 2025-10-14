@@ -1,7 +1,7 @@
-from pytz import timezone
+import pytz
 
 from odoo import models, fields, api, _
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 from odoo.exceptions import UserError
 
@@ -11,16 +11,26 @@ class ClassTraining(models.Model):
     _description = "Class Training"
     _inherit = "mail.thread"
 
+    @api.depends("class_group_id.name", "name", "start_training")
     def _compute_display_name(self):
+        tz = pytz.timezone(self.env.user.tz or "UTC")
         for rec in self:
-            # К началу тренировки (по UTC) + время текущего часового пояса пользователя
-            difference_time = self._get_timezone_difference_time()
+            parts = []
+            if rec.class_group_id and rec.class_group_id.name:
+                parts.append(rec.class_group_id.name)
+            if rec.name:
+                parts.append(rec.name)
 
-            start_training = False
             if rec.start_training:
-                start_training = rec.start_training + timedelta(hours=difference_time)
+                # rec.start_training в Odoo хранится как naive UTC
+                local_dt = pytz.UTC.localize(rec.start_training).astimezone(tz)
+                # Визуально будет совпадать с введённым стеночным временем (учтён DST на
+                # дату)
+                # Выберите формат под себя:
+                dt_txt = local_dt.strftime('%d.%m.%Y %H:%M:%S')  # напр. 14.10.2025 09:00
+                parts.append(dt_txt)
 
-            rec.display_name = f"{rec.class_group_id.name}, {rec.name}, {start_training}"
+            rec.display_name = ", ".join(parts) if parts else _("New")
 
     class_group_id = fields.Many2one(
         comodel_name="class.group", string="Class Group", ondelete="cascade")
@@ -63,31 +73,61 @@ class ClassTraining(models.Model):
     start_training = fields.Datetime(
         string="Start training", compute="_compute_start_training", store=True)
 
-    @api.depends("date_training", "time_training")
-    def _compute_start_training(self):
-        for rec in self:
-            start_training = False
-            if rec.date_training and rec.time_training:
-                hours = int(rec.time_training)
-                minutes = int((rec.time_training - hours) * 60)
-
-                difference_time = self._get_timezone_difference_time()
-
-                # Комбинируем дату и время, прибавляя к 00:00 дату начала тренировки +
-                # отнимая разницу часового пояса для того что бы фронтенд подставил свою
-                # иначе будет на 2 или 3 часа больше
-                start_training = datetime.combine(
-                    rec.date_training, datetime.min.time()
-                ) + timedelta(hours=hours - difference_time, minutes=minutes)
-
-            rec.start_training = start_training
-
+    # @api.depends("date_training", "time_training")
+    # def _compute_start_training(self):
+    #     for rec in self:
+    #         start_training = False
+    #         if rec.date_training and rec.time_training:
+    #             hours = int(rec.time_training)
+    #             minutes = int((rec.time_training - hours) * 60)
+    #
+    #             difference_time = self._get_timezone_difference_time()
+    #
+    #             # Комбинируем дату и время, прибавляя к 00:00 дату начала тренировки +
+    #             # отнимая разницу часового пояса для того что бы фронтенд подставил свою
+    #             # иначе будет на 2 или 3 часа больше
+    #             start_training = datetime.combine(
+    #                 rec.date_training, datetime.min.time()
+    #             ) + timedelta(hours=hours - difference_time, minutes=minutes)
+    #
+    #         rec.start_training = start_training
+    #
     def _get_timezone_difference_time(self):
         # Получаем часовой пояс пользователя (по умолчанию UTC)
-        tz = timezone(self.env.user.tz or "UTC")
+        tz = pytz.timezone(self.env.user.tz or "UTC")
         # Получаем разницу времени (+2 или +3 часа)
         return int(
             datetime.now(tz).utcoffset().total_seconds() / 3600)
+
+    @api.depends("date_training", "time_training")
+    def _compute_start_training(self):
+        user_tz_name = self.env.user.tz or "UTC"
+        tz = pytz.timezone(user_tz_name)
+
+        for rec in self:
+            rec.start_training = False
+            if rec.date_training and rec.time_training is not None:
+                hours = int(rec.time_training)
+                minutes = int(round((rec.time_training - hours) * 60))
+                # «Стеночное» локальное время на КОНКРЕТНУЮ дату
+                naive_local = datetime.combine(rec.date_training, time(hours, minutes))
+                try:
+                    local_aware = tz.localize(naive_local, is_dst=None)  # корректно
+                    # учтёт DST на эту дату
+                except pytz.AmbiguousTimeError:
+                    # Осенний откат часов (времени 02:30 существует дважды).
+                    # Выбираем зимнее (стандартное) время, чтобы визуально совпадало с
+                    # тем, что ввёл пользователь.
+                    local_aware = tz.localize(naive_local, is_dst=False)
+                except pytz.NonExistentTimeError:
+                    # Весенний перевод (напр. 02:30 «не существует»): сдвигаем на час
+                    # вперёд.
+                    local_aware = tz.localize(
+                        naive_local + timedelta(hours=1), is_dst=True)
+
+                # В БД Odoo хранит naive-UTC, поэтому снимаем tzinfo после перевода в UTC
+                rec.start_training = local_aware.astimezone(pytz.UTC).replace(
+                    tzinfo=None)
 
     duration_training = fields.Float(
         related="class_group_id.duration_training", string="Duration training")

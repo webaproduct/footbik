@@ -13,8 +13,8 @@ class CheckboxReceipts(models.Model):
     _name = 'kw.checkbox.receipt'
     _inherit = ['kw.checkbox.mixin']
     _description = 'Checkbox receipts'
-    _sql_constraints = [
-        ('cb_id_uniq', 'unique (cb_id)', _('CheckBox ID must be unique'))]
+    # _sql_constraints = [
+    #     ('cb_id_uniq', 'unique (cb_id)', _('CheckBox ID must be unique'))]
 
     name = fields.Char(
         string='Fiscal code', readonly=True, )

@@ -6,7 +6,7 @@
 
     'category': 'Point of Sale',
     'license': 'OPL-1',
-    'version': '17.0.2.8.9',
+    'version': '17.0.2.9.0',
     'summary': 'Checkbox, Чекбокс, Україна, Модулі для України',
 
     'depends': ['base', 'web', 'product', 'account', 'base_accounting_kit'],  # Custom add base_accounting_kit

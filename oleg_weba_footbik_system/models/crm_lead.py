@@ -6,6 +6,29 @@ from ..models.res_partner import TYPE_PARENT, GENDER
 
 USER_FOR_WRITE_PAYMENT_TERM_ID = [10]  # 'Системний адміністратор'
 
+MATCHING_NAME_COMPANY_ID = {
+    "Форма: Валенсія | Перші кроки – 29.07": 67,  # "Valencia_Centro"
+    "Form: Valencia – Free training": 67,  # Valencia_Centro
+    "Form: Valencia – Presale": 69,  # Valencia_Raskanya
+}
+
+MATCHING_CITY_COMPANY_ID = {
+    "Харків": 71,  # Не визначилися з клубом
+    "Дніпро": 71,
+    "Київ": 71,
+    "Ірпінь": 10,  # Ірпінь
+    "Запоріжжя": 11,  # Запоріжжя
+    "Суми": 12,  # Атріум, м. Суми
+    "Одеса": 71,
+    "Львів": 71,
+    "Луцьк": 18,  # Луцьк
+    "Ужгород": 19,  # Ужгород
+    "Полтава": 62,  # Полтава
+    "Вінниця": 65,  # Вінниця
+    "Мукачево": 70,  # Мукачево
+    "Бровари": 53,  # ТЦ "Сільпо", м. Бровари
+    "Valencia": 71,
+}
 
 class CrmLead(models.Model):
     _inherit = "crm.lead"
@@ -310,6 +333,22 @@ class CrmLead(models.Model):
             "domain": [("child_id", "=", self.partner_id.id)],
         }
     # <------------Кнопка перехода в тренировки--------->
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+
+            if vals.get("name"):
+                for name, id in MATCHING_NAME_COMPANY_ID.items():
+                    if name.lower() in vals["name"].lower():
+                        vals["company_id"] = id
+
+            if not vals.get("company_id", False) and vals.get("city"):
+                for city, id in MATCHING_CITY_COMPANY_ID.items():
+                    if city.lower() in vals["city"].lower():
+                        vals["company_id"] = id
+
+        return super().create(vals_list)
 
     def _cron_calculate_age(self):
         self.env["crm.lead"].search([("birthday", "!=", False)])._compute_age()

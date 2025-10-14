@@ -40,8 +40,9 @@
                             <field name="class_group_id" readonly="1"/>
                             <field name="color" widget="color" invisible="1"/>
 
-                            <field name="date_training" invisible="1"/>
-                            <field name="time_training" widget="float_time" invisible="1"/>
+                            <field name="date_training" invisible="0"/>
+                            <field name="time_training" widget="float_time" invisible="0"/>
+
                             <field name="duration_training" widget="float_time" readonly="state in ('completed', 'cancel')"/>
 
                             <field name="start_training" widget="daterange" options="{'end_date_field': 'end_training'}"/>
