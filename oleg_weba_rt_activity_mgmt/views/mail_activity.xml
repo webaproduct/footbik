@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="mail_activity_tree_inherit" model="ir.ui.view">
+        <field name="name">mail.activity.tree.inherit</field>
+        <field name="model">mail.activity</field>
+        <field name="inherit_id" ref="rt_activity_mgmt.mail_activity_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='summary']" position="after">
+                <field name="company_id" optional="show" column_invisible="0"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mail_activity_view_form_popup_inherit" model="ir.ui.view">
+        <field name="name">mail.activity.view.form.popup.inherit</field>
+        <field name="model">mail.activity</field>
+        <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="company_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
