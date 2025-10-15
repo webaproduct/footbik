@@ -62,13 +62,11 @@
 
                     <!--1 группа-->
                     <field name="domain_training_1_id" invisible="1"/>
-                    <field name="training_1_id" domain="domain_training_1_id" invisible="not program_id"
-                           context="{'order_display': 'start_training asc'}"/>
+                    <field name="training_1_id" domain="domain_training_1_id" invisible="not program_id"/>
 
                     <label for="added_trial_training_1" invisible="not program_id or not training_1_id"/>
                     <div class="o_row" invisible="not program_id or not training_1_id">
-                        <field name="added_trial_training_1" readonly="1" force_save="1" class="oe_inline"
-                               context="{'order_display': 'start_training asc'}"/>
+                        <field name="added_trial_training_1" readonly="1" force_save="1" class="oe_inline"/>
 
                         <button name="action_add_child_on_trial_training_1" type="object"
                             string="Add to training" class="btn btn-success text-nowrap"
@@ -78,13 +76,11 @@
 
                     <!--2 группа-->
                     <field name="domain_training_2_id" invisible="1"/>
-                    <field name="training_2_id" domain="domain_training_2_id" invisible="not program_id"
-                           context="{'order_display': 'start_training asc'}"/>
+                    <field name="training_2_id" domain="domain_training_2_id" invisible="not program_id"/>
 
                     <label for="added_trial_training_2" invisible="not program_id or not training_2_id"/>
                     <div class="o_row" invisible="not program_id or not training_2_id">
-                        <field name="added_trial_training_2" readonly="1" force_save="1" class="oe_inline"
-                               context="{'order_display': 'start_training asc'}"/>
+                        <field name="added_trial_training_2" readonly="1" force_save="1" class="oe_inline"/>
 
                         <button name="action_add_child_on_trial_training_2" type="object"
                             string="Add to training" class="btn btn-success text-nowrap"
