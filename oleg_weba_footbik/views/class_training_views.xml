@@ -4,7 +4,7 @@
         <field name="name">class.training.view.tree</field>
         <field name="model">class.training</field>
         <field name="arch" type="xml">
-            <tree string="Trainings" limit="84" create="0" delete="1" default_order="start_training">
+            <tree string="Trainings" limit="84" create="0" delete="1" default_order="start_training asc">
                 <field name="name"/>
                 <field name="class_group_id" optional="show"/>
                 <field name="city" optional="show"/>
@@ -40,8 +40,8 @@
                             <field name="class_group_id" readonly="1"/>
                             <field name="color" widget="color" invisible="1"/>
 
-                            <field name="date_training" invisible="0"/>
-                            <field name="time_training" widget="float_time" invisible="0"/>
+                            <field name="date_training" invisible="1"/>
+                            <field name="time_training" widget="float_time" invisible="1"/>
 
                             <field name="duration_training" widget="float_time" readonly="state in ('completed', 'cancel')"/>
 

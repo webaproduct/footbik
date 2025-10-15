@@ -374,13 +374,13 @@
                         <field name="domain_training_id" invisible="1"/>
                         <label for="training_id" invisible="not program_id"/>
                         <div class="o_row" invisible="not program_id">
-                            <field name="training_id" domain="domain_training_id" required="program_id"/>
+                            <field name="training_id" domain="domain_training_id" required="program_id" context="{'order_display': 'start_training asc'}"/>
                         </div>
 
                         <label for="added_trial_training" invisible="not program_id"/>
                         <div class="o_row" invisible="not program_id">
                             <field name="added_trial_training" readonly="1" force_save="1"
-                               invisible="not program_id"/>
+                               invisible="not program_id" context="{'order_display': 'start_training asc'}"/>
 
                             <button name="action_add_child_trial_training" type="object"
                                     string="Add to trainings" class="btn btn-success text-nowrap"

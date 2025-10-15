@@ -10,6 +10,7 @@ class ClassTraining(models.Model):
     _name = "class.training"
     _description = "Class Training"
     _inherit = "mail.thread"
+    # _order = "start_training asc"
 
     @api.depends("class_group_id.name", "name", "start_training")
     def _compute_display_name(self):

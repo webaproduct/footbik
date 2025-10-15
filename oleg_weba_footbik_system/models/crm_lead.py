@@ -261,7 +261,7 @@ class CrmLead(models.Model):
             "name": _("Subscriptions"),
             "type": "ir.actions.act_window",
             "res_model": "sale.subscription",
-            "view_mode": "kanban,tree,form",
+            "view_mode": "tree,kanban,form",
             "target": "current",
             "domain": [("partner_id", '=', self.partner_id.id)],
             "context": {"default_partner_id": self.partner_id.id}

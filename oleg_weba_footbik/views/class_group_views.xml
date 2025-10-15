@@ -35,12 +35,12 @@
                             <field name="start_date_for_create_training" readonly="0" required="1"/>
                             <field name="date_end_training" readonly="0" required="0"/>
 
-                            <field name="class_program_id" required="1"/>
-                            <field name="class_age_id" required="1"/>
+                            <field name="class_program_id" required="1" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="class_age_id" required="1" options="{'no_create': True, 'no_open': True}"/>
                             <field name="class_color_group_id" invisible="1" readonly="1" force_save="1"/>
                             <field name="color" widget="color"/>
 
-                            <field name="type_numbering_id"/>
+                            <field name="type_numbering_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="trainer_id" widget="many2one_avatar_user" required="1"/>
                             <field name="assistant_id" widget="many2one_avatar_user"/>
                             <field name="city" required="1"/>
