@@ -8,9 +8,7 @@
             <xpath expr="//notebook[@name='payment_notebook']" position="before">
                 <field name="payment_reference_custom"/>
                 <field name="product_from_account_move_line_id"/>
-
-                <field name="analytic_precision" invisible="1"/>
-                <field name="analytic_from_account_move_line" widget="analytic_distribution"/>
+                <field name="analytic_from_account_move_line"/>
             </xpath>
         </field>
     </record>
@@ -23,8 +21,7 @@
             <xpath expr="//field[@name='name']" position="after">
                 <field name="payment_reference_custom" optional="show"/>
                 <field name="product_from_account_move_line_id" optional="show"/>
-                <field name="analytic_from_account_move_line" widget="analytic_distribution"
-                       optional="show"/>
+                <field name="analytic_from_account_move_line" optional="show"/>
             </xpath>
         </field>
     </record>
