@@ -142,6 +142,20 @@ class CheckboxShift(models.Model):
                             'status': res['status'], })
         return super(CheckboxShift, self).create(vals_list)
 
+    def update_cb_id_shift(self):
+        cashier_id = self.cashier_id
+        cash_register_id = self.cash_register_id
+        if cashier_id and cash_register_id:
+            checkbox = cashier_id.get_checkbox()
+            checkbox.license_key = cash_register_id.license_key
+            res = checkbox.shift_open()
+            if 'message' in res:
+                raise exceptions.ValidationError(res.get('message'))
+            if res:
+                self.update({
+                    'name': res['serial'], 'cb_id': res['id'],
+                    'status': res['status'], })
+
     def update_info_by_token(self, token, environment=False):
         self.ensure_one()
 
@@ -181,6 +195,8 @@ class CheckboxShift(models.Model):
         if not cashier_token:
             raise exceptions.ValidationError(
                 _('There is no acceptable username'))
+        if not self.cb_id:
+            self.update_cb_id_shift()
         self.update_info_by_token(cashier_token)
 
     @api.model
