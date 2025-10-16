@@ -14,8 +14,8 @@ class CheckboxShift(models.Model):
     _inherit = ['kw.checkbox.mixin']
     _description = 'Checkbox shifts'
     _order = 'closed_at_datetime desc, opened_at_datetime desc'
-    _sql_constraints = [
-        ('cb_id_uniq', 'unique (cb_id)', _('CheckBox ID must be unique'))]
+    # _sql_constraints = [
+    #     ('cb_id_uniq', 'unique (cb_id)', _('CheckBox ID must be unique'))]
 
     name = fields.Char(
         string='Serial', readonly=True, )
