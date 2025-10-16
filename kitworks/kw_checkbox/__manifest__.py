@@ -9,7 +9,7 @@
     'version': '17.0.2.9.2',
     'summary': 'Checkbox, Чекбокс, Україна, Модулі для України',
 
-    'depends': ['base', 'web', 'product', 'account', ],
+    'depends': ['base', 'web', 'product', 'account', 'base_accounting_kit'], # Custom add base_accounting_kit
 
     'data': [
         'security/security.xml',
