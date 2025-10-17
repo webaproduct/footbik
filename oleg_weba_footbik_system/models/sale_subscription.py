@@ -234,6 +234,16 @@ class SaleSubscription(models.Model):
         self = self.with_company(self.partner_id.company_id)
         return super(SaleSubscription, self).create_invoice()
 
+    # def calculate_recurring_next_date(self, start_date):
+        # if self.account_invoice_ids_count == 0:
+        #     self.recurring_next_date = date.today()
+        # else:
+        # type_interval = self.template_id.recurring_rule_type
+        # interval = int(self.template_id.recurring_interval)
+        # self.recurring_next_date = start_date + datetime.relativedelta(
+        #     **{type_interval: interval}
+        # )
+
     # <-------------------------------CRONS-------------------------------->
 
     # Крон для поиска ожидающих подписок и активации.

@@ -88,7 +88,7 @@ class ResPartner(models.Model):
             "view_mode": "kanban,tree,form",
             "target": "current",
             "domain": [("partner_id", '=', self.id)],
-            "context": {"default_partner_id": self.id}
+            "context": {"default_partner_id": self.id, "create": False}
         }
     # <------------Кнопка перехода в подписки--------->
 
