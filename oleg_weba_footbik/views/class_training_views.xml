@@ -74,9 +74,11 @@
                                     <field name="count_children"/>
                                     <field name="quantity_free_place"/>
                                     <field name="presence"/>
+
+                                    <field name="children_ids_readonly" invisible="1"/>
                                 </group>
                             </group>
-                            <field name="children_ids" widget="one2many">
+                            <field name="children_ids" widget="one2many" readonly="children_ids_readonly">
                                 <tree string="Children" editable="bottom">
                                     <field name="state" column_invisible="1"/>
 

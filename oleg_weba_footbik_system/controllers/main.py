@@ -59,7 +59,9 @@ class IntegrationSite(http.Controller):
             "phone": data["phone"],
             "telephone_parent": data["phone"],
             "full_name_parent": data["parent_name"],
-            "birthday": datetime.strptime(data["birthday"], "%d-%m-%Y")
+            "birthday": datetime.strptime(data["birthday"], "%d-%m-%Y"),
+
+            "referred": request.httprequest.headers.get('Host')
         }
 
         payload.update(self._get_utm(data.get("utm", False)))

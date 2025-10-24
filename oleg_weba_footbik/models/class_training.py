@@ -1,7 +1,7 @@
 import pytz
 
 from odoo import models, fields, api, _
-from datetime import datetime, timedelta, time
+from datetime import datetime, timedelta, time, date
 
 from odoo.exceptions import UserError
 
@@ -153,6 +153,13 @@ class ClassTraining(models.Model):
         inverse_name="class_training_id",
         string="Children"
     )
+
+    children_ids_readonly = fields.Boolean(
+        compute="_compute_children_ids_readonly", store=False)
+
+    def _compute_children_ids_readonly(self):
+        for rec in self:
+            rec.children_ids_readonly = rec.date_training < date.today()
 
     max_count_children = fields.Integer(
         related="class_group_id.max_count_children", string="Max Count Children")

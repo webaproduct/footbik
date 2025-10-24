@@ -33,6 +33,10 @@
                     />
             </xpath>
 
+            <xpath expr="//field[@name='template_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
             <xpath expr="//group" position="after">
                 <group>
                     <group string="Program/Group" name="program_training">
