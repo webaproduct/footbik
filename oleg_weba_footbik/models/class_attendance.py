@@ -92,3 +92,21 @@ class ClassAttendance(models.Model):
             ("child_id", "=", child_id),
             ("state", "=", "planed"),
         ]).write({"subscription_frozen": False})
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for val in vals_list:
+            if "subscription_id" in val and not val["subscription_id"]:
+                partner = self.env["res.partner"].browse(val["child_id"])
+                training = self.env["class.training"].browse(val["class_training_id"])
+                group = training.class_group_id
+
+                last_sub = partner.subscription_ids.filtered(
+                    lambda x: x.group_id.id == group.id
+                            and x.stage_id.id == 7  # 7 - Активний
+                            and x.added_in_group
+                )
+                if last_sub:
+                    val["subscription_id"] = last_sub[0].id
+
+        return super().create(vals_list)
