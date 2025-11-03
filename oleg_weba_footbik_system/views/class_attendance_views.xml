@@ -34,6 +34,7 @@
             </xpath>
 
             <xpath expr="//field[@name='qualification']" position="after">
+                <field name="opportunity_id" invisible="1"/>
                 <field name="promoter_id" widget="many2one_avatar_user"/>
                 <field name="manager_id" widget="many2one_avatar_employee"/>
             </xpath>

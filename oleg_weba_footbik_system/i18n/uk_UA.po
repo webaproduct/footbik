@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 14:19+0000\n"
-"PO-Revision-Date: 2025-11-03 14:19+0000\n"
+"POT-Creation-Date: 2025-11-03 18:40+0000\n"
+"PO-Revision-Date: 2025-11-03 18:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -689,10 +689,10 @@ msgid "Male/Female"
 msgstr "Хлопчик/Дівчина"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_class_attendance__manager_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__manager_promouter_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_partner__manager_promouter_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_res_users__manager_promouter_id
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.view_res_partner_filter
 msgid "Manager"
 msgstr "Менеджер"
@@ -739,6 +739,11 @@ msgstr "Потреба клієнта"
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_sale_order__recurring_next_date
 msgid "Next invoice date"
 msgstr "Наступна дата рахунку"
+
+#. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_class_attendance__opportunity_id
+msgid "Opportunity"
+msgstr "Нагода"
 
 #. module: oleg_weba_footbik_system
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
@@ -800,8 +805,8 @@ msgid "Program/Group"
 msgstr "Програма/Група"
 
 #. module: oleg_weba_footbik_system
+#: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_class_attendance__promoter_id
 #: model:ir.model.fields,field_description:oleg_weba_footbik_system.field_crm_lead__user_id
-#: model_terms:ir.ui.view,arch_db:oleg_weba_footbik_system.crm_lead_view_form_inherit
 msgid "Promoter"
 msgstr "Промоутер"
 
