@@ -111,13 +111,19 @@ class ClassGroup(models.Model):
     @api.depends("children_ids")
     def _compute_count_children(self):
         for rec in self:
-            if len(rec.children_ids) > rec.max_count_children:
+            rec.count_children = len(rec.children_ids)
+
+    @api.constrains("children_ids")
+    def _check_max_children(self):
+        for rec in self:
+            if rec.count_children > rec.max_count_children:
                 raise UserError(_(
-                    "Number of children cannot be greater than %(count)s",
+                    "Number of children in group (id - %(id)s, name - %(name)s) "
+                    "cannot be greater than: %(count)s",
+                    id=rec.id,
+                    name=rec.display_name,
                     count=rec.max_count_children
                 ))
-
-            rec.count_children = len(rec.children_ids)
 
     full_group = fields.Boolean(
         compute="_compute_full_training", string="Full group", store=True)

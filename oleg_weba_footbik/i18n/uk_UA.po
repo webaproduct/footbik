@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-17 08:47+0000\n"
-"PO-Revision-Date: 2025-09-17 08:47+0000\n"
+"POT-Creation-Date: 2025-11-03 12:52+0000\n"
+"PO-Revision-Date: 2025-11-03 12:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -257,6 +257,11 @@ msgstr "ПІ дитини"
 #: model_terms:ir.ui.view,arch_db:oleg_weba_footbik.class_training_view_form
 msgid "Children"
 msgstr "Учасники тренування"
+
+#. module: oleg_weba_footbik
+#: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__children_ids_readonly
+msgid "Children Ids Readonly"
+msgstr ""
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_group__city
@@ -622,6 +627,14 @@ msgstr "Назва"
 
 #. module: oleg_weba_footbik
 #. odoo-python
+#: code:addons/oleg_weba_footbik/models/class_training.py:0
+#: code:addons/user_addons/footbik/oleg_weba_footbik/models/class_training.py:0
+#, python-format
+msgid "New"
+msgstr ""
+
+#. module: oleg_weba_footbik
+#. odoo-python
 #: code:addons/oleg_weba_footbik/models/class_group.py:0
 #: code:addons/user_addons/footbik/oleg_weba_footbik/models/class_group.py:0
 #, python-format
@@ -644,12 +657,26 @@ msgstr "Зарезервовано місць"
 #. module: oleg_weba_footbik
 #. odoo-python
 #: code:addons/oleg_weba_footbik/models/class_group.py:0
-#: code:addons/oleg_weba_footbik/models/class_training.py:0
 #: code:addons/user_addons/footbik/oleg_weba_footbik/models/class_group.py:0
+#, python-format
+msgid ""
+"Number of children in group (id - %(id)s, name - %(name)s) cannot be greater"
+" than: %(count)s"
+msgstr ""
+"Кількість дітей у групі (id - %(id)s, назва - %(name)s) не може бути більшим"
+" ніж: %(count)s"
+
+#. module: oleg_weba_footbik
+#. odoo-python
+#: code:addons/oleg_weba_footbik/models/class_training.py:0
 #: code:addons/user_addons/footbik/oleg_weba_footbik/models/class_training.py:0
 #, python-format
-msgid "Number of children cannot be greater than %(count)s"
-msgstr "Кількість дітей не може бути більшим, ніж %(count)s"
+msgid ""
+"Number of children in training (id - %(id)s, name - %(name)s) cannot be "
+"greater than: %(count)s"
+msgstr ""
+"Кількість дітей у тренуванні (id - %(id)s, назва - %(name)s) не може бути більшим"
+" ніж: %(count)s"
 
 #. module: oleg_weba_footbik
 #: model:ir.model.fields,field_description:oleg_weba_footbik.field_class_training__without_freez

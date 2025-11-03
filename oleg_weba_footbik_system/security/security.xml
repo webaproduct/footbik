@@ -32,8 +32,8 @@
             <field name="perm_write">0</field>
             <field name="perm_unlink">0</field>
         </record>
-        <record id="crad_sale_subscription_stage_for_admin" model="res.groups">
-            <field name="name">Access to full CRAD in sale.subscription.stage for Admin</field>
+        <record id="crud_sale_subscription_stage_for_admin" model="res.groups">
+            <field name="name">Access to full CRUD in sale.subscription.stage for Admin</field>
             <field name="category_id" ref="category_oleg_weba_footbik_system"/>
             <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>

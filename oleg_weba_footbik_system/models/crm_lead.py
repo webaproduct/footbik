@@ -10,6 +10,7 @@ MATCHING_NAME_COMPANY_ID = {
     "Форма: Валенсія | Перші кроки – 29.07": 67,  # "Valencia_Centro"
     "Form: Valencia – Free training": 67,  # Valencia_Centro
     "Form: Valencia – Presale": 69,  # Valencia_Raskanya
+    # "Київ - безкоштовне пробне тренування": 52,  # Харківський, м. Київ
 }
 
 MATCHING_CITY_COMPANY_ID = {
@@ -29,6 +30,7 @@ MATCHING_CITY_COMPANY_ID = {
     "Бровари": 53,  # ТЦ "Сільпо", м. Бровари
     "Valencia": 71,
 }
+
 
 class CrmLead(models.Model):
     _inherit = "crm.lead"
@@ -347,6 +349,9 @@ class CrmLead(models.Model):
                 for city, id in MATCHING_CITY_COMPANY_ID.items():
                     if city.lower() in vals["city"].lower():
                         vals["company_id"] = id
+
+                # if not vals["company_id"]:
+                #     vals["company_id"] = 71  # Не визначилися з клубом
 
         return super().create(vals_list)
 

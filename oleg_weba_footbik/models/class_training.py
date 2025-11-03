@@ -169,13 +169,19 @@ class ClassTraining(models.Model):
     @api.depends("children_ids")
     def _compute_count_children(self):
         for rec in self:
-            if len(rec.children_ids) > rec.max_count_children:
+            rec.count_children = len(rec.children_ids)
+
+    @api.constrains("children_ids")
+    def _check_max_count_children(self):
+        for rec in self:
+            if rec.count_children > rec.max_count_children:
                 raise UserError(_(
-                    "Number of children cannot be greater than %(count)s",
+                    "Number of children in training (id - %(id)s, name - %(name)s) "
+                    "cannot be greater than: %(count)s",
+                    id=rec.id,
+                    name=rec.display_name,
                     count=rec.max_count_children
                 ))
-
-            rec.count_children = len(rec.children_ids)
 
     quantity_free_place = fields.Integer(
         string="Quantity free place",
@@ -232,17 +238,17 @@ class ClassTraining(models.Model):
     #         "Number of children cannot be greater than %(count)s",
     #         count=max_count_children
     #     ))
-
+    #
     # @api.model_create_multi
     # def create(self, vals_list):
     #     for vals in vals_list:
-
+    #
     #         # Проверка на максимальное кол-во детей на тренировке
     #         if len(vals["children_ids"]) > vals["max_count_children"]:
     #             self._raise_error_count_children(vals["max_count_children"])
     #
     #     return super(ClassTraining, self).create(vals_list)
-
+    #
     # def write(self, vals):
     #     res = super(ClassTraining, self).write(vals)
     #
