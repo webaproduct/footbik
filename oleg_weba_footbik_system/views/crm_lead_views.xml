@@ -55,6 +55,11 @@
             <xpath expr="//field[@name='city']" position="after">
                 <field name="age_store" optional="show"/>
             </xpath>
+
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="manager_promouter_id" widget="many2one_avatar_employee"
+                       optional="show"/>
+            </xpath>
         </field>
     </record>
 
@@ -65,6 +70,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='city']" position="after">
                 <field name="age_store" optional="show"/>
+            </xpath>
+
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="manager_promouter_id" widget="many2one_avatar_employee"
+                       optional="show"/>
             </xpath>
         </field>
     </record>
@@ -393,14 +403,18 @@
                     </group>
                     <group string="Other" invisible="type == 'lead'">
                         <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+
                         <field name="user_id"
                             context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
+                        <field name="manager_promouter_id" widget="many2one_avatar_employee"/>
                     </group>
 
 
                     <group invisible="type == 'opportunity'">
                         <field name="user_id"
                             context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
+                        <field name="manager_promouter_id" widget="many2one_avatar_employee"/>
+
                         <field name="team_id" options="{'no_open': True, 'no_create': True}"
                                context="{'kanban_view_ref': 'sales_team.crm_team_view_kanban'}" groups="base.group_system"/>
                     </group>
@@ -429,7 +443,7 @@
                 <attribute name="string">utm_source</attribute>  <!--Для изменения перевода-->
             </xpath>
             <xpath expr="//page[@name='extra']/group/group/field[@name='source_id']" position="after">
-                <field name="manager_promouter_id" widget="many2one_avatar_user" invisible="medium_id != 11"/>  <!--Промоутер-->
+<!--                <field name="manager_promouter_id" widget="many2one_avatar_employee" invisible="medium_id != 11"/>  &lt;!&ndash;Промоутер&ndash;&gt;-->
 
                 <field name="utm_term_id"/>
                 <field name="utm_content_id"/>
@@ -519,7 +533,7 @@
                 <field name="utm_content_id"/>
 
                 <field name="medium2_id"/>
-                <field name="manager_promouter_id" widget="many2one_avatar_user" invisible="medium2_id != 11"/>  <!--Промоутер-->
+                <field name="manager_promouter_id" widget="many2one_avatar_employee" invisible="medium2_id != 11"/>  <!--Промоутер-->
 
                 <field name="domain_source2_id" invisible="1"/>
                 <field name="source2_id" domain="domain_source2_id"/>
@@ -585,6 +599,31 @@
             </xpath>
             <xpath expr="//button[@name='iap_enrich'][2]" position="attributes">
                 <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_case_kanban_view_leads_inherit" model="ir.ui.view">
+        <field name="name">crm.case.kanban.view.leads.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_kanban_bottom_right')]/field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_kanban_bottom_right')]/field[@name='user_id']" position="after">
+                <field name="manager_promouter_id" widget="many2one_avatar_employee"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_case_opportunities_filter_inherit" model="ir.ui.view">
+        <field name="name">view.crm.case.opportunities.filter.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="manager_promouter_id"/>
             </xpath>
         </field>
     </record>

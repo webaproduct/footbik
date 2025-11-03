@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
         for rec in self:
             rec.can_write = self.env.uid in users
 
-    # <--------------------------Добавление на intro-------------------------->
+    # <--------------------------Добавление на КВ-------------------------->
     view_group_add_intro = fields.Boolean(compute="_compute_view_group_add_intro")
 
     """Проверяем наличие метки qualification=True в добавленных товарах, если хотя бы в 1 

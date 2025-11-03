@@ -12,6 +12,11 @@
                 <field name="sum_pay"/>
                 <field name="date_pay"/>
             </xpath>
+
+            <xpath expr="//field[@name='subscription_frozen']" position="after">
+                <field name="promoter_id" widget="many2one_avatar_user" optional="show"/>
+                <field name="manager_id" widget="many2one_avatar_employee" optional="show"/>
+            </xpath>
         </field>
     </record>
 
@@ -26,6 +31,11 @@
             <xpath expr="//field[@name='comment']" position="after">
                 <field name="sum_pay"/>
                 <field name="date_pay"/>
+            </xpath>
+
+            <xpath expr="//field[@name='qualification']" position="after">
+                <field name="promoter_id" widget="many2one_avatar_user"/>
+                <field name="manager_id" widget="many2one_avatar_employee"/>
             </xpath>
         </field>
     </record>

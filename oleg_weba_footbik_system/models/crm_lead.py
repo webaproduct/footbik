@@ -154,8 +154,9 @@ class CrmLead(models.Model):
     source2_id = fields.Many2one(
         comodel_name="utm.source", string="Source", tracking=True)
 
+    user_id = fields.Many2one(string="Promoter")
     manager_promouter_id = fields.Many2one(
-        comodel_name="hr.employee", string="Manager promouter", tracking=True)
+        comodel_name="hr.employee", string="Manager", tracking=True, index=True)
     # <----------------------------------UTM---------------------------------->
 
     # <--------------------------Добавление на intro-------------------------->

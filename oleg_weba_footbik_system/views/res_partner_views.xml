@@ -74,7 +74,8 @@
 
                 <field name="domain_source_id" invisible="1"/>
                 <field name="source_id" domain="domain_source_id"/>
-                <field name="manager_promouter_id" widget="many2one_avatar_user" invisible="medium_id != 11"/>  <!--Промоутер-->
+<!--                <field name="manager_promouter_id" widget="many2one_avatar_employee" invisible="medium_id != 11"/>  &lt;!&ndash;Промоутер&ndash;&gt;-->
+                <field name="manager_promouter_id" widget="many2one_avatar_employee"/>  <!--Промоутер-->
             </xpath>
 
             <xpath expr="//field[@name='vat']" position="after">

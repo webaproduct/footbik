@@ -63,7 +63,7 @@ class ResPartner(models.Model):
                 rec.domain_source_id = []
 
     manager_promouter_id = fields.Many2one(
-        comodel_name="hr.employee", string="Manager promouter", tracking=True)
+        comodel_name="hr.employee", string="Manager", tracking=True)
 
     class_program_id = fields.Many2one(
         comodel_name="class.program", string="Program", index=True)

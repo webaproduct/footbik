@@ -49,8 +49,6 @@ class AccountPayment(models.Model):
                         analytic_id).name
                     analytic_from_account_move_line = analytic
 
-            rec.write({
-                "payment_reference_custom": payment_reference_custom,
-                "product_from_account_move_line_id": product_from_account_move_line_id,
-                "analytic_from_account_move_line": analytic_from_account_move_line,
-            })
+            rec.payment_reference_custom = payment_reference_custom
+            rec.product_from_account_move_line_id = product_from_account_move_line_id
+            rec.analytic_from_account_move_line = analytic_from_account_move_line
