@@ -180,6 +180,32 @@ class SaleOrder(models.Model):
     sub_group_id = fields.Many2one(
         comodel_name="class.group", string="Group", index=True)
 
+    first_name_product = fields.Char(
+        string="Name first product", compute="_compute_first_product", store=True)
+    quantity_first_product = fields.Float(
+        string="Quantity first product", compute="_compute_first_product", store=True)
+    amount_first_product = fields.Float(
+        string="Amount first product", compute="_compute_first_product", store=True)
+
+    @api.depends("order_line", "order_line.product_id.name",
+                 "order_line.product_uom_qty", "order_line.price_unit")
+    def _compute_first_product(self):
+        for rec in self:
+            first_name_product = False
+            quantity_first_product = 0
+            amount_first_product = 0
+
+            if rec.order_line:
+                product = rec.order_line[0]
+
+                first_name_product = product.product_id.name
+                quantity_first_product = product.product_uom_qty
+                amount_first_product = product.price_unit * quantity_first_product
+
+            rec.first_name_product = first_name_product
+            rec.quantity_first_product = quantity_first_product
+            rec.amount_first_product = amount_first_product
+
     def create_subscription(self, lines, subscription_tmpl):
         subscription_lines = []
         for line in lines:

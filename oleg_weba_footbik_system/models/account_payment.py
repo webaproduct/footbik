@@ -52,3 +52,15 @@ class AccountPayment(models.Model):
             rec.payment_reference_custom = payment_reference_custom
             rec.product_from_account_move_line_id = product_from_account_move_line_id
             rec.analytic_from_account_move_line = analytic_from_account_move_line
+
+    status_payment = fields.Char(
+        string="Status Payment", compute="_compute_status_payment", store=True)
+
+    @api.depends("state")
+    def _compute_status_payment(self):
+        for rec in self:
+            status_payment = False
+            if rec.state:
+                status_payment = rec.state
+
+            rec.status_payment = status_payment

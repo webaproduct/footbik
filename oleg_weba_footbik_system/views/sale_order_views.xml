@@ -42,6 +42,10 @@
                        invisible="is_required_sub_program_id_group_id == False"/>
                 <field name="trainer_id" required="is_required_sub_program_id_group_id"
                        invisible="is_required_sub_program_id_group_id == False"/>
+
+                <field name="first_name_product" invisible="1"/>
+                <field name="quantity_first_product" invisible="1"/>
+                <field name="amount_first_product" invisible="1"/>
             </xpath>
 
             <xpath expr="//tree/control/create[@name='add_section_control']" position="attributes">
